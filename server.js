@@ -24,7 +24,13 @@ function closeServer(){
 
 
 //this runs if server.js is called directly, if this isn't included
-//the server will be attempted to start twice when running tests
+    //the server will be started twice when running tests
+//module provides a file name property which is the entry point of the current
+    //application. 
+//when ran directly (node server.js vs require('/server')) require.main is set
+    //to it's module. So it would equal server.js if ran directly
+//therefore require.main === module would return true if ran directly
+    //(server.js === server.js)
 if (require.main === module) {
   runServer();
 }
