@@ -11,11 +11,24 @@ chai.use(chaiHttp);
 
 describe('Root url GET', function(){
     before(function(){
-        runServer();
+        runServer()
+            .catch(function(err){
+                console.log(err);
+            })
+            .then(function(){
+                console.log('success started server');
+            })
+
     });
 
     after(function(){
-        closeServer();
+        closeServer()
+            .catch(function(err){
+                console.log(err);
+            })
+            .then(function(){
+                console.log('successfully closed server');
+            })
     });
 
 
