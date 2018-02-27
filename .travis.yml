@@ -1,4 +1,11 @@
 language: node_js
 node_js: node
 services:
-    - mongodb
+- mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: vOYbN/6EXWoTHPdBEO6S2k7iBB6yIjDAzXkO8Z8cs2YH7OKuwjyDWRYB1PF8rh6LbAneC5sBeiUtMgyvnH1rUyrd+biKxnZLt8ZCrIENLDBWRotYGnanQE8FXa91R32JxClrPMv/RTsk5TdmW94+m9RdhuOZrP2Ua6WApLHzfBA+ji4NybqM309IOMNp1i8+3m5hlyc1WeH/2TOH6nGYaZElQ+DF2Sa3tBLexZ1PTr8B+BlJ5quA5ktc1H1ysNdb7tEqYkYt5BbftITq8F99ugyDb8ehZPw5XZfoloVekz7qBJscHax4Qe/GRAvs26lA230mcrdAoIKmsAZFY5HGNNfI7Tt+Rn9Eqa9lXA2lD2ZWA0WVrPLAlWrSUzvDW+dWNh2LFlpk9jzWCPQw7VeZnRHf5eCX0akOE0bCbit0301I0C8kt46vQoLTwRPvj3PKNByMQW18urfayUF1BCGlxa6x4pN46iYVSFcy9ZxrGBZn3v8NTBqbmi33AoIBmia6kwx1zY7elve6itQOMkExtxetNEqZjqhEOQf1HpBhvOZyXzlJDbSSeK9z3KRlsWB071Eds2Px4MRX48jbBMa2agqHQbi3WqM0/VNC+THJI7SjCaaocd+E/U5oiHZz0rw0fJZIHnw6rhJHob6ML8BxBedpwnlarxKQwjMbZb1WToQ=
+  app: shielded-taiga-53121
+  on:
+    repo: tstirtz/hangry-fullstack-capstone
