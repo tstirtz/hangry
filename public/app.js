@@ -3,16 +3,20 @@
 var MOCK_RESTAURANT_LIST= {
     "restaurants": [
         {
-            "name":"restaurant A"
+            "name":"restaurant A",
+            "address": "address data from google"
         },
         {
-            "name": "restaurant B"
+            "name": "restaurant B",
+            "address": "address data from google"
         },
         {
-            "name": "restaurant C"
+            "name": "restaurant C",
+            "address": "address data from google"
         },
         {
-            "name": "restaurant D"
+            "name": "restaurant D",
+            "address": "address data from google"
         }
     ]
 }
