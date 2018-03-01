@@ -11,6 +11,10 @@ let server;
 //     console.log(`Your app is listening on port ${port}`);
 // });
 
+app.get('/', function(req, res){
+    //left of trying to get the mock data to display
+});
+
 function runServer(){
     return new Promise(function(resolve, reject){
         server = app.listen(port = process.env.PORT || 8080, function(){
