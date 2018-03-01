@@ -22,7 +22,7 @@ var MOCK_RESTAURANT_LIST= {
 }
 
 function getRestaurantData(callback){
-    setTimeOut(function(){callback(MOCK_RESTAURANT_LIST)}, 100;
+    setTimeOut(function(){callback(MOCK_RESTAURANT_LIST)}, 100);
 }
 
 //render restaurant list
@@ -36,4 +36,7 @@ function getAndDisplayRestaurants(){
     getRestaurantData(renderRestaurantList);
 }
 
-$(getAndDisplayRestaurants);
+
+$(getAndDisplayRestaurants)
+//left off trying to figure out why the test does not recognize the $
+//try finding a jQuery middleware for Node.js
