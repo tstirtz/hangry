@@ -44,7 +44,7 @@ var MOCK_USER_LIST= {
                     "address": "address data from google"
                 }
             ]
-        }
+        },
         {
             "userName": "user112",
             "password": "1234567899",
@@ -66,7 +66,7 @@ var MOCK_USER_LIST= {
                     "address": "address data from google"
                 }
             ]
-        }
+        },
         {
             "userName": "user113",
             "password": "1234567898",
@@ -88,7 +88,7 @@ var MOCK_USER_LIST= {
                     "address": "address data from google"
                 }
             ]
-        }
+        },
         {
             "userName": "user114",
             "password": "1234567897",
@@ -110,7 +110,7 @@ var MOCK_USER_LIST= {
                     "address": "address data from google"
                 }
             ]
-        }
+        },
         {
             "userName": "user115",
             "password": "1234567896",
@@ -134,17 +134,18 @@ var MOCK_USER_LIST= {
             ]
         }
     ]
-}
+};
 
 function getRestaurantData(callback){
-    setTimeOut(function(){callback(MOCK_USER_LIST)}, 1);
+    console.log("getRestaurantData working");
+    setTimeout(function(){callback(MOCK_USER_LIST)}, 100);
 }
 
 //render restaurant list
 function renderRestaurantList(data){
-    for(index in data.users){
+    for (var index in data.users){
         $('body').append(
-            `<p>${data}</p>`
+            `<p>${data.users[index].userName}</p>`
         );
     }
 }
@@ -154,6 +155,8 @@ function getAndDisplayRestaurants(){
 }
 
 
-$(getAndDisplayRestaurants)
+$(function(){
+    getAndDisplayRestaurants();
+})
 //left off trying to figure out why the test does not recognize the $
 //try finding a jQuery middleware for Node.js
