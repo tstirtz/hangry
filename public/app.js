@@ -137,14 +137,16 @@ var MOCK_USER_LIST= {
 }
 
 function getRestaurantData(callback){
-    setTimeOut(function(){callback(MOCK_USER_LIST)}, 100);
+    setTimeOut(function(){callback(MOCK_USER_LIST)}, 1);
 }
 
 //render restaurant list
 function renderRestaurantList(data){
-    $('body').append(
-        `<p>${data}</p>`
-    );
+    for(index in data.users){
+        $('body').append(
+            `<p>${data}</p>`
+        );
+    }
 }
 
 function getAndDisplayRestaurants(){
