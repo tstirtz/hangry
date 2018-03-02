@@ -3,10 +3,45 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const expect = chai.expect;
+const faker = require('faker');
 const {app, runServer, closeServer} = require('../server');
 
 
 chai.use(chaiHttp);
+
+function seedTestData(){
+    let seededTestData = [];
+
+    for(let i = 0; i < 10; i++){
+        seededTestData.push(testDataModel());
+    }
+}
+
+function testDataModel(){
+    return
+        {
+            "userName": faker.internet.userName,
+            "password": faker.internet.password,
+            "restaurantList": [
+                {
+                    "name": faker.company.companyName,
+                    "address": faker.address.streetAddress
+                },
+                {
+                    "name": faker.company.companyName,
+                    "address": faker.address.streetAddress
+                },
+                {
+                    "name": faker.company.companyName,
+                    "address": faker.address.streetAddress
+                },
+                {
+                    "name": faker.company.companyName,
+                    "address": faker.address.streetAddress
+                }
+            ]
+        }
+}
 
 
 
