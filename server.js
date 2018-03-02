@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const {DATABASE_URL} = require('./config');
 app.use(express.static('public'));
 
 let port;
@@ -16,15 +17,23 @@ app.get('/', function(req, res){
     //left of trying to get the mock data to display
 });
 
-function runServer(){
+function runServer(databaseUrl){
     return new Promise(function(resolve, reject){
-        server = app.listen(port = process.env.PORT || 8080, function(){
-            console.log(`Your app is listening on port ${port}`);
+        mongoose.connect(databaseUrl, {useMongoClient: true}, function(err){
+            //{useMongoClient: true} opts you in to using Mongoose 4.11's simplified initial connection logic and allows you to avoid getting a deprecation warning from the underyling MongoDB driver
+            if(err){
+                console.log(err);
+                return reject(err);
+            }
+            server = app.listen(port = process.env.PORT || 8080, function(){
+                console.log(`Your app is listening on port ${port}`);
+                resolve();
+            })
         })
         .on('error', function(err){
+            mongoose.disconnect();
             return reject(err);
-        })
-        resolve();
+        });
     });
 }
 
