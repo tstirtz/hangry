@@ -2,49 +2,51 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const {DATABASE_URL} = require('./config');
+const {DATABASE_URL, PORT} = require('./config');
 app.use(express.static('public'));
 
+let server;
 let port;
 
-let server;
+mongoose.Promise = global.Promise;
 
 // app.listen(port = process.env.PORT || 8080, function(){
 //     console.log(`Your app is listening on port ${port}`);
 // });
 
-app.get('/', function(req, res){
-    //left of trying to get the mock data to display
-});
+// app.get('/', function(req, res){
+//
+// });
 
-function runServer(databaseUrl){
+function runServer(databaseUrl, port=PORT){
     return new Promise(function(resolve, reject){
-        mongoose.connect(databaseUrl, {useMongoClient: true}, function(err){
-            //{useMongoClient: true} opts you in to using Mongoose 4.11's simplified initial connection logic and allows you to avoid getting a deprecation warning from the underyling MongoDB driver
-            if(err){
-                console.log(err);
-                return reject(err);
-            }
-            server = app.listen(port = process.env.PORT || 8080, function(){
-                console.log(`Your app is listening on port ${port}`);
+        mongoose.connect(databaseUrl).then(
+            function(){
+                server = app.listen(port, function(){
+                    console.log(`Your app is listening on port ${port}`);
+                });
                 resolve();
-            })
-        })
-        .on('error', function(err){
-            mongoose.disconnect();
-            return reject(err);
-        });
+            },
+            function(err){
+                mongoose.disconnect();
+                reject(err);
+            }
+        );
     });
 }
 
 function closeServer(){
     return new Promise(function(resolve, reject){
-        console.log('Closing server');
-        server.close().on('error', function(err){
-            return reject(err);
-        })
-        resolve();
-    });
+        mongoose.disconnect().then(
+            function(err){
+                reject(err);
+            },
+            function(){
+                server.close();
+                resolve();
+            }
+        )
+    })
 }
 
 
@@ -57,7 +59,7 @@ function closeServer(){
 //therefore require.main === module would return true if ran directly
     //(server.js === server.js)
 if (require.main === module) {
-  runServer();
+  runServer(DATABASE_URL).catch(err=> console.log(err));
 }
 
 module.exports = {app, runServer, closeServer};

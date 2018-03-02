@@ -5,49 +5,55 @@ const chaiHttp = require('chai-http');
 const expect = chai.expect;
 const faker = require('faker');
 const {app, runServer, closeServer} = require('../server');
+const {DATABASE_URL, TEST_DATABASE_URL} = require('../config');
 
 
 chai.use(chaiHttp);
 
-function seedTestData(){
-    let seededTestData = [];
+// function seedTestData(){
+//     let seededTestData = [];
+//
+//     for(let i = 0; i < 10; i++){
+//         seededTestData.push(testDataModel());
+//     }
+//
+// }
+//
+// function testDataModel(){
+//     return
+//         {
+//             userName: faker.internet.userName(),
+//             password: faker.internet.password(),
+//             restaurantList: [
+//                 {
+//                     name: faker.company.companyName(),
+//                     address: faker.address.streetAddress()
+//                 },
+//                 {
+//                     name: faker.company.companyName(),
+//                     address: faker.address.streetAddress()
+//                 },
+//                 {
+//                     name: faker.company.companyName(),
+//                     address: faker.address.streetAddress()
+//                 },
+//                 {
+//                     name: faker.company.companyName(),
+//                     address: faker.address.streetAddress()
+//                 }
+//             ]
+//         };
+// }
 
-    for(let i = 0; i < 10; i++){
-        seededTestData.push(testDataModel());
-    }
-}
-
-function testDataModel(){
-    return
-        {
-            "userName": faker.internet.userName,
-            "password": faker.internet.password,
-            "restaurantList": [
-                {
-                    "name": faker.company.companyName,
-                    "address": faker.address.streetAddress
-                },
-                {
-                    "name": faker.company.companyName,
-                    "address": faker.address.streetAddress
-                },
-                {
-                    "name": faker.company.companyName,
-                    "address": faker.address.streetAddress
-                },
-                {
-                    "name": faker.company.companyName,
-                    "address": faker.address.streetAddress
-                }
-            ]
-        }
-}
+// function tearDownTestDb(){
+//
+// }
 
 
 
 describe('Root url GET', function(){
     before(function(){
-        runServer()
+        runServer(DATABASE_URL)
             .catch(function(err){
                 console.log(err);
             })
@@ -56,6 +62,14 @@ describe('Root url GET', function(){
             })
 
     });
+
+    // beforEach(function(){
+    //     seedTestData();
+    // });
+    //
+    // afterEach(function(){
+    //
+    // });
 
     after(function(){
         closeServer()
@@ -72,6 +86,7 @@ describe('Root url GET', function(){
         app.get('/', function(req, res){
             expect(res).to.have.status(200);
             expect(res.body).to.be.an('object');
+            expect(res.body).to.have.lengthOf.at.least(2);
         });
     });
 });
