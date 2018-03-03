@@ -22,6 +22,7 @@ function runServer(databaseUrl, port=PORT){
     return new Promise(function(resolve, reject){
         mongoose.connect(databaseUrl).then(
             function(){
+                console.log(`mongoose connected to ${databaseUrl}`);
                 server = app.listen(port, function(){
                     console.log(`Your app is listening on port ${port}`);
                 });

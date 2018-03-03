@@ -4,18 +4,19 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect(DATABASE_URL);
 
-const restaurantSchema = mongoose.Schema ({
-    userName: String,
-    password: String,
-    list: [
-        {
-            name: String,
-            address: String
-        }
-    ]
-
-});
-
-const Restaurant = mongoose.model('Restaurant', restaurantSchema);
+const restaurantSchema = mongoose.Schema (
+    {
+        userName: String,
+        password: String,
+        list: [
+            {
+                name: String,
+                address: String
+            }
+        ]
+    }
+);
+//the first argument is the collection the model is for
+const Restaurant = mongoose.model('users', restaurantSchema);
 
 module.exports = {Restaurant};
