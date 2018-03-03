@@ -8,9 +8,13 @@ router.get('/', function(req, res){
         .find()
         .then(function(items){
             res.json(items.map(item => item.userData()));
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({error: "Something went terribly wrong"})
         });
 });
 
-//left off trying to get db to return mock data
+
 
 module.exports = router;
