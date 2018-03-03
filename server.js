@@ -10,29 +10,31 @@ app.use(express.static('public'));
 
 const restaurantListRouter = require('./restaurantListRouter');
 
-let server;
-let port;
 
 mongoose.Promise = global.Promise;
 
 
 app.use('/lists', restaurantListRouter);
 
+let server;
+let port;
+
 function runServer(databaseUrl, port=PORT){
     return new Promise(function(resolve, reject){
-        mongoose.connect(databaseUrl).then(
-            function(){
+        mongoose.connect(databaseUrl, function(err){
+                if(err){
+                    return reject(err);
+                }
                 console.log(`mongoose connected to ${databaseUrl}`);
                 server = app.listen(port, function(){
                     console.log(`Your app is listening on port ${port}`);
+                    resolve();
+                })
+                .on('error', function(err){
+                    mongoose.disconnect();
+                    reject(err);
                 });
-                resolve();
-            },
-            function(err){
-                mongoose.disconnect();
-                reject(err);
-            }
-        );
+        });
     });
 }
 //Start here: set up GET route and unit test for GET route. Before starting research
@@ -40,16 +42,19 @@ function runServer(databaseUrl, port=PORT){
 
 function closeServer(){
     return new Promise(function(resolve, reject){
-        mongoose.disconnect().then(
-            function(err){
-                reject(err);
-            },
-            function(){
-                server.close();
-                resolve();
-            }
-        )
-    })
+        mongoose.disconnect().then(()=>{
+            return new Promise(function(resolve, reject){
+                console.log("closing server");
+                server.close(err=>{
+                    if(err){
+                        console.log(err);
+                        return reject(err);
+                    }
+                    resolve();
+                });
+            });
+        });
+    });
 }
 
 
