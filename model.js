@@ -16,6 +16,13 @@ const restaurantSchema = mongoose.Schema (
         ]
     }
 );
+
+restaurantSchema.methods.userData = function(){
+    return{
+        userName: this.userName,
+        list: this.list
+    }
+}
 //the first argument is the collection the model is for
 const Restaurant = mongoose.model('users', restaurantSchema);
 

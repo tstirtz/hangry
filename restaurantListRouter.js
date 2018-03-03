@@ -7,10 +7,10 @@ router.get('/', function(req, res){
     Restaurant
         .find()
         .then(function(items){
-            res.json(items);
+            res.json(items.map(item => item.userData()));
         });
 });
 
-//left off trying to get db to return mock data 
+//left off trying to get db to return mock data
 
 module.exports = router;
