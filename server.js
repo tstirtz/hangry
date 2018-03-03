@@ -3,20 +3,20 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const {DATABASE_URL, PORT} = require('./config');
+const morgan = require('morgan');
+
+app.use(morgan('common'));
 app.use(express.static('public'));
+
+const restaurantListRouter = require('./restaurantListRouter');
 
 let server;
 let port;
 
 mongoose.Promise = global.Promise;
 
-// app.listen(port = process.env.PORT || 8080, function(){
-//     console.log(`Your app is listening on port ${port}`);
-// });
 
-// app.get('/', function(req, res){
-//
-// });
+app.use('/lists', restaurantListRouter);
 
 function runServer(databaseUrl, port=PORT){
     return new Promise(function(resolve, reject){
@@ -34,6 +34,8 @@ function runServer(databaseUrl, port=PORT){
         );
     });
 }
+//Start here: set up GET route and unit test for GET route. Before starting research
+//whether or not I should make a router file
 
 function closeServer(){
     return new Promise(function(resolve, reject){
@@ -61,5 +63,9 @@ function closeServer(){
 if (require.main === module) {
   runServer(DATABASE_URL).catch(err=> console.log(err));
 }
+
+//when requests come into /lists we will route them to to express router instance
+//we have imported
+
 
 module.exports = {app, runServer, closeServer};
