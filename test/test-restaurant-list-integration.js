@@ -56,12 +56,7 @@ describe('Restaurant API', function(){
 
     before(function(){
         return runServer(TEST_DATABASE_URL)
-            // .catch(function(err){
-            //     console.log(err);
-            // });
-            // .then(function(){
-            //     console.log('success started server');
-            // });
+        //I didn't use return at first. When I console.loged the res.body, it only returned 5 objects. When I added return it logged all 10. Why is this?
     });
 
     beforeEach(function(){
@@ -74,12 +69,7 @@ describe('Restaurant API', function(){
 
     after(function(){
         closeServer()
-            // .catch(function(err){
-            //     console.log(err);
-            // });
-            // .then(function(){
-            //     console.log('successfully closed server');
-            // })
+
     });
 
     describe('GET endpoint', function(){
