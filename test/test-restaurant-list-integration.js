@@ -55,8 +55,7 @@ function tearDownTestDb(){
 describe('Restaurant API', function(){
 
     before(function(){
-        return runServer(TEST_DATABASE_URL)
-        //I didn't use return at first. When I console.loged the res.body, it only returned 5 objects. When I added return it logged all 10. Why is this?
+        return runServer(TEST_DATABASE_URL);
     });
 
     beforeEach(function(){
@@ -82,6 +81,7 @@ describe('Restaurant API', function(){
                     res = _res;
                     console.log(res.body);
                     expect(res).to.have.status(200);
+                    expect(res).to.be.json;
                     expect(res.body).to.be.an('array');
                     expect(res.body).to.have.lengthOf.at.least(1);
                     expect(res.body[0]).to.have.all.keys('userName', 'list');

@@ -17,6 +17,7 @@ const restaurantSchema = mongoose.Schema (
     }
 );
 
+
 restaurantSchema.methods.userData = function(){
     return{
         userName: this.userName,
