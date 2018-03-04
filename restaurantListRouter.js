@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {DATABASE_URL, PORT} = require('./config');
-const {Restaurant} = require('./model');
+const {Restaurant} = require('./models/user-model');
 
 router.get('/', function(req, res){
     Restaurant
