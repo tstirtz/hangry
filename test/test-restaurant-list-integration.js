@@ -17,7 +17,6 @@ function seedTestData(){
     for(let i = 0; i < 10; i++){
         seededTestData.push(testDataModel());
     }
-
     return Restaurant.insertMany(seededTestData);
 }
 
@@ -56,7 +55,7 @@ function tearDownTestDb(){
 describe('Restaurant API', function(){
 
     before(function(){
-        runServer(TEST_DATABASE_URL)
+        return runServer(TEST_DATABASE_URL)
             // .catch(function(err){
             //     console.log(err);
             // });
@@ -66,11 +65,11 @@ describe('Restaurant API', function(){
     });
 
     beforeEach(function(){
-        seedTestData();
+        return seedTestData();
     });
 
     afterEach(function(){
-        tearDownTestDb();
+        return tearDownTestDb();
     });
 
     after(function(){
@@ -91,6 +90,7 @@ describe('Restaurant API', function(){
                 .get('/lists')
                 .then(function(_res){
                     res = _res;
+                    console.log(res.body);
                     expect(res).to.have.status(200);
                     expect(res.body).to.be.an('array');
                     expect(res.body).to.have.lengthOf.at.least(1);
@@ -98,6 +98,7 @@ describe('Restaurant API', function(){
                     return Restaurant.count();
                 })
                 .then(function(data){
+                    console.log(data);
                     expect(res.body).to.have.lengthOf(data);
                 });
         });
