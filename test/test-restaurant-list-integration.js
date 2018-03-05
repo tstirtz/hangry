@@ -93,10 +93,43 @@ describe('Restaurant API', function(){
                 });
         });
     });
-});
 
-// describe('Display data to client', function(){
-//     it('should return an object', function(){
-//         expect(getRestaurantData(renderRestaurantList)).to.be.an('object');
-//     });
-// });
+    describe('POST user-account endpoint', function(){
+        it('should create a new user object', function(){
+            //make a post with new user
+            //test post for correct status code
+                //json
+                //object
+            //find post by id that matches post id
+            //test that keys match
+            const testPost = {
+                userName: faker.internet.userName(),
+                password: faker.internet.password(),
+                restaurants: []
+            }
+
+            return chai.request(app)
+                .post('/user-account')
+                .send(testPost)
+                .then(function(res){
+                    expect(res).to.have.status(201);
+                    expect(res.body).to.be.an('object');
+                    const newUser = res.body;
+                    return newUser;
+                })
+                .then(function(user){
+                    Users.findById(user._id)
+                        .then(function(res){
+                            console.log(typeof res._id);
+                            console.log(typeof user._id);
+                            expect(res._id).to.equal(user._id);
+                            //need to come up with a different way to compare
+                            //the id's
+                            expect(res).to.not.be.null;
+                            expect(res).to.be.an('object');
+                            // expect(res).to.include(user);
+                        });
+                });
+        });
+    });
+});
