@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const {DATABASE_URL, PORT} = require('./config');
-const {Restaurant} = require('./models/user-model');
+const {Users} = require('./models/user-model');
 
 router.get('/', function(req, res){
-    Restaurant
+    Users
         .find()
         .then(function(items){
             res.json(items.map(item => item.userData()));

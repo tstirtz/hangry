@@ -6,7 +6,7 @@ const faker = require('faker');
 const mongoose = require('mongoose');
 const {app, runServer, closeServer} = require('../server');
 const {TEST_DATABASE_URL} = require('../config');
-const {Restaurant} = require('../models/user-model');
+const {Users} = require('../models/user-model');
 
 const expect = chai.expect;
 chai.use(chaiHttp);
@@ -17,14 +17,14 @@ function seedTestData(){
     for(let i = 0; i < 10; i++){
         seededTestData.push(testDataModel());
     }
-    return Restaurant.insertMany(seededTestData);
+    return Users.insertMany(seededTestData);
 }
 
 function testDataModel(){
     return{
             userName: faker.internet.userName(),
             password: faker.internet.password(),
-            list: [
+            restaurants: [
                 {
                     name: faker.company.companyName(),
                     address: faker.address.streetAddress()
@@ -47,7 +47,7 @@ function testDataModel(){
 
 function tearDownTestDb(){
     console.log("Deleting database");
-    return Restaurant.deleteMany();
+    return Users.deleteMany();
 }
 
 
@@ -84,8 +84,8 @@ describe('Restaurant API', function(){
                     expect(res).to.be.json;
                     expect(res.body).to.be.an('array');
                     expect(res.body).to.have.lengthOf.at.least(1);
-                    expect(res.body[0]).to.have.all.keys('userName', 'list');
-                    return Restaurant.count();
+                    expect(res.body[0]).to.have.all.keys("userName", "restaurants");
+                    return Users.count();
                 })
                 .then(function(data){
                     console.log(data);
