@@ -14,7 +14,7 @@ const restaurantListRouter = require('./restaurantListRouter');
 mongoose.Promise = global.Promise;
 
 
-app.use('/lists', restaurantListRouter);
+app.use('/restaurants', restaurantListRouter);
 
 let server;
 let port;

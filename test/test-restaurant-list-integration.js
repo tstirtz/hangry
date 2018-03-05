@@ -76,7 +76,7 @@ describe('Restaurant API', function(){
             let res;
 
             return chai.request(app)
-                .get('/lists')
+                .get('/restaurants')
                 .then(function(_res){
                     res = _res;
                     console.log(res.body);
