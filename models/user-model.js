@@ -17,7 +17,7 @@ const userSchema = mongoose.Schema (
         userName: String,
         password: String,
         restaurants: [restaurantSchema]
-        //each list of restaurants will create a new document for each user
+        //this embeds the restaurant document within the User document
     }
 );
 
