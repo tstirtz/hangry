@@ -6,6 +6,7 @@ const {Users} = require('./models/user-model');
 
 const jsonParser = bodyParser.json();
 
+
 //endpoint for creating a new account
 router.post('/', jsonParser, function(req, res){
     console.log(req.body);

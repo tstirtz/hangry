@@ -9,12 +9,14 @@ app.use(morgan('common'));
 app.use(express.static('public'));
 
 const restaurantListRouter = require('./restaurantListRouter');
+const userAccountRouter = require('./userAccountRouter');
 
 
 mongoose.Promise = global.Promise;
 
 
 app.use('/restaurants', restaurantListRouter);
+app.use('/user-account', userAccountRouter);
 
 let server;
 let port;

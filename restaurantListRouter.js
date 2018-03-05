@@ -22,5 +22,5 @@ router.get('/', function(req, res){
 
 
 
-
+//exports the express app used in this file
 module.exports = router;
