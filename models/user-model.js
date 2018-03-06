@@ -12,6 +12,8 @@ const restaurantSchema = mongoose.Schema(
     }
 );
 
+const Restaurant = mongoose.model('users', restaurantSchema);
+
 const userSchema = mongoose.Schema (
     {
         userName: String,
@@ -33,4 +35,4 @@ userSchema.methods.userData = function(){
 //the first argument is the collection the model is for
 const Users = mongoose.model('users', userSchema);
 
-module.exports = {Users};
+module.exports = {Users, Restaurant};
