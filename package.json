@@ -9,6 +9,7 @@
   "author": "Tyler Stirtz",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "faker": "^4.1.0",
     "mongoose": "^5.0.7",

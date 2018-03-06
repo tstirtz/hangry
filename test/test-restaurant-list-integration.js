@@ -76,7 +76,7 @@ describe('Restaurant API', function(){
             let res;
 
             return chai.request(app)
-                .get('/lists')
+                .get('/restaurants')
                 .then(function(_res){
                     res = _res;
                     console.log(res.body);
@@ -93,10 +93,37 @@ describe('Restaurant API', function(){
                 });
         });
     });
-});
 
-// describe('Display data to client', function(){
-//     it('should return an object', function(){
-//         expect(getRestaurantData(renderRestaurantList)).to.be.an('object');
-//     });
-// });
+    describe('POST user-account endpoint', function(){
+        it('should create a new user object', function(){
+            //make a post with new user
+            //test post for correct status code
+                //json
+                //object
+            //find post by id that matches post id
+            //test that keys match
+            const newPost = {
+                userName: faker.internet.userName(),
+                password: faker.internet.password(),
+                restaurants: []
+            }
+
+            return chai.request(app)
+                .post('/user-account')
+                .send(newPost)
+                .then(function(res){
+                    expect(res).to.have.status(201);
+                    expect(res.body).to.be.an('object');
+                    expect(res).to.be.json;
+                    expect(res.body).to.include.keys('userName', 'password', 'restaurants', '_id');
+                    return Users.findById(res.body._id);
+                })
+                .then(function(user){
+                    expect(user).to.not.be.null;
+                    expect(user.userName).to.equal(newPost.userName);
+                    expect(user.password).to.equal(newPost.password);
+                    expect(user.restaurants).to.not.be.null;
+                });
+        });
+    });
+});
