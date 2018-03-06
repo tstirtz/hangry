@@ -84,7 +84,7 @@ describe('Restaurant API', function(){
                     expect(res).to.be.json;
                     expect(res.body).to.be.an('array');
                     expect(res.body).to.have.lengthOf.at.least(1);
-                    expect(res.body[0]).to.have.all.keys("userName", "restaurants");
+                    expect(res.body[0]).to.have.all.keys("userName", "restaurants", "_id");
                     return Users.count();
                 })
                 .then(function(data){
