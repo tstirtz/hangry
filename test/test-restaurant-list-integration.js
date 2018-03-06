@@ -115,7 +115,7 @@ describe('Restaurant API', function(){
                     expect(res).to.have.status(201);
                     expect(res.body).to.be.an('object');
                     expect(res).to.be.json;
-                    expect(res.body).to.include.keys('userName', 'password', 'restaurants', '_id');
+                    expect(res.body).to.include.keys('userName', 'password', '_id');
                     return Users.findById(res.body._id);
                 })
                 .then(function(user){

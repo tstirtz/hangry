@@ -21,8 +21,8 @@ router.post('/', jsonParser, function(req, res){
     Users
         .create({
             userName: req.body.userName,
-            password: req.body.password,
-            restaurants:[]
+            password: req.body.password
+            // restaurants:[]
 
         })
         .then(function(user){
