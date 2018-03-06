@@ -25,8 +25,8 @@ router.post('/', jsonParser, function(req, res){
             restaurants:[]
 
         })
-        .then(function(restaurant){
-            res.status(201).json(restaurant);
+        .then(function(user){
+            res.status(201).json(user);
         })
         .catch(function(err){
             console.log(err);

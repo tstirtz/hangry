@@ -102,7 +102,7 @@ describe('Restaurant API', function(){
                 //object
             //find post by id that matches post id
             //test that keys match
-            const testPost = {
+            const newPost = {
                 userName: faker.internet.userName(),
                 password: faker.internet.password(),
                 restaurants: []
@@ -110,25 +110,19 @@ describe('Restaurant API', function(){
 
             return chai.request(app)
                 .post('/user-account')
-                .send(testPost)
+                .send(newPost)
                 .then(function(res){
                     expect(res).to.have.status(201);
                     expect(res.body).to.be.an('object');
-                    const newUser = res.body;
-                    return newUser;
+                    expect(res).to.be.json;
+                    expect(res.body).to.include.keys('userName', 'password', 'restaurants', '_id');
+                    return Users.findById(res.body._id);
                 })
                 .then(function(user){
-                    Users.findById(user._id)
-                        .then(function(res){
-                            console.log(typeof res._id);
-                            console.log(typeof user._id);
-                            expect(res._id).to.equal(user._id);
-                            //need to come up with a different way to compare
-                            //the id's
-                            expect(res).to.not.be.null;
-                            expect(res).to.be.an('object');
-                            // expect(res).to.include(user);
-                        });
+                    expect(user).to.not.be.null;
+                    expect(user.userName).to.equal(newPost.userName);
+                    expect(user.password).to.equal(newPost.password);
+                    expect(user.restaurants).to.not.be.null;
                 });
         });
     });
