@@ -19,9 +19,27 @@ router.get('/', function(req, res){
         });
 });
 
-router.put('/', function(req, res){
-    //get user object by id
+router.put('/:id', jsonParser, function(req, res){
     //create new restaurant object and update restaurant property
+    const newRestaurant = {
+        name: req.body.name,
+        address: req.body.address
+    }
+
+    Users
+        .findById(req.params.id)
+        .then(function(user){
+            console.log(user.restaurants);
+            console.log(newRestaurant);
+            user.restauraunts.push(newRestaurant);
+            //left off trying to figure out why push method won't work
+            //I stashed my work
+            user.save(function(updatedUser){
+                res.status(204).json(updatedUser);
+            });
+        });
+    //get user object by id
+    //update restaurants array with new Restaurant document
 });
 
 

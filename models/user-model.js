@@ -1,6 +1,6 @@
 const {DATABASE_URL} = require('../config');
 const mongoose = require('mongoose');
-const {Restaurant} = require('./restaurant-model')
+
 
 mongoose.Promise = global.Promise;
 mongoose.connect(DATABASE_URL);
