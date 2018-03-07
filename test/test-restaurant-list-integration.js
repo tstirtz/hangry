@@ -126,4 +126,15 @@ describe('Restaurant API', function(){
                 });
         });
     });
+    describe('restaurants PUT endpoint', function(){
+        it('should add a new restaurant to existing user object', function(){
+            //create a restaurant object to test with
+            //return instance of express app
+            //.put('/restaurants/:id')
+            //.send(newRestaurant)
+            //test for the correct properties of response
+            //return findById to next then statement
+            //test for correct properties of returned newRestaurant
+        });
+    });
 });

@@ -40,6 +40,7 @@ router.put('/:id', jsonParser, function(req, res){
         .then(function(newRest){
                 console.log(newRest);
                 res.status(204).json({message: "Restaurant added!"});
+    //This JSON message isn't sent to the user after a successful PUT call???
         })
         .catch(function(err){
             console.log(err);
