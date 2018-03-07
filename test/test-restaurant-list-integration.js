@@ -84,7 +84,7 @@ describe('Restaurant API', function(){
                     expect(res).to.be.json;
                     expect(res.body).to.be.an('array');
                     expect(res.body).to.have.lengthOf.at.least(1);
-                    expect(res.body[0]).to.have.all.keys("userName", "restaurants");
+                    expect(res.body[0]).to.have.all.keys("userName", "restaurants", "_id");
                     return Users.count();
                 })
                 .then(function(data){
@@ -115,7 +115,7 @@ describe('Restaurant API', function(){
                     expect(res).to.have.status(201);
                     expect(res.body).to.be.an('object');
                     expect(res).to.be.json;
-                    expect(res.body).to.include.keys('userName', 'password', 'restaurants', '_id');
+                    expect(res.body).to.include.keys('userName', 'password', '_id');
                     return Users.findById(res.body._id);
                 })
                 .then(function(user){
@@ -123,6 +123,34 @@ describe('Restaurant API', function(){
                     expect(user.userName).to.equal(newPost.userName);
                     expect(user.password).to.equal(newPost.password);
                     expect(user.restaurants).to.not.be.null;
+                });
+        });
+    });
+    describe('restaurants PUT endpoint', function(){
+        it('should add a new restaurant to existing user object', function(){
+            //create a restaurant object to test with
+            const newRestaurant = {
+                name: faker.company.companyName(),
+                address: faker.address.streetAddress()
+            }
+
+            return Users
+                .findOne()
+                .then(function(user){
+                    return chai.request(app)
+                        .put(`/restaurants/${user._id}`)
+                        .send(newRestaurant)
+                        //is .send no ayschronous because we are sending the data to the server rather than receiving data from the server?
+                        .then(function(res){
+                            expect(res).to.have.status(204);
+                            return Users.findById(user.id);
+                        })
+                        .then(function(userNewRest){
+                            const newRestEntry = userNewRest.restaurants.length - 1;
+                            expect(userNewRest.restaurants[newRestEntry].name).to.equal(newRestaurant.name);
+                            expect(userNewRest.restaurants[newRestEntry].address).to.equal(newRestaurant.address);
+                        });
+
                 });
         });
     });
