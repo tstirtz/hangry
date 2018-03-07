@@ -129,12 +129,29 @@ describe('Restaurant API', function(){
     describe('restaurants PUT endpoint', function(){
         it('should add a new restaurant to existing user object', function(){
             //create a restaurant object to test with
-            //return instance of express app
-            //.put('/restaurants/:id')
-            //.send(newRestaurant)
-            //test for the correct properties of response
-            //return findById to next then statement
-            //test for correct properties of returned newRestaurant
+            const newRestaurant = {
+                name: faker.company.companyName(),
+                address: faker.address.streetAddress()
+            }
+
+            return Users
+                .findOne()
+                .then(function(user){
+                    return chai.request(app)
+                        .put(`/restaurants/${user._id}`)
+                        .send(newRestaurant)
+                        //is .send no ayschronous because we are sending the data to the server rather than receiving data from the server?
+                        .then(function(res){
+                            expect(res).to.have.status(204);
+                            return Users.findById(user.id);
+                        })
+                        .then(function(userNewRest){
+                            const newRestEntry = userNewRest.restaurants.length - 1;
+                            expect(userNewRest.restaurants[newRestEntry].name).to.equal(newRestaurant.name);
+                            expect(userNewRest.restaurants[newRestEntry].address).to.equal(newRestaurant.address);
+                        });
+
+                });
         });
     });
 });
