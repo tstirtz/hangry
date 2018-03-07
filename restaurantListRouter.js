@@ -48,6 +48,24 @@ router.put('/:id', jsonParser, function(req, res){
         });
 });
 
+router.put('/:id', jsonParser, function(req, res){
+    //this route will allow user to edit an existing restaurant by searching
+    //for restaurant doc by id
+
+    //establish required required requiredFields
+    //test that all requiredFields are present
+        //when the user clicks the edit button the current restaurant name and address
+        //will be populated into an input field, therefore I should test that they are both present
+        //if requiredFields are NOT present, respond with 400 error and message
+
+    //find restaurant by Id and update according to the user input
+        //return 204 status
+
+    //catch error and return 500 status with message
+
+
+});
+
 
 
 
