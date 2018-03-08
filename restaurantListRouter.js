@@ -48,7 +48,7 @@ router.put('/:id', jsonParser, function(req, res){
         });
 });
 
-router.put('/edit/:userId', jsonParser, function(req, res){
+router.put('/edit/:userId.:restaurantId', jsonParser, function(req, res){
     //this route will allow user to edit an existing restaurant by searching
     //for restaurant doc by id
 
@@ -69,11 +69,12 @@ router.put('/edit/:userId', jsonParser, function(req, res){
     Users
         .findById(req.params.userId)
         .then(function(user){
-            let restToUpdate = user.restaurants[1].id;
-            console.log(restToUpdate);
+            // let restToUpdate = user.restaurants[1].id;
+            console.log(req.params.userId);
+            console.log(req.params.restaurantId);
 
-            user.restaurants.id(restToUpdate).name = req.body.name;
-            user.restaurants.id(restToUpdate).address = req.body.address;
+            user.restaurants.id(req.params.restaurantId).name = req.body.name;
+            user.restaurants.id(req.params.restaurantId).address = req.body.address;
 
             user.save(function(){
                 res.status(204).end();
