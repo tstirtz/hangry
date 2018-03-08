@@ -85,11 +85,15 @@ router.delete('/delete/:userId.:restaurantId', function(req, res){
     Users
         .findById(req.params.userId)
         .then(function(user){
-            user.restaurants.id(req.params.restaurantId).remove();
-            user.save(function(){
-                console.log(`Deleted restaurant with id ${req.params.restaurantId}`)
-                res.status(204).end();
-            });
+            if(!(user.restaurants.id(req.params.restaurantId))){
+                res.status(400).json({message: `Restaurant with id ${req.params.restaurantId} does not exist`});
+            }else {
+                user.restaurants.id(req.params.restaurantId).remove();
+                user.save(function(){
+                    console.log(`Deleted restaurant with id ${req.params.restaurantId}`)
+                    res.status(204).end();
+                });
+            }
         })
         .catch(function(err){
             console.log(err);
