@@ -38,13 +38,47 @@ router.put('/:id', jsonParser, function(req, res){
     Users
         .findByIdAndUpdate(req.params.id, {$addToSet: {restaurants: {name: req.body.name, address: req.body.address}}})
         .then(function(newRest){
-                console.log(newRest);
                 res.status(204).json({message: "Restaurant added!"});
     //This JSON message isn't sent to the user after a successful PUT call???
         })
         .catch(function(err){
             console.log(err);
             res.status(500).json({message: "Something went terribly wrong"});
+        });
+});
+
+router.put('/edit/:userId.:restaurantId', jsonParser, function(req, res){
+    //this route will allow user to edit an existing restaurant by searching
+    //for restaurant doc by id
+
+    //establish required required requiredFields
+    let requiredFields = ["name", "address"];
+    //test that all requiredFields are present
+        //when the user clicks the edit button the current restaurant name and address
+        //will be populated into an input field, therefore I should test that they are both present
+    for(let i = 0; i < requiredFields.length;){
+        if(requiredFields[i] in req.body){
+            i++;
+        } else{
+            res.status(400).json({error: `Please provide a ${requiredFields[i]}`});
+            return;
+        }
+    }
+
+    Users
+        .findById(req.params.userId)
+        .then(function(user){
+
+            user.restaurants.id(req.params.restaurantId).name = req.body.name;
+            user.restaurants.id(req.params.restaurantId).address = req.body.address;
+
+            user.save(function(){
+                res.status(204).end();
+            });
+        })
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({message: "Something went terribly wrong!"});
         });
 });
 
