@@ -126,7 +126,7 @@ describe('Restaurant API', function(){
                 });
         });
     });
-    describe('restaurants PUT endpoint', function(){
+    describe('restaurants create PUT endpoint', function(){
         it('should add a new restaurant to existing user object', function(){
             //create a restaurant object to test with
             const newRestaurant = {
@@ -151,6 +151,34 @@ describe('Restaurant API', function(){
                             expect(userNewRest.restaurants[newRestEntry].address).to.equal(newRestaurant.address);
                         });
 
+                });
+        });
+    });
+
+    describe('restaurants update PUT endpoint', function(){
+        it('should update existing embedded restaurant document', function(){
+            //create test object
+
+            const restToUpdate = {
+                name: faker.company.companyName(),
+                address: faker.address.streetAddress()
+            }
+
+            return Users
+                .findOne()
+                .then(function(user){
+                    return chai.request(app)
+                        .put(`/restaurants/edit/${user._id}.${user.restaurants[0]._id}`)
+                        .send(restToUpdate)
+                        .then(function(res){
+                            expect(res).to.have.status(204);
+                            return Users.findById(user._id);
+                        })
+                        .then(function(updated){
+                            const updatedRestaurant = updated.restaurants[0];
+                            expect(updatedRestaurant.name).to.equal(restToUpdate.name);
+                            expect(updatedRestaurant.address).to.equal(restToUpdate.address);
+                        });
                 });
         });
     });

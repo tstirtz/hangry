@@ -38,7 +38,6 @@ router.put('/:id', jsonParser, function(req, res){
     Users
         .findByIdAndUpdate(req.params.id, {$addToSet: {restaurants: {name: req.body.name, address: req.body.address}}})
         .then(function(newRest){
-                console.log(newRest);
                 res.status(204).json({message: "Restaurant added!"});
     //This JSON message isn't sent to the user after a successful PUT call???
         })
@@ -69,9 +68,6 @@ router.put('/edit/:userId.:restaurantId', jsonParser, function(req, res){
     Users
         .findById(req.params.userId)
         .then(function(user){
-            // let restToUpdate = user.restaurants[1].id;
-            console.log(req.params.userId);
-            console.log(req.params.restaurantId);
 
             user.restaurants.id(req.params.restaurantId).name = req.body.name;
             user.restaurants.id(req.params.restaurantId).address = req.body.address;
