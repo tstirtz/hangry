@@ -48,22 +48,41 @@ router.put('/:id', jsonParser, function(req, res){
         });
 });
 
-router.put('/:id', jsonParser, function(req, res){
+router.put('/edit/:userId', jsonParser, function(req, res){
     //this route will allow user to edit an existing restaurant by searching
     //for restaurant doc by id
 
     //establish required required requiredFields
+    let requiredFields = ["name", "address"];
     //test that all requiredFields are present
         //when the user clicks the edit button the current restaurant name and address
         //will be populated into an input field, therefore I should test that they are both present
-        //if requiredFields are NOT present, respond with 400 error and message
+    for(let i = 0; i < requiredFields.length;){
+        if(requiredFields[i] in req.body){
+            i++;
+        } else{
+            res.status(400).json({error: `Please provide a ${requiredFields[i]}`});
+            return;
+        }
+    }
 
-    //find restaurant by Id and update according to the user input
-        //return 204 status
+    Users
+        .findById(req.params.userId)
+        .then(function(user){
+            let restToUpdate = user.restaurants[1].id;
+            console.log(restToUpdate);
 
-    //catch error and return 500 status with message
+            user.restaurants.id(restToUpdate).name = req.body.name;
+            user.restaurants.id(restToUpdate).address = req.body.address;
 
-
+            user.save(function(){
+                res.status(204).end();
+            });
+        })
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({message: "Something went terribly wrong!"});
+        });
 });
 
 
