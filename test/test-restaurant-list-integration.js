@@ -182,4 +182,25 @@ describe('Restaurant API', function(){
                 });
         });
     });
+
+    describe('restaurants DELETE endpoint', function(){
+        it('should delete existing embedded restaurant document', function(){
+            //find one user
+            return Users
+                .findOne()
+                .then(function(user){
+                    const restaurantIdToDelete = user.restaurants[0]._id;
+
+                    return chai.request(app)
+                        .delete(`/restaurants/delete/${user._id}.${user.restaurants[0]._id}`)
+                        .then(function(res){
+                            expect(res).to.have.status(204);
+                            return Users.findById(user._id);
+                        })
+                        .then(function(userAfterDelete){
+                            expect(userAfterDelete.restaurants.id(restaurantIdToDelete)).to.be.null;
+                        });
+                });
+        });
+    });
 });
