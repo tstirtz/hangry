@@ -38,7 +38,7 @@ router.put('/:id', jsonParser, function(req, res){
     Users
         .findByIdAndUpdate(req.params.id, {$addToSet: {restaurants: {name: req.body.name, address: req.body.address}}})
         .then(function(newRest){
-                res.status(204).json({message: "Restaurant added!"});
+                res.status(201).json({message: "Restaurant added!"});
     //This JSON message isn't sent to the user after a successful PUT call???
         })
         .catch(function(err){
@@ -115,7 +115,7 @@ router.get('/random/:userId', function(req, res){
 
             let randomRestaurant = user.restaurants[index];
 
-            res.json(randomRestaurant);
+            res.json(randomRestaurant).json({message:"Here is your random restaurant"});
         })
         .catch(function(err){
             console.log(err);

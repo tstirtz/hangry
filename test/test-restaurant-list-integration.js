@@ -142,7 +142,7 @@ describe('Restaurant API', function(){
                         .send(newRestaurant)
                         //is .send no ayschronous because we are sending the data to the server rather than receiving data from the server?
                         .then(function(res){
-                            expect(res).to.have.status(204);
+                            expect(res).to.have.status(201);
                             return Users.findById(user.id);
                         })
                         .then(function(userNewRest){
@@ -217,6 +217,7 @@ describe('Restaurant API', function(){
                             expect(res).to.be.json;
                             expect(res.body).to.be.an('object');
                             expect(res.body).to.not.be.null;
+                            //expects correct keys are present
                         });
                 });
         });
