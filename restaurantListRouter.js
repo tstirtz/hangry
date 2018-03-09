@@ -98,8 +98,31 @@ router.delete('/delete/:userId.:restaurantId', function(req, res){
         .catch(function(err){
             console.log(err);
             res.status(500).json({message: "Something went terribly wrong!"});
+        });
+});
+
+router.get('/random/:userId', function(req, res){
+
+    Users
+        .findById(req.params.userId)
+        .then(function(user){
+
+            let count = user.restaurants.length;
+            //with the embedded docs, I can still use array methods on the restaurant array
+            let index = Math.floor(Math.random() * count);
+
+            console.log(index);
+
+            let randomRestaurant = currentUser.restaurants[index];
+
+            res.json(randomRestaurant);
         })
-})
+        .catch(function(err){
+            console.log(err);
+            res.status(500).json({message: "Something went terribly wrong!"});
+        })
+
+});
 
 
 
