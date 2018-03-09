@@ -113,14 +113,14 @@ router.get('/random/:userId', function(req, res){
 
             console.log(index);
 
-            let randomRestaurant = currentUser.restaurants[index];
+            let randomRestaurant = user.restaurants[index];
 
             res.json(randomRestaurant);
         })
         .catch(function(err){
             console.log(err);
             res.status(500).json({message: "Something went terribly wrong!"});
-        })
+        });
 
 });
 

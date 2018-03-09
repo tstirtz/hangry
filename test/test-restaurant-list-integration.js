@@ -203,4 +203,22 @@ describe('Restaurant API', function(){
                 });
         });
     });
+
+    describe('GET random restaurant endpoint', function(){
+        it('should return a random restaurant to the user', function(){
+            //findOne user
+            return Users
+                .findOne()
+                .then(function(user){
+                    return chai.request(app)
+                        .get(`/restaurants/random/${user._id}`)
+                        .then(function(res){
+                            expect(res).to.have.status(200);
+                            expect(res).to.be.json;
+                            expect(res.body).to.be.an('object');
+                            expect(res.body).to.not.be.null;
+                        });
+                });
+        });
+    });
 });
