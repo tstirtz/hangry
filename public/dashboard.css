@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+}
+
+.top-nav{
+    display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+    grid-template-rows: auto;
+}
+.hamburger{
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px 0;
+}
+
+.container{
+    margin-left: 15px;
+}
+
+h1{
+    display: inline-block;
+    justify-self: center;
+    align-self: center;
+    margin: 5px;
+    width: 150px;
+}
+
+.add-restaurant{
+    justify-self: end;
+    align-self: center;
+    margin-right: 15px;
+}
