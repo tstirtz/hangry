@@ -1,17 +1,29 @@
 'use strict'
 
 function getRestaurantData(callback){
-    console.log("getRestaurantData working");
-    setTimeout(function(){callback(MOCK_USER_LIST)}, 100);
+    $('.container').on('click', function(){
+        console.log("getRestaurantData working");
+        $.getJSON(`/dashboard/restaurants`, callback);
+    })
 }
 
 //render restaurant list
 function renderRestaurantList(data){
-    for (var index in data.users){
-        $('body').append(
-            `<p>${data.users[index].userName}</p>`
-        );
-    }
+    console.log(data[1].restaurants);
+    let restaurantsArray = data[1].restaurants;
+        restaurantsArray.forEach(function(restaurantObject){
+            for(var key in restaurantObject){
+                if(key === 'name'){
+                    $('.restaurant-list').append(
+                        `<p>${restaurantObject[key]}</p>`
+                    );
+                }else if(key === 'address'){
+                    $('.restaurant-list').append(
+                        `<p>${restaurantObject[key]}</p>`
+                    );
+                }
+            }
+    });
 }
 
 function getAndDisplayRestaurants(){
