@@ -31,6 +31,27 @@ function getAndDisplayRestaurants(){
 }
 
 
+
+function getRandomRestaurant(callback){
+    $('.generate-restaurant').on('click', function(){
+        // 5a9c8ec5f037d2fbe9405cb6 is user _id to test with
+        $.getJSON('restaurants/random/5a9c8ec5f037d2fbe9405cb6', callback);
+    });
+}
+
+function renderRandomRestaurant(restaurant){
+    console.log(restaurant);
+    $('.random-restaurant').append(
+        `<p>${restaurant.name}</p>
+         <p>${restaurant.address}</p>`
+    )
+}
+
+function getAndDisplayRandomRestaurant(){
+    getRandomRestaurant(renderRandomRestaurant);
+}
+
 $(function(){
     getAndDisplayRestaurants();
+    getAndDisplayRandomRestaurant();
 })
