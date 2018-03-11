@@ -76,7 +76,7 @@ describe('Restaurant API', function(){
             let res;
 
             return chai.request(app)
-                .get('/restaurants')
+                .get('/dashboard/restaurants')
                 .then(function(_res){
                     res = _res;
                     console.log(res.body);
@@ -138,7 +138,7 @@ describe('Restaurant API', function(){
                 .findOne()
                 .then(function(user){
                     return chai.request(app)
-                        .put(`/restaurants/${user._id}`)
+                        .put(`/dashboard/restaurants/${user._id}`)
                         .send(newRestaurant)
                         //is .send no ayschronous because we are sending the data to the server rather than receiving data from the server?
                         .then(function(res){
@@ -168,7 +168,7 @@ describe('Restaurant API', function(){
                 .findOne()
                 .then(function(user){
                     return chai.request(app)
-                        .put(`/restaurants/edit/${user._id}.${user.restaurants[0]._id}`)
+                        .put(`/dashboard/restaurants/edit/${user._id}.${user.restaurants[0]._id}`)
                         .send(restToUpdate)
                         .then(function(res){
                             expect(res).to.have.status(204);
@@ -192,7 +192,7 @@ describe('Restaurant API', function(){
                     const restaurantIdToDelete = user.restaurants[0]._id;
 
                     return chai.request(app)
-                        .delete(`/restaurants/delete/${user._id}.${user.restaurants[0]._id}`)
+                        .delete(`/dashboard/restaurants/delete/${user._id}.${user.restaurants[0]._id}`)
                         .then(function(res){
                             expect(res).to.have.status(204);
                             return Users.findById(user._id);
@@ -211,7 +211,7 @@ describe('Restaurant API', function(){
                 .findOne()
                 .then(function(user){
                     return chai.request(app)
-                        .get(`/restaurants/random/${user._id}`)
+                        .get(`/dashboard/restaurants/random/${user._id}`)
                         .then(function(res){
                             expect(res).to.have.status(200);
                             expect(res).to.be.json;
