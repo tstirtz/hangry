@@ -15,7 +15,7 @@ const userAccountRouter = require('./userAccountRouter');
 mongoose.Promise = global.Promise;
 
 
-app.use('/restaurants', restaurantListRouter);
+app.use('/dashboard', restaurantListRouter);
 app.use('/user-account', userAccountRouter);
 
 let server;
