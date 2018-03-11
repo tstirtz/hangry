@@ -9,15 +9,10 @@ let path = require('path');
 const jsonParser = bodyParser.json();
 
 
-// router.use(express.static('/user-dashboard.html'));
-
 router.get('/', function(req, res){
     res.sendFile(path.join(__dirname, 'public') + '/user-dashboard.html');
 });
 
-// router.get('/', function(req, res){
-//     res.sendFile(path.join(__dirname, './public', '/user-dashboard.html'));
-// });
 
 router.get('/restaurants', function(req, res){
     Users
