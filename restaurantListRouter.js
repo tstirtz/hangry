@@ -4,10 +4,22 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const {DATABASE_URL, PORT} = require('./config');
 const {Users} = require('./models/user-model');
+let path = require('path');
 
 const jsonParser = bodyParser.json();
 
+
+// router.use(express.static('/user-dashboard.html'));
+
 router.get('/', function(req, res){
+    res.sendFile(path.join(__dirname, 'public') + '/user-dashboard.html');
+});
+
+// router.get('/', function(req, res){
+//     res.sendFile(path.join(__dirname, './public', '/user-dashboard.html'));
+// });
+
+router.get('/restaurants', function(req, res){
     Users
         .find()
         .then(function(items){
@@ -20,7 +32,7 @@ router.get('/', function(req, res){
         });
 });
 
-router.put('/:id', jsonParser, function(req, res){
+router.put('/restaurants/:id', jsonParser, function(req, res){
     //this route will add a new restaurant
     let requiredFields = ["name", "address"];
 
@@ -47,7 +59,7 @@ router.put('/:id', jsonParser, function(req, res){
         });
 });
 
-router.put('/edit/:userId.:restaurantId', jsonParser, function(req, res){
+router.put('/restaurants/edit/:userId.:restaurantId', jsonParser, function(req, res){
     //this route will allow user to edit an existing restaurant by searching
     //for restaurant doc by id
 
@@ -81,7 +93,7 @@ router.put('/edit/:userId.:restaurantId', jsonParser, function(req, res){
         });
 });
 
-router.delete('/delete/:userId.:restaurantId', function(req, res){
+router.delete('/restaurants/delete/:userId.:restaurantId', function(req, res){
     Users
         .findById(req.params.userId)
         .then(function(user){
@@ -101,7 +113,7 @@ router.delete('/delete/:userId.:restaurantId', function(req, res){
         });
 });
 
-router.get('/random/:userId', function(req, res){
+router.get('/restaurants/random/:userId', function(req, res){
 
     Users
         .findById(req.params.userId)
@@ -115,7 +127,7 @@ router.get('/random/:userId', function(req, res){
 
             let randomRestaurant = user.restaurants[index];
 
-            res.json(randomRestaurant).json({message:"Here is your random restaurant"});
+            res.json(randomRestaurant);
         })
         .catch(function(err){
             console.log(err);
