@@ -4,6 +4,8 @@ const app = express();
 const mongoose = require('mongoose');
 const {DATABASE_URL, PORT} = require('./config');
 const morgan = require('morgan');
+const passport = require('passport');
+const {localStrategy} = require('./auth');
 
 app.use(morgan('common'));
 app.use(express.static('public'));
@@ -14,9 +16,11 @@ const userAccountRouter = require('./userAccountRouter');
 
 mongoose.Promise = global.Promise;
 
+passport.use(localStrategy);
 
 app.use('/dashboard', restaurantListRouter);
 app.use('/user-account', userAccountRouter);
+
 
 let server;
 let port;
