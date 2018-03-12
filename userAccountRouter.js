@@ -48,11 +48,11 @@ router.post('/', jsonParser, function(req, res){
         }
     };
 
-    const tooSmallField = sizedFields.find(function(field){
+    const tooSmallField = Object.keys(sizedFields).find(function(field){
         req.body[field].trim().length < sizedFields[field].min
     });
 
-    const tooLargeField = sizedFields.find(function(field){
+    const tooLargeField = Object.keys(sizedFields).find(function(field){
         'max' in sizedFields[field] && req.body[field].trim().length > sizedFields[field].max
     });
 
@@ -75,7 +75,7 @@ router.post('/', jsonParser, function(req, res){
     }
 
     return Users
-        .find({userName})
+        .find({userName: req.body.userName})
         .count()
         .then(function(count){
             if(count > 0){
@@ -88,8 +88,8 @@ router.post('/', jsonParser, function(req, res){
             }
             //hashPassword is a static function defined on the userSchema which
             //uses bcryptjs to hash the password
-            return User.hashPassword(req.body.password);
-        };)
+            return Users.hashPassword(req.body.password);
+        })
         .then(function(hash){
             return Users
                 .create({
