@@ -1,5 +1,6 @@
 const {DATABASE_URL} = require('../config');
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 
 mongoose.Promise = global.Promise;
@@ -32,6 +33,10 @@ userSchema.methods.userData = function(){
         restaurants: this.restaurants,
         _id: this._id
     }
+}
+
+userSchema.statics.hashPassword = function(password){
+    return bcrypt.hash(password, 10);
 }
 //the first argument is the collection the model is for
 let Users = mongoose.model('User', userSchema);
