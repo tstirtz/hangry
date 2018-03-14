@@ -35,6 +35,13 @@ userSchema.methods.userData = function(){
     }
 }
 
+userSchema.methods.forAuthToken = function(){
+    return {
+        userName: this.userName,
+        _id: this._id
+    }
+}
+
 userSchema.methods.validatePassword = function(password){
     return bcrypt.compare(password, this.password);
 }
