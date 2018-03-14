@@ -91,6 +91,7 @@ router.post('/', jsonParser, function(req, res){
             return Users.hashPassword(req.body.password);
         })
         .then(function(hash){
+            console.log(`This is the hash: ${hash}`);
             return Users
                 .create({
                     userName: req.body.userName,
@@ -98,7 +99,7 @@ router.post('/', jsonParser, function(req, res){
                 });
         })
         .then(function(user){
-            res.status(201).json(user.userData());
+            return res.status(201).json(user.userData());
         })
         .catch(function(err){
             console.log(err);
