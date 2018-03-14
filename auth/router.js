@@ -20,14 +20,16 @@ const createAuthToken = function(user){
 
 
 const localAuth = passport.authenticate('local', {session: false});
+
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.post('/', localAuth, function(req, res){
     console.log(req.user);
     const authToken = createAuthToken(req.user.forAuthToken());
-    //createAuthToken needs the username and password passed to it
     console.log(req.user);
+
+    res.set('Set-Cookie', authToken);
     res.redirect('/dashboard');
     // res.json({authToken});
 });
