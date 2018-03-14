@@ -5,7 +5,9 @@ const mongoose = require('mongoose');
 const {DATABASE_URL, PORT} = require('./config');
 const morgan = require('morgan');
 const passport = require('passport');
-const {localStrategy} = require('./auth');
+const {localStrategy, jwtStrategy} = require('./auth/strategies');
+const {router: authRouter} = require('./auth/router');
+//router: authRouter uses deconstructuring with renaming
 
 app.use(morgan('common'));
 app.use(express.static('public'));
@@ -16,10 +18,17 @@ const userAccountRouter = require('./userAccountRouter');
 
 mongoose.Promise = global.Promise;
 
-passport.use(localStrategy);
+const jwtAuth = passport.authenticate('jwt', {session: false});
+const localAuth = passport.authenticate('local', {session: false});
 
-app.use('/dashboard', restaurantListRouter);
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
+//Left off running npm test, need to figure out why it's returning not authorized
+
+app.use('/dashboard', jwtAuth, restaurantListRouter);
 app.use('/user-account', userAccountRouter);
+app.use('/login', authRouter);
 
 
 let server;
