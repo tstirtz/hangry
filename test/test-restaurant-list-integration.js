@@ -12,42 +12,60 @@ const expect = chai.expect;
 chai.use(chaiHttp);
 
 function seedTestData(){
-    let seededTestData = [];
+    // let seededTestData = [];
 
     for(let i = 0; i < 10; i++){
-        seededTestData.push(testDataModel());
+        // seededTestData.push(testDataModel());
+        testDataModel();
     }
-    return Users.insertMany(seededTestData);
+    // console.log(seededTestData);
+    // return Users.insertMany(seededTestData);
 }
 
 function testDataModel(){
-    return{
-            userName: faker.internet.userName(),
-            password: faker.internet.password(),
-            restaurants: [
-                {
-                    name: faker.company.companyName(),
-                    address: faker.address.streetAddress()
-                },
-                {
-                    name: faker.company.companyName(),
-                    address: faker.address.streetAddress()
-                },
-                {
-                    name: faker.company.companyName(),
-                    address: faker.address.streetAddress()
-                },
-                {
-                    name: faker.company.companyName(),
-                    address: faker.address.streetAddress()
-                }
-            ]
-        };
+
+    return Users.hashPassword(faker.internet.password())
+        .then(function(hash){
+            Users.create({
+                userName: faker.internet.userName(),
+                password: hash,
+                restaurants: [
+                    {
+                        name: faker.company.companyName(),
+                        address: faker.address.streetAddress()
+                    },
+                    {
+                        name: faker.company.companyName(),
+                        address: faker.address.streetAddress()
+                    },
+                    {
+                        name: faker.company.companyName(),
+                        address: faker.address.streetAddress()
+                    },
+                    {
+                        name: faker.company.companyName(),
+                        address: faker.address.streetAddress()
+                    }
+                ]
+            });
+        });
 }
 
 function tearDownTestDb(){
     console.log("Deleting database");
     return Users.deleteMany();
+}
+
+function login(){
+    console.log("Logging in user");
+    return chai.request(app)
+        .post('/login')
+        .send({userName, password})
+        .then(function(req, res){
+            expect(res).to.be.json;
+            expect(res).to.be.an('object');
+            return token = res.body;
+        });
 }
 
 
@@ -60,6 +78,7 @@ describe('Restaurant API', function(){
 
     beforeEach(function(){
         return seedTestData();
+        // return login();
     });
 
     afterEach(function(){
@@ -79,7 +98,7 @@ describe('Restaurant API', function(){
                 .get('/dashboard/restaurants')
                 .then(function(_res){
                     res = _res;
-                    console.log(res.body);
+                    console.log('This is the res.body' + res.body);
                     expect(res).to.have.status(200);
                     expect(res).to.be.json;
                     expect(res.body).to.be.an('array');
@@ -107,11 +126,11 @@ describe('Restaurant API', function(){
                 password: faker.internet.password(),
                 restaurants: []
             }
-
             return chai.request(app)
                 .post('/user-account')
                 .send(newPost)
                 .then(function(res){
+                    console.log(res.body);
                     expect(res).to.have.status(201);
                     expect(res.body).to.be.an('object');
                     expect(res).to.be.json;
