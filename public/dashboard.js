@@ -56,14 +56,23 @@ function getAndDisplayRestaurants(){
 
 
 function getRandomRestaurant(callback){
-    $('.generate-restaurant').on('click', function(){
-        // 5a9c8ec5f037d2fbe9405cb6 is user _id to test with
-        $.getJSON('restaurants/random/5a9c8ec5f037d2fbe9405cb6', callback);
+    $('.generate-restaurant-js').on('click', function(){
+        $.ajax({
+            url:'/dashboard/restaurants/random/' + sessionStorage.getItem('userId'),
+            method: 'GET',
+            dataType: 'json',
+            contentType: 'application/json; charset= utf-8',
+            beforeSend: function(xhr){
+                xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('authToken')}`);
+            },
+            success: callback
+        });
     });
 }
 
 function renderRandomRestaurant(restaurant){
     console.log(restaurant);
+    $('.random-restaurant').empty();
     $('.random-restaurant').append(
         `<p>${restaurant.name}</p>
          <p>${restaurant.address}</p>`
@@ -106,13 +115,17 @@ function sendNewRestaurantData(){
             beforeSend: function(xhr){
                 xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('authToken')}`);
             },
-            success: function(message){
-                console.log(message);
+            success: function(response){
+                console.log(response);
+                // document.getElementsByClassName('add-restaurant').reset();
+                $('.add-restaurant :input').val('');
+                alert(response.message);
             }
         });
     });
     //Will add callback to append new restaurant to rendered list of restaurants
 }
+
 
 
 
