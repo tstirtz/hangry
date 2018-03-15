@@ -25,22 +25,32 @@ function storeAuthToken(){
 function getRestaurantData(callback){
     $('.container').on('click', function(){
         console.log("getRestaurantData working");
-        $.getJSON(`/dashboard/restaurants`, callback);
+        console.log(sessionStorage.getItem('authToken'));
+        $.ajax({
+            url:'/dashboard/restaurants/' + sessionStorage.getItem('userId'),
+            method: 'GET',
+            dataType: 'json',
+            contentType: 'application/json; charset= utf-8',
+            beforeSend: function(xhr){
+                xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('authToken')}`);
+            },
+            success: callback
+        });
     })
 }
 
 // render restaurant list
 function renderRestaurantList(data){
-    console.log(data[1].restaurants);
-    let restaurantsArray = data[1].restaurants;
-        restaurantsArray.forEach(function(restaurantObject){
+    console.log("This is the restaurant data");
+    console.log(data);
+        data.forEach(function(restaurantObject){
             for(var key in restaurantObject){
                 if(key === 'name'){
-                    $('.restaurant-list').append(
+                    $('.restaurant-list-js').append(
                         `<p>${restaurantObject[key]}</p>`
                     );
                 }else if(key === 'address'){
-                    $('.restaurant-list').append(
+                    $('.restaurant-list-js').append(
                         `<p>${restaurantObject[key]}</p>`
                     );
                 }
@@ -130,9 +140,12 @@ function sendNewRestaurantData(){
 
 
 $(function(){
-    storeAuthToken();
-    getAndDisplayRestaurants();
-    getAndDisplayRandomRestaurant();
-    renderRestaurantAddressInput();
-    sendNewRestaurantData();
+    let promise = new Promise((resolve, reject)=>{
+        resolve(storeAuthToken());
+    }).then(function(){
+        getAndDisplayRestaurants();
+        getAndDisplayRandomRestaurant();
+        renderRestaurantAddressInput();
+        sendNewRestaurantData();
+    });
 })
