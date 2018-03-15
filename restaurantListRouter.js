@@ -20,12 +20,15 @@ router.get('/', function(req, res){
 //work on add restaurant endpoint with access control
 
 
-router.get('/restaurants', jwtAuth, function(req, res){
+router.get('/restaurants/:id', jwtAuth, function(req, res){
     Users
-        .find()
-        .then(function(items){
-            console.log(items);
-            res.json(items.map(item => item.userData()));
+        .findById(req.params.id)
+        .then(function(user){
+            console.log(user);
+            // res.json(items.map(item => item.userData()));
+            res.json(user.restaurants.map(restaurant=>{
+                return restaurant;
+                }));
         })
         .catch(err => {
             console.log(err);
@@ -114,8 +117,8 @@ router.delete('/restaurants/delete/:userId.:restaurantId', function(req, res){
         });
 });
 
-router.get('/restaurants/random/:userId', function(req, res){
-
+router.get('/restaurants/random/:userId', jwtAuth, function(req, res){
+//this route returns a random restaurant
     Users
         .findById(req.params.userId)
         .then(function(user){
