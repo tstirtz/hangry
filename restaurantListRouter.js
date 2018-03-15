@@ -2,19 +2,25 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const passport = require('passport');
 const {DATABASE_URL, PORT} = require('./config');
 const {Users} = require('./models/user-model');
 let path = require('path');
 
 const jsonParser = bodyParser.json();
+const {jwtStrategy} = require('./auth/strategies');
+const jwtAuth = passport.authenticate('jwt', {session: false});
 
+passport.use(jwtStrategy);
 
 router.get('/', function(req, res){
     res.sendFile(path.join(__dirname, 'public') + '/user-dashboard.html');
 });
 
+//work on add restaurant endpoint with access control
 
-router.get('/restaurants', function(req, res){
+
+router.get('/restaurants', jwtAuth, function(req, res){
     Users
         .find()
         .then(function(items){
@@ -27,7 +33,7 @@ router.get('/restaurants', function(req, res){
         });
 });
 
-router.put('/restaurants/:id', jsonParser, function(req, res){
+router.put('/restaurants/:id', [jsonParser, jwtAuth], function(req, res){
     //this route will add a new restaurant
     let requiredFields = ["name", "address"];
 
