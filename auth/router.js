@@ -37,4 +37,4 @@ router.post('/', localAuth, function(req, res){
 //need to figure out where this authToken is attached to a request in order to
 //properly set up tests
 
-module.exports = {router};
+module.exports = {router, createAuthToken};
