@@ -9,7 +9,6 @@ const jsonParser = bodyParser.json();
 
 //endpoint for creating a new account
 router.post('/', jsonParser, function(req, res){
-    console.log(req.body);
     const requiredFields = ['userName', 'password'];
     for(let i = 0; i < requiredFields.length; i++){
         if(!(requiredFields[i] in req.body)){

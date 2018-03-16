@@ -20,7 +20,7 @@ const userAccountRouter = require('./userAccountRouter');
 
 mongoose.Promise = global.Promise;
 
-// const jwtAuth = passport.authenticate('jwt', {session: false});
+const jwtAuth = passport.authenticate('jwt', {session: false});
 const localAuth = passport.authenticate('local', {session: false});
 
 passport.use(localStrategy);
