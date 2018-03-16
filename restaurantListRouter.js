@@ -63,7 +63,7 @@ router.put('/restaurants/:id', [jsonParser, jwtAuth], function(req, res){
         });
 });
 
-router.put('/restaurants/edit/:userId.:restaurantId', jsonParser, function(req, res){
+router.put('/restaurants/edit/:userId.:restaurantId', [jsonParser, jwtAuth], function(req, res){
     //this route will allow user to edit an existing restaurant by searching
     //for restaurant doc by id
 
@@ -97,7 +97,7 @@ router.put('/restaurants/edit/:userId.:restaurantId', jsonParser, function(req, 
         });
 });
 
-router.delete('/restaurants/delete/:userId.:restaurantId', function(req, res){
+router.delete('/restaurants/delete/:userId.:restaurantId', jwtAuth, function(req, res){
     Users
         .findById(req.params.userId)
         .then(function(user){
