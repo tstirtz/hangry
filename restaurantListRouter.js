@@ -2,17 +2,33 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const passport = require('passport');
 const {DATABASE_URL, PORT} = require('./config');
 const {Users} = require('./models/user-model');
+let path = require('path');
 
 const jsonParser = bodyParser.json();
+const {jwtStrategy} = require('./auth/strategies');
+const jwtAuth = passport.authenticate('jwt', {session: false});
+
+passport.use(jwtStrategy);
 
 router.get('/', function(req, res){
+    res.sendFile(path.join(__dirname, 'public') + '/user-dashboard.html');
+});
+
+//work on add restaurant endpoint with access control
+
+
+router.get('/restaurants/:id', jwtAuth, function(req, res){
     Users
-        .find()
-        .then(function(items){
-            console.log(items);
-            res.json(items.map(item => item.userData()));
+        .findById(req.params.id)
+        .then(function(user){
+            console.log(user);
+            // res.json(items.map(item => item.userData()));
+            res.json(user.restaurants.map(restaurant=>{
+                return restaurant;
+                }));
         })
         .catch(err => {
             console.log(err);
@@ -20,7 +36,7 @@ router.get('/', function(req, res){
         });
 });
 
-router.put('/:id', jsonParser, function(req, res){
+router.put('/restaurants/:id', [jsonParser, jwtAuth], function(req, res){
     //this route will add a new restaurant
     let requiredFields = ["name", "address"];
 
@@ -47,7 +63,7 @@ router.put('/:id', jsonParser, function(req, res){
         });
 });
 
-router.put('/edit/:userId.:restaurantId', jsonParser, function(req, res){
+router.put('/restaurants/edit/:userId.:restaurantId', [jsonParser, jwtAuth], function(req, res){
     //this route will allow user to edit an existing restaurant by searching
     //for restaurant doc by id
 
@@ -81,7 +97,7 @@ router.put('/edit/:userId.:restaurantId', jsonParser, function(req, res){
         });
 });
 
-router.delete('/delete/:userId.:restaurantId', function(req, res){
+router.delete('/restaurants/delete/:userId.:restaurantId', jwtAuth, function(req, res){
     Users
         .findById(req.params.userId)
         .then(function(user){
@@ -101,8 +117,8 @@ router.delete('/delete/:userId.:restaurantId', function(req, res){
         });
 });
 
-router.get('/random/:userId', function(req, res){
-
+router.get('/restaurants/random/:userId', jwtAuth, function(req, res){
+//this route returns a random restaurant
     Users
         .findById(req.params.userId)
         .then(function(user){
@@ -115,7 +131,7 @@ router.get('/random/:userId', function(req, res){
 
             let randomRestaurant = user.restaurants[index];
 
-            res.json(randomRestaurant).json({message:"Here is your random restaurant"});
+            res.json(randomRestaurant);
         })
         .catch(function(err){
             console.log(err);
