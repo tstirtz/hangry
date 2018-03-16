@@ -7,28 +7,29 @@ const mongoose = require('mongoose');
 const {app, runServer, closeServer} = require('../server');
 const {TEST_DATABASE_URL} = require('../config');
 const {Users} = require('../models/user-model');
+const {createAuthToken} = require('../auth/router')
 
 const expect = chai.expect;
 chai.use(chaiHttp);
 
 function seedTestData(){
-    // let seededTestData = [];
-
+    let seededTestData = [];
+    console.log("Seeding database");
     for(let i = 0; i < 10; i++){
-        // seededTestData.push(testDataModel());
-        testDataModel();
+        seededTestData.push(testDataModel());
     }
-    // console.log(seededTestData);
-    // return Users.insertMany(seededTestData);
+    console.log(seededTestData);
+    return Users.insertMany(seededTestData);
 }
 
 function testDataModel(){
 
-    return Users.hashPassword(faker.internet.password())
-        .then(function(hash){
-            Users.create({
+    // return Users.hashPassword(faker.internet.password())
+    //     .then(function(hash){
+    //         console.log(".then function")
+             return {
                 userName: faker.internet.userName(),
-                password: hash,
+                password: faker.internet.password(),
                 restaurants: [
                     {
                         name: faker.company.companyName(),
@@ -47,8 +48,8 @@ function testDataModel(){
                         address: faker.address.streetAddress()
                     }
                 ]
-            });
-        });
+            };
+        // });
 }
 
 function tearDownTestDb(){
@@ -56,17 +57,23 @@ function tearDownTestDb(){
     return Users.deleteMany();
 }
 
-function login(){
-    console.log("Logging in user");
-    return chai.request(app)
-        .post('/login')
-        .send({userName, password})
-        .then(function(req, res){
-            expect(res).to.be.json;
-            expect(res).to.be.an('object');
-            return token = res.body;
-        });
-}
+// function login(){
+//     console.log("Logging in user");
+//     return User.findOne()
+//         .then(function(user){
+//             return chai.request(app)
+//                 .post('/login')
+//                 .send({'userName': user.userName, 'password': user.password})
+//                 .then(function(){
+//                     return user._id;
+//                 });
+//                 // .then(function(req, res){
+//                 //     expect(res).to.be.json;
+//                 //     expect(res).to.be.an('object');
+//                 //     return token = res.body;
+//                 // });
+//         })
+// }
 
 
 
@@ -78,7 +85,6 @@ describe('Restaurant API', function(){
 
     beforeEach(function(){
         return seedTestData();
-        // return login();
     });
 
     afterEach(function(){
@@ -90,28 +96,28 @@ describe('Restaurant API', function(){
 
     });
 
-    describe('GET endpoint', function(){
-        it('should return all user objects', function(){
-            let res;
-
-            return chai.request(app)
-                .get('/dashboard/restaurants')
-                .then(function(_res){
-                    res = _res;
-                    console.log('This is the res.body' + res.body);
-                    expect(res).to.have.status(200);
-                    expect(res).to.be.json;
-                    expect(res.body).to.be.an('array');
-                    expect(res.body).to.have.lengthOf.at.least(1);
-                    expect(res.body[0]).to.have.all.keys("userName", "restaurants", "_id");
-                    return Users.count();
-                })
-                .then(function(data){
-                    console.log(data);
-                    expect(res.body).to.have.lengthOf(data);
-                });
-        });
-    });
+    // describe('GET endpoint', function(){
+    //     it('should return all user objects', function(){
+    //         let res;
+    //
+    //         return chai.request(app)
+    //             .get('/dashboard/restaurants')
+    //             .then(function(_res){
+    //                 res = _res;
+    //                 console.log('This is the res.body' + res.body);
+    //                 expect(res).to.have.status(200);
+    //                 expect(res).to.be.json;
+    //                 expect(res.body).to.be.an('array');
+    //                 expect(res.body).to.have.lengthOf.at.least(1);
+    //                 expect(res.body[0]).to.have.all.keys("userName", "restaurants", "_id");
+    //                 return Users.count();
+    //             })
+    //             .then(function(data){
+    //                 console.log(data);
+    //                 expect(res.body).to.have.lengthOf(data);
+    //             });
+    //     });
+    // });
 
     describe('POST user-account endpoint', function(){
         it('should create a new user object', function(){
@@ -130,7 +136,7 @@ describe('Restaurant API', function(){
                 .post('/user-account')
                 .send(newPost)
                 .then(function(res){
-                    console.log(res.body);
+                    console.log("This is the new user" + res.body);
                     expect(res).to.have.status(201);
                     expect(res.body).to.be.an('object');
                     expect(res).to.be.json;
@@ -147,7 +153,6 @@ describe('Restaurant API', function(){
     });
     describe('restaurants create PUT endpoint', function(){
         it('should add a new restaurant to existing user object', function(){
-            //create a restaurant object to test with
             const newRestaurant = {
                 name: faker.company.companyName(),
                 address: faker.address.streetAddress()
@@ -156,12 +161,16 @@ describe('Restaurant API', function(){
             return Users
                 .findOne()
                 .then(function(user){
+                    console.log(user);
+                    let testAuthToken = createAuthToken(user.forAuthToken());
+                    console.log(createAuthToken(user.forAuthToken()));
                     return chai.request(app)
                         .put(`/dashboard/restaurants/${user._id}`)
+                        .set('Authorization', `Bearer ${testAuthToken}`)
                         .send(newRestaurant)
-                        //is .send no ayschronous because we are sending the data to the server rather than receiving data from the server?
                         .then(function(res){
                             expect(res).to.have.status(201);
+                            expect(res.body.message).to.equal("Restaurant added!");
                             return Users.findById(user.id);
                         })
                         .then(function(userNewRest){
@@ -186,8 +195,11 @@ describe('Restaurant API', function(){
             return Users
                 .findOne()
                 .then(function(user){
+                    console.log(user);
+                    let testAuthToken = createAuthToken(user.forAuthToken());
                     return chai.request(app)
                         .put(`/dashboard/restaurants/edit/${user._id}.${user.restaurants[0]._id}`)
+                        .set('Authorization', `Bearer ${testAuthToken}`)
                         .send(restToUpdate)
                         .then(function(res){
                             expect(res).to.have.status(204);
@@ -209,9 +221,11 @@ describe('Restaurant API', function(){
                 .findOne()
                 .then(function(user){
                     const restaurantIdToDelete = user.restaurants[0]._id;
+                    let testAuthToken = createAuthToken(user.forAuthToken());
 
                     return chai.request(app)
                         .delete(`/dashboard/restaurants/delete/${user._id}.${user.restaurants[0]._id}`)
+                        .set('Authorization', `Bearer ${testAuthToken}`)
                         .then(function(res){
                             expect(res).to.have.status(204);
                             return Users.findById(user._id);
@@ -229,8 +243,10 @@ describe('Restaurant API', function(){
             return Users
                 .findOne()
                 .then(function(user){
+                    let testAuthToken = createAuthToken(user.forAuthToken());
                     return chai.request(app)
                         .get(`/dashboard/restaurants/random/${user._id}`)
+                        .set('Authorization', `Bearer ${testAuthToken}`)
                         .then(function(res){
                             expect(res).to.have.status(200);
                             expect(res).to.be.json;
