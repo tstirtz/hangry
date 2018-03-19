@@ -43,6 +43,7 @@ function getRestaurantData(callback){
 function renderRestaurantList(data){
     console.log("This is the restaurant data");
     console.log(data);
+    $('.restaurant-list-js').toggleClass('hidden')
         data.forEach(function(restaurantObject){
             for(var key in restaurantObject){
                 if(key === 'name'){
@@ -51,7 +52,8 @@ function renderRestaurantList(data){
                     );
                 }else if(key === 'address'){
                     $('.restaurant-list-js').append(
-                        `<p>${restaurantObject[key]}</p>`
+                        `<p>${restaurantObject[key]}</p>
+                        <button type="button">Edit</button>`
                     );
                 }
             }
