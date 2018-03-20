@@ -46,11 +46,31 @@ h1{
 }
 
 .restaurant-list{
-    background-color: gray;
+    display: grid;
+    background-color: #d9d9d9;
     width: 25%;
-    /* display: inline-block; */
+    grid-template-columns: auto auto;
+
 }
 
 .hidden{
     display: none;
+}
+.restaurant-info{
+    margin: 5px;
+}
+
+.restaurant-address{
+    margin: 5px 0px 0px 10px;
+}
+
+.restaurant-name{
+    margin: 0px;
+}
+
+.edit-button{
+    width: 50%;
+    height: 25px;
+    justify-self: center;
+    align-self: center;
 }

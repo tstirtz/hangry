@@ -44,17 +44,23 @@ function renderRestaurantList(data){
     console.log("This is the restaurant data");
     console.log(data);
     $('.restaurant-list-js').toggleClass('hidden')
+      let i = 1;
         data.forEach(function(restaurantObject){
             for(var key in restaurantObject){
                 if(key === 'name'){
                     $('.restaurant-list-js').append(
-                        `<p>${restaurantObject[key]}</p>`
+                        `<div class= "restaurant-${i} restaurant-info">
+                            <p class= "restaurant-name">${restaurantObject[key]}</p>
+                         </div>`
                     );
                 }else if(key === 'address'){
-                    $('.restaurant-list-js').append(
-                        `<p>${restaurantObject[key]}</p>
-                        <button type="button">Edit</button>`
-                    );
+                    // $('.restaurant-list-js').append(
+                    //     `<p class= "restaurant-address">${restaurantObject[key]}</p>
+                    //     <button type="button" class = "edit-button">Edit</button>`
+                    // );
+                    $(`.restaurant-${i}`).append(`<p class="restaurant-address">${restaurantObject[key]}</p>`);
+                    $('.restaurant-list-js').append(`<button type="button" class = "edit-button">Edit</button>`);
+                    i++;
                 }
             }
     });
