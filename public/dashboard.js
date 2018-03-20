@@ -62,7 +62,7 @@ function renderRestaurantList(data){
                     //     <button type="button" class = "edit-button">Edit</button>`
                     // );
                     $(`.restaurant-${i}`).append(`<p class="restaurant-address">${restaurantObject[key]}</p>`);
-                    $('.restaurant-list-js').append(`<button type="button" class = "edit-button">Edit</button>`);
+                    $('.restaurant-list-js').append(`<button type="button" class = "edit-button-js button-${i}">Edit</button>`);
                     i++;
                 }
             }
@@ -72,6 +72,24 @@ function renderRestaurantList(data){
 
 function getAndDisplayRestaurants(){
     getRestaurantData(renderRestaurantList);
+}
+
+function editRestaurant(){
+    $('.restaurant-list-js').on('click', '.edit-button-js', function(){
+
+        let restaurantName = $(this).prev().children('.restaurant-name')[0].innerText;
+        let restaurantAddress = $(this).prev().children('.restaurant-address')[0].innerText;
+
+        $('#edit-restaurant-modal').css("display", "block");
+        $('.modal-content').children('.edit-restaurant-input.name').attr('placeholder', `${restaurantName}`);
+        $('.modal-content').children('.edit-restaurant-input.address').attr('placeholder', `${restaurantAddress}`);
+
+        console.log(restaurantName);
+
+        //
+        // $(this).prev().children('.restaurant-name').replaceWith(restaurantNameToEdit);
+        // $(this).prev().children('.restaurant-address').replaceWith(restaurantAddressToEdit);
+    });
 }
 
 
@@ -158,5 +176,6 @@ $(function(){
         getAndDisplayRandomRestaurant();
         renderRestaurantAddressInput();
         sendNewRestaurantData();
+        editRestaurant();
     });
 })
