@@ -24,8 +24,11 @@ function storeAuthToken(){
 
 function getRestaurantData(callback){
     $('.container').on('click', function(){
+        $('.restaurant-list-js').empty();
+
         console.log("getRestaurantData working");
         console.log(sessionStorage.getItem('authToken'));
+
         $.ajax({
             url:'/dashboard/restaurants/' + sessionStorage.getItem('userId'),
             method: 'GET',
