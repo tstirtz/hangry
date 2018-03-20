@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Hangry</title>
-    <link rel="stylesheet" type="text/css" href="/normalize.css">
+    <script src= "https://yarnpkg.com/en/package/normalize.css"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="/normalize.css"> -->
     <link rel="stylesheet" type="text/css" href="/dashboard.css">
 </head>
 <body>
@@ -21,17 +22,18 @@
             <button type= "submit" class = "add-restaurant-button add-restaurant-button-js">Add Restaurant</button>
         </form>
     </div>
-    <div class = "gererate-restaurant">
-        <h2>Need help deciding?</h2>
-        <button type= "button" class="generate-restaurant-js">Random Restaurant</button>
-    </div>
-    <aside class="restaurant-list-js restaurant-list hidden">
+    <main>
+        <div class = "generate-restaurant">
+            <h2>Need help deciding?</h2>
+            <button type= "button" class="generate-restaurant-js generate-restaurant-button">Random Restaurant</button>
+        </div>
+        <aside class="restaurant-list-js restaurant-list hidden">
 
-    </aside>
-    <div class= "random-restaurant">
+        </aside>
+        <div class= "random-restaurant">
 
-    </div>
-
+        </div>
+    </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript" src= "/dashboard.js"></script>
 </body>
