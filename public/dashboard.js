@@ -49,10 +49,11 @@ function renderRestaurantList(data){
     $('.restaurant-list-js').toggleClass('hidden')
       let i = 1;
         data.forEach(function(restaurantObject){
+            let restaurantId = restaurantObject._id;
             for(var key in restaurantObject){
                 if(key === 'name'){
                     $('.restaurant-list-js').append(
-                        `<div class= "restaurant-${i} restaurant-info">
+                        `<div id = "${restaurantId}" class= "restaurant-${i} restaurant-info">
                             <p class= "restaurant-name">${restaurantObject[key]}</p>
                          </div>`
                     );
@@ -74,22 +75,54 @@ function getAndDisplayRestaurants(){
     getRestaurantData(renderRestaurantList);
 }
 
-function editRestaurant(){
+function renderEditModal(){
     $('.restaurant-list-js').on('click', '.edit-button-js', function(){
 
         let restaurantName = $(this).prev().children('.restaurant-name')[0].innerText;
         let restaurantAddress = $(this).prev().children('.restaurant-address')[0].innerText;
+        let restaurantId = $(this).prev()[0].id;
+        console.log($(this).prev());
 
         $('#edit-restaurant-modal').css("display", "block");
         $('.modal-content').children('.edit-restaurant-input.name').attr('placeholder', `${restaurantName}`);
         $('.modal-content').children('.edit-restaurant-input.address').attr('placeholder', `${restaurantAddress}`);
 
-        console.log(restaurantName);
-
-        //
-        // $(this).prev().children('.restaurant-name').replaceWith(restaurantNameToEdit);
-        // $(this).prev().children('.restaurant-address').replaceWith(restaurantAddressToEdit);
+        editRestaurant(restaurantId);
+        //make request to api when edit submit is clicked
     });
+}
+
+function editRestaurant(idToEdit){
+    //get data from input fields
+    $('#edit-restaurant-modal').on('click','.submit-edit', function(){
+
+            let updatedName = $(this).prevAll()[1].value;
+            let updatedAddress = $(this).prevAll()[0].value;
+
+            let updatedRestaurantInfo = {
+                name: updatedName,
+                address: updatedAddress
+            }
+
+            $.ajax({
+                url:'/dashboard/restaurants/edit/' + sessionStorage.getItem('userId') + '.' + idToEdit,
+                method: 'PUT',
+                data: JSON.stringify(updatedRestaurantInfo),
+                dataType: 'json',
+                contentType: 'application/json; charset= utf-8',
+                beforeSend: function(xhr){
+                    xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('authToken')}`);
+                },
+                error: function(jqXHR, errorValue){
+                    alert(errorValue);
+                }
+            });
+
+    });
+}
+
+function sendUpdatedRestaurant(){
+    //on submit send updatated restaurant via ajax
 }
 
 
@@ -176,6 +209,6 @@ $(function(){
         getAndDisplayRandomRestaurant();
         renderRestaurantAddressInput();
         sendNewRestaurantData();
-        editRestaurant();
+        renderEditModal();
     });
 })
