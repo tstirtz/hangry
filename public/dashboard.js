@@ -63,7 +63,11 @@ function renderRestaurantList(data){
                     //     <button type="button" class = "edit-button">Edit</button>`
                     // );
                     $(`.restaurant-${i}`).append(`<p class="restaurant-address">${restaurantObject[key]}</p>`);
-                    $('.restaurant-list-js').append(`<button type="button" class = "edit-button-js button-${i}">Edit</button>`);
+                    $('.restaurant-list-js').append(
+                        `<div class= "edit-delete-buttons">
+                            <button type="button" class = "edit-button-js button-${i}">Edit</button>
+                            <i class="fas fa-trash-alt ${restaurantId}"></i>
+                         </div>`);
                     i++;
                 }
             }
