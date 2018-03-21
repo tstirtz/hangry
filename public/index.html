@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="sign-in.css">
 </head>
 <body>
     <div class= "top-nav">
         <h1>Hangry</h1>
-        <button type="button">Sign Up</button>
+        <button type="button" class= "signup-button-js">Sign Up</button>
     </div>
     <h2>Sign In</h2>
     <p>Feeling hangry?<br>Can't remember the name of that new restaurant?<br> Just can't agree on a restaurant?<br> Let us decide for you!</p>
@@ -16,6 +17,17 @@
         <input type="password" name="password" placeholder="Password" aria-label="Password"/>
         <button type="submit">Sign In</button>
     </form>
+    <section id = "sign-up-modal">
+        <div class= "modal-content">
+            <h2>Sign Up</h2>
+            <form action="">
+                <input type="text" name="userName" placeholder="User Name" aria-label="User Name"/>
+                <input type="password" name="password" placeholder="Password" aria-label="Password"/>
+                <input type="password" name="confirm-password" placeholder="Confirm Password" aria-label="Confirm password"/>
+                <button type="submit">Create Account</button>
+            </form>
+        </div>
+    </section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript" src= "app.js"></script>
