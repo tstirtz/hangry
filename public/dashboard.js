@@ -46,7 +46,7 @@ function getRestaurantData(callback){
 function renderRestaurantList(data){
     console.log("This is the restaurant data");
     console.log(data);
-    $('.restaurant-list-js').toggleClass('hidden')
+    $('.restaurant-list-js').toggleClass('hide');
       let i = 1;
         data.forEach(function(restaurantObject){
             let restaurantId = restaurantObject._id;
@@ -115,14 +115,19 @@ function editRestaurant(idToEdit){
                 },
                 error: function(jqXHR, errorValue){
                     alert(errorValue);
-                }
+                },
+                sussess: [hideEditModal(), hideRestaurantList()]
             });
 
     });
 }
 
-function sendUpdatedRestaurant(){
-    //on submit send updatated restaurant via ajax
+function hideEditModal(){
+    $('#edit-restaurant-modal').css("display", "none");
+}
+
+function hideRestaurantList(){
+    $('.restaurant-list-js').toggleClass('hide');
 }
 
 
