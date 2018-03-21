@@ -66,12 +66,13 @@ function renderRestaurantList(data){
                     $('.restaurant-list-js').append(
                         `<div class= "edit-delete-buttons">
                             <button type="button" class = "edit-button-js button-${i}">Edit</button>
-                            <i class="fas fa-trash-alt ${restaurantId}"></i>
+                            <i class="fas fa-trash-alt ${restaurantId} delete-button-js"></i>
                          </div>`);
                     i++;
                 }
             }
     });
+    renderDeleteModal();
 }
 
 
@@ -212,6 +213,51 @@ function sendNewRestaurantData(){
     });
     //Will add callback to append new restaurant to rendered list of restaurants
 }
+
+function renderDeleteModal(){
+    console.log("renderDeleteModal function working");
+    $('.restaurant-list-js').on('click', '.delete-button-js', function(){
+        $('#delete-restaurant-modal').css("display", "block");
+        let restaurantId = $(this)[0].classList[3]
+        deleteRestaurant(restaurantId);
+    });
+}
+
+function deleteRestaurant(id){
+    $('#delete-restaurant-modal').on('click', '.yes-button-js', function(){
+        $.ajax({
+            url:'/dashboard/restaurants/delete/' + sessionStorage.getItem('userId') + '.' + id,
+            method: 'DELETE',
+            dataType: 'json',
+            contentType: 'application/json; charset= utf-8',
+            statusCode: {
+                204: function(){
+                    $('#delete-restaurant-modal.modal-content').append(
+                        `<p>Restaurant deleted.</p>`
+                    );
+                }
+            },
+            beforeSend: function(xhr){
+                xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('authToken')}`);
+            },
+            error: function(jqXHR, errorValue){
+                $('#delete-restaurant-modal.modal-content').append(
+                    `<p>${errorValue}</p>`
+                );
+            },
+            success: [hideDeleteModal(), hideRestaurantList()]
+        });
+    });
+
+    $('#delete-restaurant-modal').on('click', '.no-button-js', function(){
+        $('#delete-restaurant-modal').css("display", "none");
+    });
+}
+
+function hideDeleteModal(){
+    $('#delete-restaurant-modal').css("display", "none");
+}
+
 
 
 
