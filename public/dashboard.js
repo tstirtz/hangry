@@ -95,30 +95,36 @@ function renderEditModal(){
 function editRestaurant(idToEdit){
     //get data from input fields
     $('#edit-restaurant-modal').on('click','.submit-edit', function(){
-
+        $('.modal-message').empty();
             let updatedName = $(this).prevAll()[1].value;
             let updatedAddress = $(this).prevAll()[0].value;
 
-            let updatedRestaurantInfo = {
-                name: updatedName,
-                address: updatedAddress
+            if(updatedName.length === 0){
+                return $('.modal-message').append(`<p>Please provide a restaurant name.</p>`);
+            }else if(updatedAddress.length === 0){
+                return $('.modal-message').append(`<p>Please provide an address.</p>`);
+            }else {
+
+                let updatedRestaurantInfo = {
+                    name: updatedName,
+                    address: updatedAddress
+                }
+
+                $.ajax({
+                    url:'/dashboard/restaurants/edit/' + sessionStorage.getItem('userId') + '.' + idToEdit,
+                    method: 'PUT',
+                    data: JSON.stringify(updatedRestaurantInfo),
+                    dataType: 'json',
+                    contentType: 'application/json; charset= utf-8',
+                    beforeSend: function(xhr){
+                        xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('authToken')}`);
+                    },
+                    error: function(jqXHR, errorValue){
+                        alert(errorValue);
+                    },
+                    sussess: [hideEditModal(), hideRestaurantList()]
+                });
             }
-
-            $.ajax({
-                url:'/dashboard/restaurants/edit/' + sessionStorage.getItem('userId') + '.' + idToEdit,
-                method: 'PUT',
-                data: JSON.stringify(updatedRestaurantInfo),
-                dataType: 'json',
-                contentType: 'application/json; charset= utf-8',
-                beforeSend: function(xhr){
-                    xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('authToken')}`);
-                },
-                error: function(jqXHR, errorValue){
-                    alert(errorValue);
-                },
-                sussess: [hideEditModal(), hideRestaurantList()]
-            });
-
     });
 }
 
