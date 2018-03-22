@@ -28,9 +28,11 @@ router.post('/', localAuth, function(req, res){
     const authToken = createAuthToken(req.user.forAuthToken());
     console.log(req.user);
 
-    res.cookie('id', `${req.user._id}`);
-    res.cookie('jwt', authToken);
-    res.redirect('/dashboard');
+    return res.json({id: req.user._id, jwt: authToken});
+
+    // res.cookie('id', `${req.user._id}`);
+    // res.cookie('jwt', authToken);
+    // res.redirect('/dashboard');
 });
 
 
