@@ -32,16 +32,21 @@ function getRestaurantData(callback){
         console.log("getRestaurantData working");
         console.log(sessionStorage.getItem('authToken'));
 
-        $.ajax({
-            url:'/dashboard/restaurants/' + sessionStorage.getItem('userId'),
-            method: 'GET',
-            dataType: 'json',
-            contentType: 'application/json; charset= utf-8',
-            beforeSend: function(xhr){
-                xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('authToken')}`);
-            },
-            success: callback
-        });
+        if($('.restaurant-list-js').hasClass('hide')){
+        //if restaurant list isn't hidden then make request to get list of restaurants
+            $.ajax({
+                url:'/dashboard/restaurants/' + sessionStorage.getItem('userId'),
+                method: 'GET',
+                dataType: 'json',
+                contentType: 'application/json; charset= utf-8',
+                beforeSend: function(xhr){
+                    xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('authToken')}`);
+                },
+                success: callback
+            });
+        }else if(!($('.restaurant-list-js').hasClass('hide'))){
+            $('.restaurant-list-js').toggleClass('hide');
+        }
     })
 }
 
@@ -240,7 +245,7 @@ function deleteRestaurant(id){
             contentType: 'application/json; charset= utf-8',
             statusCode: {
                 204: function(){
-                    $('#delete-restaurant-modal.modal-content').append(
+                    $('#delete-restaurant-modal .modal-content').append(
                         `<p>Restaurant deleted.</p>`
                     );
                 }
@@ -249,7 +254,7 @@ function deleteRestaurant(id){
                 xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('authToken')}`);
             },
             error: function(jqXHR, errorValue){
-                $('#delete-restaurant-modal.modal-content').append(
+                $('#delete-restaurant-modal .modal-content').append(
                     `<p>${errorValue}</p>`
                 );
             },
