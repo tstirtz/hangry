@@ -213,6 +213,8 @@ function sendNewRestaurantData(){
                 console.log(response);
                 // document.getElementsByClassName('add-restaurant').reset();
                 $('.add-restaurant :input').val('');
+                $('.add-address-input').attr('type', 'hidden');
+                $('.add-restaurant-input-js').attr('placeholder', '');
                 alert(response.message);
             }
         });
