@@ -102,7 +102,7 @@ router.post('/', jsonParser, function(req, res){
         })
         .catch(function(err){
             console.log(err);
-            if(err === 'ValidationError'){
+            if(err.reason === 'ValidationError'){
                 res.status(err.code).json(err);
             }
             res.status(500).send({code: 500, message: "Internal server error"});

@@ -3,23 +3,26 @@
 function storeAuthToken(){
     // let authCookie = document.cookie;
     // let authToken = authCookie.slice(4);
+    //
+    // let cookieArray = document.cookie.split(';');
+    // let id;
+    // let jwt;
+    //
+    // for(let i=0; i< cookieArray.length; i++){
+    //     if(cookieArray[i].split('=')[0] === 'id'){
+    //         id = cookieArray[i].split('=')[1];
+    //     }
+    //      jwt = cookieArray[i].split('=')[1];
+    // }
+    // console.log(id);
+    // console.log(jwt);
+    //
+    //
+    // sessionStorage.setItem('authToken',jwt);
+    // sessionStorage.setItem('userId', id);
 
-    let cookieArray = document.cookie.split(';');
-    let id;
-    let jwt;
-
-    for(let i=0; i< cookieArray.length; i++){
-        if(cookieArray[i].split('=')[0] === 'id'){
-            id = cookieArray[i].split('=')[1];
-        }
-         jwt = cookieArray[i].split('=')[1];
-    }
-    console.log(id);
-    console.log(jwt);
-
-
-    sessionStorage.setItem('authToken',jwt);
-    sessionStorage.setItem('userId', id);
+    console.log(sessionStorage.getItem('authToken'));
+    console.log(sessionStorage.getItem('userId'));
 }
 
 function getRestaurantData(callback){
@@ -83,14 +86,17 @@ function getAndDisplayRestaurants(){
 function renderEditModal(){
     $('.restaurant-list-js').on('click', '.edit-button-js', function(){
 
-        let restaurantName = $(this).prev().children('.restaurant-name')[0].innerText;
-        let restaurantAddress = $(this).prev().children('.restaurant-address')[0].innerText;
-        let restaurantId = $(this).prev()[0].id;
+        $('#edit-restaurant-modal').css("display", "block");
+
+        console.log($(this).parent().prev().children('.restaurant-name')[0].innerText);
+
+        let restaurantName = $(this).parent().prev().children('.restaurant-name')[0].innerText;
+        let restaurantAddress = $(this).parent().prev().children('.restaurant-address')[0].innerText;
+        let restaurantId = $(this).parent().prev()[0].id;
         console.log($(this).prev());
 
-        $('#edit-restaurant-modal').css("display", "block");
-        $('.modal-content').children('.edit-restaurant-input.name').attr('placeholder', `${restaurantName}`);
-        $('.modal-content').children('.edit-restaurant-input.address').attr('placeholder', `${restaurantAddress}`);
+        $('.modal-form').children('.edit-restaurant-input.name').attr('placeholder', `${restaurantName}`);
+        $('.modal-form').children('.edit-restaurant-input.address').attr('placeholder', `${restaurantAddress}`);
 
         editRestaurant(restaurantId);
         //make request to api when edit submit is clicked
