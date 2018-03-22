@@ -14,8 +14,6 @@ function confirmPassword(){
         let passwordConfirm = $(this).prevAll('.confirm-password-input')[0].value;
         let username = $(this).prevAll('.username-input')[0].value;
 
-        console.log(password);
-        console.log(passwordConfirm);
         console.log(username);
 
         if(password !== passwordConfirm){
@@ -24,12 +22,12 @@ function confirmPassword(){
             );
         }else if(password === passwordConfirm){
             createNewAccount(username, password);
+            logInNewUser(username, password);
         }
     });
 }
 
 function createNewAccount(username, pass){
-
 
 
     let newUser = {
@@ -46,7 +44,7 @@ function createNewAccount(username, pass){
         success: function(data){
             $('.modal-content').append(
                 `<p class= "account-created-message">Account created for <em>${data.userName}</em></p>
-                <button type="button">User Dashboard</button>`
+                <button type="button" class = "user-dashboard-button">User Dashboard</button>`
             );
         },
         error: function(object, message){
@@ -56,6 +54,34 @@ function createNewAccount(username, pass){
                 `<p class= "modal-message">${object.responseJSON.message}: Uh oh! Please try again.</p>`
             );
         }
+    });
+}
+
+function logInNewUser(username, pass){
+    $('#sign-up-modal').on('click', '.user-dashboard-button', function(){
+
+        let newUser = {
+            userName: username,
+            password: pass
+        }
+
+
+        $.ajax({
+            url:'/login',
+            method: 'POST',
+            data: JSON.stringify(newUser),
+            contentType: 'application/json; charset= utf-8',
+            error: function(object, message){
+                console.log(message);
+                console.log(object);
+                $('.modal-content').append(
+                    `<p class= "modal-message">${message}: Uh oh! Please try again.</p>`
+                );
+            },
+            success: function(data){
+                window.location.href = '/dashboard';
+            }
+        });
     });
 }
 
