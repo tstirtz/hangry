@@ -74,13 +74,13 @@ function renderRestaurantList(data){
                     $('.restaurant-list-js').append(
                         `<div class= "edit-delete-buttons">
                             <button type="button" class = "edit-button-js button-${i}">Edit</button>
-                            <i class="fas fa-trash-alt ${restaurantId} delete-button-js"></i>
+                            <i class="fas fa-trash-alt delete-button-js-${i}" id= "${restaurantId}"></i>
                          </div>`);
+                    renderDeleteModal(i);
                     i++;
                 }
             }
     });
-    renderDeleteModal();
 }
 
 
@@ -227,33 +227,36 @@ function sendNewRestaurantData(){
     //Will add callback to append new restaurant to rendered list of restaurants
 }
 
-function renderDeleteModal(){
+function renderDeleteModal(deleteId){
     console.log("renderDeleteModal function working");
-    $('.restaurant-list-js').on('click', '.delete-button-js', function(){
+    $('.restaurant-list-js').on('click', `.delete-button-js-${deleteId}`, function(){
         $('#delete-restaurant-modal').css("display", "block");
-        let restaurantId = $(this)[0].classList[3]
+        let restaurantId = $(this)[0].id;
+        console.log($(this)[0].id);
         deleteRestaurant(restaurantId);
     });
 }
 
-function deleteRestaurant(id){
+function deleteRestaurant(restIdToDelete){
     $('#delete-restaurant-modal').on('click', '.yes-button-js', function(){
+        console.log(restIdToDelete);
         $.ajax({
-            url:'/dashboard/restaurants/delete/' + sessionStorage.getItem('userId') + '.' + id,
+            url:'/dashboard/restaurants/delete/' + sessionStorage.getItem('userId') + '.' + restIdToDelete,
             method: 'DELETE',
             dataType: 'json',
             contentType: 'application/json; charset= utf-8',
             statusCode: {
                 204: function(){
-                    $('#delete-restaurant-modal .modal-content').append(
-                        `<p>Restaurant deleted.</p>`
-                    );
+                    // $('#delete-restaurant-modal .modal-content').append(
+                    //     `<p>Restaurant deleted.</p>`
+                    // );
                 }
             },
             beforeSend: function(xhr){
                 xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('authToken')}`);
             },
             error: function(jqXHR, errorValue){
+                console.log(jqXHR);
                 $('#delete-restaurant-modal .modal-content').append(
                     `<p>${errorValue}</p>`
                 );
@@ -284,5 +287,6 @@ $(function(){
         renderRestaurantAddressInput();
         sendNewRestaurantData();
         renderEditModal();
+        renderDeleteModal();
     });
 })
