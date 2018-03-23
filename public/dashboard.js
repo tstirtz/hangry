@@ -26,7 +26,11 @@ function storeAuthToken(){
 }
 
 function getRestaurantData(callback){
-    $('.container').on('click', function(){
+    $('.container').on('click', function(event){
+        console.log("Container clicked");
+
+        event.stopPropagation();
+        event.stopImmediatePropagation();
         $('.restaurant-list-js').empty();
 
         console.log("getRestaurantData working");
@@ -66,17 +70,31 @@ function renderRestaurantList(data){
                          </div>`
                     );
                 }else if(key === 'address'){
-                    // $('.restaurant-list-js').append(
-                    //     `<p class= "restaurant-address">${restaurantObject[key]}</p>
-                    //     <button type="button" class = "edit-button">Edit</button>`
-                    // );
                     $(`.restaurant-${i}`).append(`<p class="restaurant-address">${restaurantObject[key]}</p>`);
                     $('.restaurant-list-js').append(
                         `<div class= "edit-delete-buttons">
                             <button type="button" class = "edit-button-js button-${i}">Edit</button>
-                            <i class="fas fa-trash-alt delete-button-js-${i}" id= "${restaurantId}"></i>
+                            <button class = "delete-button-js-${restaurantId}" id= "${restaurantId}"></button>
                          </div>`);
-                    renderDeleteModal(i);
+                         // <i class="fas fa-trash-alt delete-button-js-${restaurantId}" id= "${restaurantId}"></i>
+                    renderDeleteModal(restaurantId);
+                    renderEditModal(i);
+                    // $('main').on('click', `.delete-button-js-${restaurantId}`, function(event){
+                    //
+                    //     event.stopPropagation();
+                    //     event.stopImmediatePropagation();
+                    //
+                    //     console.log($(this) + `was clicked`);
+                    //
+                    //     $('#delete-restaurant-modal').css("display", "block");
+                    //     let restaurantToDelete = $(this)[0].id;
+                    //
+                    //     console.log($(this));
+                    //     console.log(restaurantToDelete);
+                    //
+                    //     deleteRestaurant(restaurantToDelete);
+                    //     $('main').off(`.delete-button-js-${restaurantId}`);
+                    // });
                     i++;
                 }
             }
@@ -88,8 +106,10 @@ function getAndDisplayRestaurants(){
     getRestaurantData(renderRestaurantList);
 }
 
-function renderEditModal(){
-    $('.restaurant-list-js').on('click', '.edit-button-js', function(){
+function renderEditModal(buttonNumber){
+    $('.restaurant-list-js').on('click', `.button-${buttonNumber}`, function(){
+        event.stopImmediatePropagation();
+        console.log(`.button-${buttonNumber} was clicked`);
 
         $('#edit-restaurant-modal').css("display", "block");
 
@@ -111,6 +131,9 @@ function renderEditModal(){
 function editRestaurant(idToEdit){
     //get data from input fields
     $('#edit-restaurant-modal').on('click','.submit-edit', function(){
+        event.stopImmediatePropagation();
+        console.log(".submit-edit was clicked");
+
         $('.modal-message').empty();
             let updatedName = $(this).prevAll()[1].value;
             let updatedAddress = $(this).prevAll()[0].value;
@@ -156,6 +179,9 @@ function hideRestaurantList(){
 
 function getRandomRestaurant(callback){
     $('.generate-restaurant-js').on('click', function(){
+        event.stopImmediatePropagation();
+        console.log(".generate-restaurant-js was clicked");
+
         $.ajax({
             url:'/dashboard/restaurants/random/' + sessionStorage.getItem('userId'),
             method: 'GET',
@@ -184,6 +210,9 @@ function getAndDisplayRandomRestaurant(){
 
 function renderRestaurantAddressInput(){
     $('.add-restaurant-input-js').on('click', function(){
+        event.stopImmediatePropagation();
+        console.log(".add-restaurant-input-js was clicked");
+
         $(this).attr('placeholder', 'Restaurant Name');
         const addressInput = $(this).next();
         if(addressInput.attr('type') === 'hidden'){
@@ -194,6 +223,9 @@ function renderRestaurantAddressInput(){
 
 function sendNewRestaurantData(){
     $('.add-restaurant-button-js').on('click', function(event){
+        event.stopImmediatePropagation();
+        console.log(".add-restaurant-button-js was clicked");
+
         event.preventDefault();
         console.log(event);
         let restaurantName = event.target.form[0].value;
@@ -227,18 +259,34 @@ function sendNewRestaurantData(){
     //Will add callback to append new restaurant to rendered list of restaurants
 }
 
-function renderDeleteModal(deleteId){
+function renderDeleteModal(idToDelete){
     console.log("renderDeleteModal function working");
-    $('.restaurant-list-js').on('click', `.delete-button-js-${deleteId}`, function(){
+    $('main').on('click', `.delete-button-js-${idToDelete}`, function(event){
+
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+
+        console.log($(this) + `was clicked`);
+
         $('#delete-restaurant-modal').css("display", "block");
-        let restaurantId = $(this)[0].id;
-        console.log($(this)[0].id);
-        deleteRestaurant(restaurantId);
+        let restaurantToDelete = $(this)[0].id;
+
+        console.log($(this));
+        console.log(restaurantToDelete);
+
+        deleteRestaurant(restaurantToDelete);
+        $('main').off(`.delete-button-js-${idToDelete}`);
     });
 }
 
 function deleteRestaurant(restIdToDelete){
-    $('#delete-restaurant-modal').on('click', '.yes-button-js', function(){
+    console.log("deleteRestaurant function started");
+    $('body').off('click', '.yes-button-js');
+    $('body').on('click', '.yes-button-js', function(){
+        // event.stopPropagation();
+        event.stopImmediatePropagation();
+        console.log(".yes-button-js was clicked");
+
         console.log(restIdToDelete);
         $.ajax({
             url:'/dashboard/restaurants/delete/' + sessionStorage.getItem('userId') + '.' + restIdToDelete,
@@ -266,8 +314,13 @@ function deleteRestaurant(restIdToDelete){
     });
 
     $('#delete-restaurant-modal').on('click', '.no-button-js', function(){
+        event.stopImmediatePropagation();
+        console.log('.no-button-js was clicked');
+
         $('#delete-restaurant-modal').css("display", "none");
     });
+    console.log("end of deleteRestaurant function");
+    $('main').off('click', '.yes-button-js');
 }
 
 function hideDeleteModal(){
@@ -287,6 +340,6 @@ $(function(){
         renderRestaurantAddressInput();
         sendNewRestaurantData();
         renderEditModal();
-        renderDeleteModal();
+        // renderDeleteModal();
     });
 })
