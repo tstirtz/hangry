@@ -26,22 +26,31 @@ function storeAuthToken(){
 }
 
 function getRestaurantData(callback){
-    $('.container').on('click', function(){
+    $('.container').on('click', function(event){
+        console.log("Container clicked");
+
+        event.stopPropagation();
+        event.stopImmediatePropagation();
         $('.restaurant-list-js').empty();
 
         console.log("getRestaurantData working");
         console.log(sessionStorage.getItem('authToken'));
 
-        $.ajax({
-            url:'/dashboard/restaurants/' + sessionStorage.getItem('userId'),
-            method: 'GET',
-            dataType: 'json',
-            contentType: 'application/json; charset= utf-8',
-            beforeSend: function(xhr){
-                xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('authToken')}`);
-            },
-            success: callback
-        });
+        if($('.restaurant-list-js').hasClass('hide')){
+        //if restaurant list isn't hidden then make request to get list of restaurants
+            $.ajax({
+                url:'/dashboard/restaurants/' + sessionStorage.getItem('userId'),
+                method: 'GET',
+                dataType: 'json',
+                contentType: 'application/json; charset= utf-8',
+                beforeSend: function(xhr){
+                    xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('authToken')}`);
+                },
+                success: callback
+            });
+        }else if(!($('.restaurant-list-js').hasClass('hide'))){
+            $('.restaurant-list-js').toggleClass('hide');
+        }
     })
 }
 
@@ -61,21 +70,35 @@ function renderRestaurantList(data){
                          </div>`
                     );
                 }else if(key === 'address'){
-                    // $('.restaurant-list-js').append(
-                    //     `<p class= "restaurant-address">${restaurantObject[key]}</p>
-                    //     <button type="button" class = "edit-button">Edit</button>`
-                    // );
                     $(`.restaurant-${i}`).append(`<p class="restaurant-address">${restaurantObject[key]}</p>`);
                     $('.restaurant-list-js').append(
                         `<div class= "edit-delete-buttons">
                             <button type="button" class = "edit-button-js button-${i}">Edit</button>
-                            <i class="fas fa-trash-alt ${restaurantId} delete-button-js"></i>
+                            <button class = "delete-button-js-${restaurantId}" id= "${restaurantId}"></button>
                          </div>`);
+                         // <i class="fas fa-trash-alt delete-button-js-${restaurantId}" id= "${restaurantId}"></i>
+                    renderDeleteModal(restaurantId);
+                    renderEditModal(i);
+                    // $('main').on('click', `.delete-button-js-${restaurantId}`, function(event){
+                    //
+                    //     event.stopPropagation();
+                    //     event.stopImmediatePropagation();
+                    //
+                    //     console.log($(this) + `was clicked`);
+                    //
+                    //     $('#delete-restaurant-modal').css("display", "block");
+                    //     let restaurantToDelete = $(this)[0].id;
+                    //
+                    //     console.log($(this));
+                    //     console.log(restaurantToDelete);
+                    //
+                    //     deleteRestaurant(restaurantToDelete);
+                    //     $('main').off(`.delete-button-js-${restaurantId}`);
+                    // });
                     i++;
                 }
             }
     });
-    renderDeleteModal();
 }
 
 
@@ -83,29 +106,39 @@ function getAndDisplayRestaurants(){
     getRestaurantData(renderRestaurantList);
 }
 
-function renderEditModal(){
-    $('.restaurant-list-js').on('click', '.edit-button-js', function(){
+function renderEditModal(buttonNumber){
+    $('.restaurant-list-js').on('click', `.button-${buttonNumber}`, function(event){
+        event.stopPropagation();
+        event.stopImmediatePropagation();
 
         $('#edit-restaurant-modal').css("display", "block");
 
-        console.log($(this).parent().prev().children('.restaurant-name')[0].innerText);
 
         let restaurantName = $(this).parent().prev().children('.restaurant-name')[0].innerText;
         let restaurantAddress = $(this).parent().prev().children('.restaurant-address')[0].innerText;
         let restaurantId = $(this).parent().prev()[0].id;
-        console.log($(this).prev());
 
         $('.modal-form').children('.edit-restaurant-input.name').attr('placeholder', `${restaurantName}`);
         $('.modal-form').children('.edit-restaurant-input.address').attr('placeholder', `${restaurantAddress}`);
+        $('.modal-form').children('.submit-edit').attr('value', restaurantId);
 
-        editRestaurant(restaurantId);
+        $('.restaurant-list-js').off(`.button-${buttonNumber}`);
+
+        console.log(restaurantId);
+        editRestaurant();
         //make request to api when edit submit is clicked
     });
 }
 
-function editRestaurant(idToEdit){
+function editRestaurant(){
     //get data from input fields
-    $('#edit-restaurant-modal').on('click','.submit-edit', function(){
+    $('#edit-restaurant-modal').on('click','.submit-edit', function(event){
+        // event.stopPropagation();
+        event.stopImmediatePropagation();
+        console.log(".submit-edit was clicked");
+
+        let idToEdit = $(this)[0].attributes[2].nodeValue;
+
         $('.modal-message').empty();
             let updatedName = $(this).prevAll()[1].value;
             let updatedAddress = $(this).prevAll()[0].value;
@@ -132,8 +165,10 @@ function editRestaurant(idToEdit){
                     },
                     error: function(jqXHR, errorValue){
                         alert(errorValue);
+                        console.log(errorValue);
+                        console.log(jqXHR);
                     },
-                    sussess: [hideEditModal(), hideRestaurantList()]
+                    sussess: [hideEditModal(), hideRestaurantList(), clearEditModal()]
                 });
             }
     });
@@ -147,10 +182,21 @@ function hideRestaurantList(){
     $('.restaurant-list-js').toggleClass('hide');
 }
 
+function clearEditModal(){
+    $('.modal-form').children('.edit-restaurant-input.name').removeAttr('placeholder');
+    $('.modal-form').children('.edit-restaurant-input.address').removeAttr('placeholder');
+    $('.modal-form').children('.edit-restaurant-input.name').val('');
+    $('.modal-form').children('.edit-restaurant-input.address').val('');
+    $('.modal-form').children('.submit-edit').removeAttr('value');
+}
+
 
 
 function getRandomRestaurant(callback){
     $('.generate-restaurant-js').on('click', function(){
+        event.stopImmediatePropagation();
+        console.log(".generate-restaurant-js was clicked");
+
         $.ajax({
             url:'/dashboard/restaurants/random/' + sessionStorage.getItem('userId'),
             method: 'GET',
@@ -179,6 +225,9 @@ function getAndDisplayRandomRestaurant(){
 
 function renderRestaurantAddressInput(){
     $('.add-restaurant-input-js').on('click', function(){
+        event.stopImmediatePropagation();
+        console.log(".add-restaurant-input-js was clicked");
+
         $(this).attr('placeholder', 'Restaurant Name');
         const addressInput = $(this).next();
         if(addressInput.attr('type') === 'hidden'){
@@ -189,6 +238,9 @@ function renderRestaurantAddressInput(){
 
 function sendNewRestaurantData(){
     $('.add-restaurant-button-js').on('click', function(event){
+        event.stopImmediatePropagation();
+        console.log(".add-restaurant-button-js was clicked");
+
         event.preventDefault();
         console.log(event);
         let restaurantName = event.target.form[0].value;
@@ -213,6 +265,8 @@ function sendNewRestaurantData(){
                 console.log(response);
                 // document.getElementsByClassName('add-restaurant').reset();
                 $('.add-restaurant :input').val('');
+                $('.add-address-input').attr('type', 'hidden');
+                $('.add-restaurant-input-js').attr('placeholder', '');
                 alert(response.message);
             }
         });
@@ -220,34 +274,53 @@ function sendNewRestaurantData(){
     //Will add callback to append new restaurant to rendered list of restaurants
 }
 
-function renderDeleteModal(){
+function renderDeleteModal(idToDelete){
     console.log("renderDeleteModal function working");
-    $('.restaurant-list-js').on('click', '.delete-button-js', function(){
+    $('main').on('click', `.delete-button-js-${idToDelete}`, function(event){
+
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+
+        console.log($(this) + `was clicked`);
+
         $('#delete-restaurant-modal').css("display", "block");
-        let restaurantId = $(this)[0].classList[3]
-        deleteRestaurant(restaurantId);
+        let restaurantToDelete = $(this)[0].id;
+
+        console.log($(this));
+        console.log(restaurantToDelete);
+
+        deleteRestaurant(restaurantToDelete);
+        $('main').off(`.delete-button-js-${idToDelete}`);
     });
 }
 
-function deleteRestaurant(id){
-    $('#delete-restaurant-modal').on('click', '.yes-button-js', function(){
+function deleteRestaurant(restIdToDelete){
+    console.log("deleteRestaurant function started");
+    $('body').off('click', '.yes-button-js');
+    $('body').on('click', '.yes-button-js', function(){
+        // event.stopPropagation();
+        event.stopImmediatePropagation();
+        console.log(".yes-button-js was clicked");
+
+        console.log(restIdToDelete);
         $.ajax({
-            url:'/dashboard/restaurants/delete/' + sessionStorage.getItem('userId') + '.' + id,
+            url:'/dashboard/restaurants/delete/' + sessionStorage.getItem('userId') + '.' + restIdToDelete,
             method: 'DELETE',
             dataType: 'json',
             contentType: 'application/json; charset= utf-8',
             statusCode: {
                 204: function(){
-                    $('#delete-restaurant-modal.modal-content').append(
-                        `<p>Restaurant deleted.</p>`
-                    );
+                    // $('#delete-restaurant-modal .modal-content').append(
+                    //     `<p>Restaurant deleted.</p>`
+                    // );
                 }
             },
             beforeSend: function(xhr){
                 xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('authToken')}`);
             },
             error: function(jqXHR, errorValue){
-                $('#delete-restaurant-modal.modal-content').append(
+                console.log(jqXHR);
+                $('#delete-restaurant-modal .modal-content').append(
                     `<p>${errorValue}</p>`
                 );
             },
@@ -256,8 +329,13 @@ function deleteRestaurant(id){
     });
 
     $('#delete-restaurant-modal').on('click', '.no-button-js', function(){
+        event.stopImmediatePropagation();
+        console.log('.no-button-js was clicked');
+
         $('#delete-restaurant-modal').css("display", "none");
     });
+    console.log("end of deleteRestaurant function");
+    $('main').off('click', '.yes-button-js');
 }
 
 function hideDeleteModal(){
@@ -276,6 +354,7 @@ $(function(){
         getAndDisplayRandomRestaurant();
         renderRestaurantAddressInput();
         sendNewRestaurantData();
-        renderEditModal();
+        // renderEditModal();
+        // renderDeleteModal();
     });
 })
