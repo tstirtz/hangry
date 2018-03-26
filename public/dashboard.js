@@ -107,32 +107,37 @@ function getAndDisplayRestaurants(){
 }
 
 function renderEditModal(buttonNumber){
-    $('.restaurant-list-js').on('click', `.button-${buttonNumber}`, function(){
+    $('.restaurant-list-js').on('click', `.button-${buttonNumber}`, function(event){
+        event.stopPropagation();
         event.stopImmediatePropagation();
-        console.log(`.button-${buttonNumber} was clicked`);
 
         $('#edit-restaurant-modal').css("display", "block");
 
-        console.log($(this).parent().prev().children('.restaurant-name')[0].innerText);
 
         let restaurantName = $(this).parent().prev().children('.restaurant-name')[0].innerText;
         let restaurantAddress = $(this).parent().prev().children('.restaurant-address')[0].innerText;
         let restaurantId = $(this).parent().prev()[0].id;
-        console.log($(this).prev());
 
         $('.modal-form').children('.edit-restaurant-input.name').attr('placeholder', `${restaurantName}`);
         $('.modal-form').children('.edit-restaurant-input.address').attr('placeholder', `${restaurantAddress}`);
+        $('.modal-form').children('.submit-edit').attr('value', restaurantId);
 
-        editRestaurant(restaurantId);
+        $('.restaurant-list-js').off(`.button-${buttonNumber}`);
+
+        console.log(restaurantId);
+        editRestaurant();
         //make request to api when edit submit is clicked
     });
 }
 
-function editRestaurant(idToEdit){
+function editRestaurant(){
     //get data from input fields
-    $('#edit-restaurant-modal').on('click','.submit-edit', function(){
+    $('#edit-restaurant-modal').on('click','.submit-edit', function(event){
+        // event.stopPropagation();
         event.stopImmediatePropagation();
         console.log(".submit-edit was clicked");
+
+        let idToEdit = $(this)[0].attributes[2].nodeValue;
 
         $('.modal-message').empty();
             let updatedName = $(this).prevAll()[1].value;
@@ -161,7 +166,7 @@ function editRestaurant(idToEdit){
                     error: function(jqXHR, errorValue){
                         alert(errorValue);
                     },
-                    sussess: [hideEditModal(), hideRestaurantList()]
+                    sussess: [hideEditModal(), hideRestaurantList(), clearEditModal()]
                 });
             }
     });
@@ -173,6 +178,14 @@ function hideEditModal(){
 
 function hideRestaurantList(){
     $('.restaurant-list-js').toggleClass('hide');
+}
+
+function clearEditModal(){
+    $('.modal-form').children('.edit-restaurant-input.name').removeAttr('placeholder');
+    $('.modal-form').children('.edit-restaurant-input.address').removeAttr('placeholder');
+    $('.modal-form').children('.edit-restaurant-input.name').val('');
+    $('.modal-form').children('.edit-restaurant-input.address').val('');
+    $('.modal-form').children('.submit-edit').removeAttr('value');
 }
 
 
@@ -339,7 +352,7 @@ $(function(){
         getAndDisplayRandomRestaurant();
         renderRestaurantAddressInput();
         sendNewRestaurantData();
-        renderEditModal();
+        // renderEditModal();
         // renderDeleteModal();
     });
 })
