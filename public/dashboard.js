@@ -165,6 +165,8 @@ function editRestaurant(){
                     },
                     error: function(jqXHR, errorValue){
                         alert(errorValue);
+                        console.log(errorValue);
+                        console.log(jqXHR);
                     },
                     sussess: [hideEditModal(), hideRestaurantList(), clearEditModal()]
                 });
