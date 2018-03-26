@@ -1,0 +1,28 @@
+@mixin navbar{
+    display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+    grid-template-rows: auto;
+    height: 75px;
+    h1{
+        display: inline-block;
+        justify-self: center;
+        align-self: center;
+        grid-column-start: 2;
+        margin: 5px;
+        width: 150px;
+    }
+}
+
+
+
+.top-nav{
+    @include navbar;
+    button{
+        height: 25px;
+        width: 100px;
+        border-radius: 15px;
+        align-self: center;
+        justify-self: center;
+        grid-column-start: 3;
+    }
+}
