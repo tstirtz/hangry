@@ -10,6 +10,13 @@
         grid-column-start: 2;
         margin: 5px;
         width: 150px;
+        font-family: 'Lato', sans-serif;
+        font-weight: 300;
+
+    }
+    h1::first-letter{
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
     }
 }
 
@@ -33,17 +40,28 @@
     }
 }
 
+@mixin button{
+    font-family: 'Ubuntu', sans-serif;
+    /* btn: */
+    border-radius: 20px;
+    border-color: #2046F2;
+    /* Button: */
+    font-size: 16px;
+    letter-spacing: 0;
+}
+
 
 
 .top-nav{
     @include navbar;
     button{
-        height: 25px;
-        width: 100px;
-        border-radius: 15px;
+        @include button;
+        height: 30px;
+        width: 110px;
         align-self: center;
         justify-self: center;
         grid-column-start: 3;
+        color: #2046F2;
     }
 }
 
@@ -59,18 +77,52 @@ html, body{
 main{
     display: grid;
     grid-template-columns: 5% auto 5%;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: auto;
     height: 100%;
-    p{
+    section{
         grid-column-start: 2;
-        grid-row-start: 1;
+        // grid-row-start: 2;
         justify-self: center;
-        align-self: center;
+        align-self: end;
+        margin-top: 10px;
+        margin-bottom: 50px;
+        p:first-child{
+            font-size: 33px;
+            font-weight: 500;
+        }
+        p{
+            font-family: 'Ubuntu', sans-serif;
+            text-align: center;
+        }
     }
     form{
-        grid-row-start: 2;
+        // grid-row-start: 1;
         grid-column-start: 2;
         justify-self: center;
-        align-self: center;
+        align-self: start;
+        button{
+            @include button;
+            background: #2046F2;
+            height: 30px;
+            width: 110px;
+            font-family: 'Ubuntu', sans-serif;
+            color: #FFFFFF;
+            margin: 10px;
+        }
     }
+}
+
+input.username , input.password{
+    /* input: */
+    border: 1px solid #9E9E9E;
+    border-radius: 3px;
+    width: 250px;
+    padding: 5px 5px 5px 7px;
+    margin: 10px;
+    /* Your Name: */
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+    color: #9E9E9E;
+    letter-spacing: 0;
+
 }
