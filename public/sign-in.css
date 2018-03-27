@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 #sign-up-modal{
     display: none;
     position: fixed; /* Stay in place */
