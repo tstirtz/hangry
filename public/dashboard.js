@@ -74,9 +74,9 @@ function renderRestaurantList(data){
                     $('.restaurant-list-js').append(
                         `<div class= "edit-delete-buttons">
                             <button type="button" class = "edit-button-js button-${i}">Edit</button>
-                            <button class = "delete-button-js-${restaurantId}" id= "${restaurantId}"></button>
+                            <i class="fas fa-trash-alt delete-button-js-${restaurantId}" id= "${restaurantId}"></i>
                          </div>`);
-                         // <i class="fas fa-trash-alt delete-button-js-${restaurantId}" id= "${restaurantId}"></i>
+                        // <button class = "delete-button-js-${restaurantId}" id= "${restaurantId}"></button>
                     renderDeleteModal(restaurantId);
                     renderEditModal(i);
                     // $('main').on('click', `.delete-button-js-${restaurantId}`, function(event){
