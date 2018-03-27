@@ -20,6 +20,16 @@
     }
 }
 
+@mixin button{
+    font-family: 'Ubuntu', sans-serif;
+    /* btn: */
+    border-radius: 20px;
+    border-color: #2046F2;
+    /* Button: */
+    font-size: 16px;
+    letter-spacing: 0;
+}
+
 .top-nav{
     @include navbar;
 }
@@ -49,15 +59,23 @@
     grid-row: 2 / 3;
     height: 100%;
     width: 100%;
+    h2{
+        text-align: center;
+        font-family: 'Lato', sans-serif;
+        font-weight: 300;
+    }
+    .generate-restaurant-button{
+        @include button;
+        background: #2046F2;
+        height: 30px;
+        width: 175px;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: 300;
+        color: #FFFFFF;
+        margin: 10px;
+    }
 }
 
-h2{
-    text-align: center;
-}
-
-.generate-restaurant-button{
-    width: 150px;
-}
 
 .add-restaurant{
     display: grid;
@@ -66,10 +84,24 @@ h2{
     grid-template-rows: auto auto;
     grid-template-columns: auto auto;
     margin-right: 15px;
-}
-
-.add-restaurant > *{
-    margin: 2.5px;
+    width: 330px;
+    input{
+        margin: 2.5px;
+        width: 150px;
+        height: 25px;
+        align-self: center;
+        justify-self: center;
+        padding: 2.5px;
+    }
+    button{
+        @include button;
+        height: 25px;
+        width: 150px;
+        align-self: center;
+        justify-self: center;
+        grid-column-start: 3;
+        color: #2046F2;
+    }
 }
 
 .add-address-input{
