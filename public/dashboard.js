@@ -65,18 +65,21 @@ function renderRestaurantList(data){
             for(var key in restaurantObject){
                 if(key === 'name'){
                     $('.restaurant-list-js').append(
-                        `<div id = "${restaurantId}" class= "restaurant-${i} restaurant-info">
-                            <p class= "restaurant-name">${restaurantObject[key]}</p>
+                        `<div class = "restaurant-and-buttons-${i} restaurant-and-buttons">
+                            <div id = "${restaurantId}" class= "restaurant-${i} restaurant-info">
+                                <p class= "restaurant-name">${restaurantObject[key]}</p>
+                             </div>
                          </div>`
                     );
                 }else if(key === 'address'){
                     $(`.restaurant-${i}`).append(`<p class="restaurant-address">${restaurantObject[key]}</p>`);
-                    $('.restaurant-list-js').append(
+                    $(`.restaurant-and-buttons-${i}`).append(
                         `<div class= "edit-delete-buttons">
-                            <button type="button" class = "edit-button-js button-${i}">Edit</button>
-                            <button class = "delete-button-js-${restaurantId}" id= "${restaurantId}"></button>
+                            <i class="far fa-edit button edit-button-js button-${i}"></i>
+                            <i class="fas fa-trash-alt button delete-button-js-${restaurantId}" id= "${restaurantId}"></i>
                          </div>`);
-                         // <i class="fas fa-trash-alt delete-button-js-${restaurantId}" id= "${restaurantId}"></i>
+                        // <button class = "delete-button-js-${restaurantId}" id= "${restaurantId}"></button>
+                        // <button type="button" class = "edit-button-js button-${i}">Edit</button>
                     renderDeleteModal(restaurantId);
                     renderEditModal(i);
                     // $('main').on('click', `.delete-button-js-${restaurantId}`, function(event){
@@ -126,6 +129,7 @@ function renderEditModal(buttonNumber){
 
         console.log(restaurantId);
         editRestaurant();
+        closeEditModal();
         //make request to api when edit submit is clicked
     });
 }
@@ -289,6 +293,7 @@ function renderDeleteModal(idToDelete){
         console.log($(this));
         console.log(restaurantToDelete);
 
+        closeDeleteModal();
         deleteRestaurant(restaurantToDelete);
         $('main').off(`.delete-button-js-${idToDelete}`);
     });
@@ -340,6 +345,34 @@ function deleteRestaurant(restIdToDelete){
 
 function hideDeleteModal(){
     $('#delete-restaurant-modal').css("display", "none");
+}
+
+function closeEditModal(){
+    $('#edit-restaurant-modal').on('click', '.close', function(){
+        hideEditModal();
+    });
+
+
+    //Close modal if user clicks outside of modal
+    $('#edit-restaurant-modal').on('click', function(event){
+        if(event.target.id === 'edit-restaurant-modal'){
+            hideEditModal();
+        }
+    });
+}
+
+function closeDeleteModal(){
+    $('#delete-restaurant-modal').on('click', '.close', function(){
+        hideDeleteModal();
+    });
+
+
+    //Close modal if user clicks outside of modal
+    $('#delete-restaurant-modal').on('click', function(event){
+        if(event.target.id === 'delete-restaurant-modal'){
+            hideDeleteModal();
+        }
+    });
 }
 
 

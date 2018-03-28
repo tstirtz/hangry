@@ -5,7 +5,8 @@
     <title>Hangry</title>
     <script src= "https://yarnpkg.com/en/package/normalize.css"></script>
     <!-- <link rel="stylesheet" type="text/css" href="/normalize.css"> -->
-    <link rel="stylesheet" type="text/css" href="/dashboard.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="css/user-dashboard.css">
 </head>
 <body>
     <div class= "top-nav">
@@ -17,7 +18,7 @@
         <h1>Hangry</h1>
         <form action="" class= "add-restaurant">
 
-            <input type="text" aria-label= "Add Restaurant" class= "add-restaurant-input-js"/>
+            <input type="text" aria-label= "Add Restaurant" class= "add-restaurant-input-js add-restaurant-name"/>
             <input type="hidden" aria-label= "Add Restaurant Address" class = "add-address-input" placeholder = "Address"/>
             <button type= "submit" class = "add-restaurant-button add-restaurant-button-js">Add Restaurant</button>
         </form>
@@ -36,9 +37,15 @@
     </main>
     <section id ="edit-restaurant-modal">
         <div class="modal-content">
+            <header>
+                <h2>Edit Restaurant</h2>
+                <div class= "close">&times;</div>
+            </header>
             <form class="modal-form" action="">
-                <input type="text" aria-label= "Edit Restaurant Name" class="edit-restaurant-input name">
-                <input type="text" aria-label= "Edit Restaurant Address" class="edit-restaurant-input address">
+                <label for="name">Restaurant Name</label>
+                <input type="text" id= "name" aria-label= "Edit Restaurant Name" class="edit-restaurant-input name">
+                <label for="address">Address</label>
+                <input type="text" id= "address" aria-label= "Edit Restaurant Address" class="edit-restaurant-input address">
                 <button type="button" class= "submit-edit">Submit Change</button>
             </form>
             <section class = "modal-message">
@@ -47,14 +54,16 @@
     </section>
     <section id = "delete-restaurant-modal">
         <div class="modal-content">
+            <header>
+                <h2>Delete Restaurant</h2>
+                <div class= "close">&times;</div>
+            </header>
             <p>Are you sure?</p>
             <button type="button" class= "yes-button-js">Yes</button>
             <button type="button" class= "no-button-js">No</button>
         </div>
     </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
 <script type="text/javascript" src= "/dashboard.js"></script>
 </body>
 </html>
