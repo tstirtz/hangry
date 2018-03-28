@@ -129,7 +129,7 @@ function renderEditModal(buttonNumber){
 
         console.log(restaurantId);
         editRestaurant();
-        closeModal();
+        closeEditModal();
         //make request to api when edit submit is clicked
     });
 }
@@ -293,6 +293,7 @@ function renderDeleteModal(idToDelete){
         console.log($(this));
         console.log(restaurantToDelete);
 
+        closeDeleteModal();
         deleteRestaurant(restaurantToDelete);
         $('main').off(`.delete-button-js-${idToDelete}`);
     });
@@ -346,16 +347,30 @@ function hideDeleteModal(){
     $('#delete-restaurant-modal').css("display", "none");
 }
 
-function closeModal(){
+function closeEditModal(){
     $('#edit-restaurant-modal').on('click', '.close', function(){
         hideEditModal();
     });
 
 
-    //Close modal if user clicks outside of modal 
+    //Close modal if user clicks outside of modal
     $('#edit-restaurant-modal').on('click', function(event){
         if(event.target.id === 'edit-restaurant-modal'){
             hideEditModal();
+        }
+    });
+}
+
+function closeDeleteModal(){
+    $('#delete-restaurant-modal').on('click', '.close', function(){
+        hideDeleteModal();
+    });
+
+
+    //Close modal if user clicks outside of modal
+    $('#delete-restaurant-modal').on('click', function(event){
+        if(event.target.id === 'delete-restaurant-modal'){
+            hideDeleteModal();
         }
     });
 }

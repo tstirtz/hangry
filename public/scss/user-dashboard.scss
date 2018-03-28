@@ -194,8 +194,7 @@ p{
     font-weight: 300;
 }
 
-
-#edit-restaurant-modal{
+@mixin modal{
     display: none;
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -206,57 +205,84 @@ p{
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
-}
-
-.modal-content {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    border-radius: 5px;
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    // padding: 20px;
-    // border: 1px solid #888;
-    width: 35%; /* Could be more or less, depending on screen size */
-    // height: 200px;
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 300;
-    header{
-        display: grid;
-        width: 100%;
-        grid-template-rows: auto;
-        grid-template-columns: 5% 90% 5%;
-        height: 50px;
-        margin-bottom: 50px;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        background: #2046F2;
-        h2{
-            font-family: 'Ubuntu', sans-serif;
-            font-weight: 300;
-            margin: 0px;
+    .modal-content {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        border-radius: 5px;
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        // padding: 20px;
+        // border: 1px solid #888;
+        width: 35%; /* Could be more or less, depending on screen size */
+        // height: 200px;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: 300;
+        header{
+            display: grid;
+            width: 100%;
+            grid-template-rows: auto;
+            grid-template-columns: 7.5% 85% 7.5%;
+            height: 50px;
+            margin-bottom: 50px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            background: #2046F2;
+            h2{
+                font-family: 'Ubuntu', sans-serif;
+                font-weight: 300;
+                margin: 0px;
+                background: #2046F2;
+                color: #FFFFFF;
+                grid-row-start: 1;
+                grid-column-start: 2;
+                justify-self: center;
+                align-self: center;
+            }
+            .close{
+                width: 25px;
+                color: #FFFFFF;
+                font-size: 20px;
+                grid-row-start: 1;
+                    grid-column-start: 3;
+                // font-weight: bold;
+            }
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+        }
+        button{
+            @include button;
+            display: block;
+            width: 250px;
+            height: 30px;
+            margin-bottom: 20px;
+            margin-left: auto;
+            margin-right: auto;
             background: #2046F2;
             color: #FFFFFF;
-            grid-row-start: 1;
-            grid-column-start: 2;
-            justify-self: center;
-            align-self: center;
+            font-weight: 300;
         }
-        .close{
-            width: 25px;
-            color: #FFFFFF;
-            font-size: 20px;
-            grid-row-start: 1;
-                grid-column-start: 3;
-            // font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
+        button:hover{
+            background-color: black;
+            border-color: black;
         }
     }
+}
+
+#delete-restaurant-modal{
+    @include modal;
+    p{
+        text-align: center;
+    }
+}
+
+
+#edit-restaurant-modal{
+    @include modal;
     label{
         display: block;
         width: 250px;
@@ -296,15 +322,15 @@ p{
     }
 }
 
-#delete-restaurant-modal{
-    display: none;
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
+// #delete-restaurant-modal{
+//     display: none;
+//     position: fixed; /* Stay in place */
+//     z-index: 1; /* Sit on top */
+//     left: 0;
+//     top: 0;
+//     width: 100%; /* Full width */
+//     height: 100%; /* Full height */
+//     overflow: auto; /* Enable scroll if needed */
+//     background-color: rgb(0,0,0); /* Fallback color */
+//     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+// }

@@ -181,6 +181,98 @@ p {
   font-family: 'Ubuntu', sans-serif;
   font-weight: 300; }
 
+#delete-restaurant-modal {
+  display: none;
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.7);
+  /* Black w/ opacity */ }
+  #delete-restaurant-modal .modal-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    border-radius: 5px;
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    width: 35%;
+    /* Could be more or less, depending on screen size */
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 300; }
+    #delete-restaurant-modal .modal-content header {
+      display: grid;
+      width: 100%;
+      grid-template-rows: auto;
+      grid-template-columns: 7.5% 85% 7.5%;
+      height: 50px;
+      margin-bottom: 50px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      background: #2046F2; }
+      #delete-restaurant-modal .modal-content header h2 {
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: 300;
+        margin: 0px;
+        background: #2046F2;
+        color: #FFFFFF;
+        grid-row-start: 1;
+        grid-column-start: 2;
+        justify-self: center;
+        -ms-flex-item-align: center;
+        align-self: center; }
+      #delete-restaurant-modal .modal-content header .close {
+        width: 25px;
+        color: #FFFFFF;
+        font-size: 20px;
+        grid-row-start: 1;
+        grid-column-start: 3; }
+      #delete-restaurant-modal .modal-content header .close:hover,
+      #delete-restaurant-modal .modal-content header .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer; }
+    #delete-restaurant-modal .modal-content button {
+      font-family: 'Ubuntu', sans-serif;
+      /* btn: */
+      border-radius: 20px;
+      border-color: #2046F2;
+      /* Button: */
+      font-size: 16px;
+      letter-spacing: 0;
+      display: block;
+      width: 250px;
+      height: 30px;
+      margin-bottom: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      background: #2046F2;
+      color: #FFFFFF;
+      font-weight: 300; }
+    #delete-restaurant-modal .modal-content button:hover {
+      background-color: black;
+      border-color: black; }
+  #delete-restaurant-modal p {
+    text-align: center; }
+
 #edit-restaurant-modal {
   display: none;
   position: fixed;
@@ -199,65 +291,84 @@ p {
   /* Fallback color */
   background-color: rgba(0, 0, 0, 0.7);
   /* Black w/ opacity */ }
-
-.modal-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  border-radius: 5px;
-  background-color: #fefefe;
-  margin: 15% auto;
-  /* 15% from the top and centered */
-  width: 35%;
-  /* Could be more or less, depending on screen size */
-  font-family: 'Ubuntu', sans-serif;
-  font-weight: 300; }
-  .modal-content header {
-    display: grid;
-    width: 100%;
-    grid-template-rows: auto;
-    grid-template-columns: 5% 90% 5%;
-    height: 50px;
-    margin-bottom: 50px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    background: #2046F2; }
-    .modal-content header h2 {
+  #edit-restaurant-modal .modal-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    border-radius: 5px;
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    width: 35%;
+    /* Could be more or less, depending on screen size */
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 300; }
+    #edit-restaurant-modal .modal-content header {
+      display: grid;
+      width: 100%;
+      grid-template-rows: auto;
+      grid-template-columns: 7.5% 85% 7.5%;
+      height: 50px;
+      margin-bottom: 50px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      background: #2046F2; }
+      #edit-restaurant-modal .modal-content header h2 {
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: 300;
+        margin: 0px;
+        background: #2046F2;
+        color: #FFFFFF;
+        grid-row-start: 1;
+        grid-column-start: 2;
+        justify-self: center;
+        -ms-flex-item-align: center;
+        align-self: center; }
+      #edit-restaurant-modal .modal-content header .close {
+        width: 25px;
+        color: #FFFFFF;
+        font-size: 20px;
+        grid-row-start: 1;
+        grid-column-start: 3; }
+      #edit-restaurant-modal .modal-content header .close:hover,
+      #edit-restaurant-modal .modal-content header .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer; }
+    #edit-restaurant-modal .modal-content button {
       font-family: 'Ubuntu', sans-serif;
-      font-weight: 300;
-      margin: 0px;
+      /* btn: */
+      border-radius: 20px;
+      border-color: #2046F2;
+      /* Button: */
+      font-size: 16px;
+      letter-spacing: 0;
+      display: block;
+      width: 250px;
+      height: 30px;
+      margin-bottom: 20px;
+      margin-left: auto;
+      margin-right: auto;
       background: #2046F2;
       color: #FFFFFF;
-      grid-row-start: 1;
-      grid-column-start: 2;
-      justify-self: center;
-      -ms-flex-item-align: center;
-      align-self: center; }
-    .modal-content header .close {
-      width: 25px;
-      color: #FFFFFF;
-      font-size: 20px;
-      grid-row-start: 1;
-      grid-column-start: 3; }
-    .modal-content header .close:hover,
-    .modal-content header .close:focus {
-      color: #000;
-      text-decoration: none;
-      cursor: pointer; }
-  .modal-content label {
+      font-weight: 300; }
+    #edit-restaurant-modal .modal-content button:hover {
+      background-color: black;
+      border-color: black; }
+  #edit-restaurant-modal label {
     display: block;
     width: 250px;
     margin-left: auto;
     margin-right: auto;
     font-size: 12px; }
-  .modal-content input {
+  #edit-restaurant-modal input {
     display: block;
     margin-top: 10px;
     margin-bottom: 15px;
@@ -272,9 +383,9 @@ p {
     font-family: 'Ubuntu', sans-serif;
     font-weight: 300;
     font-size: 14px; }
-  .modal-content input:first-of-type {
+  #edit-restaurant-modal input:first-of-type {
     margin-bottom: 20px; }
-  .modal-content button {
+  #edit-restaurant-modal button {
     font-family: 'Ubuntu', sans-serif;
     /* btn: */
     border-radius: 20px;
@@ -291,22 +402,3 @@ p {
     background: #2046F2;
     color: #FFFFFF;
     font-weight: 300; }
-
-#delete-restaurant-modal {
-  display: none;
-  position: fixed;
-  /* Stay in place */
-  z-index: 1;
-  /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%;
-  /* Full width */
-  height: 100%;
-  /* Full height */
-  overflow: auto;
-  /* Enable scroll if needed */
-  background-color: black;
-  /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */ }
