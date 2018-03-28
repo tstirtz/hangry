@@ -129,6 +129,7 @@ function renderEditModal(buttonNumber){
 
         console.log(restaurantId);
         editRestaurant();
+        closeModal();
         //make request to api when edit submit is clicked
     });
 }
@@ -343,6 +344,12 @@ function deleteRestaurant(restIdToDelete){
 
 function hideDeleteModal(){
     $('#delete-restaurant-modal').css("display", "none");
+}
+
+function closeModal(){
+    $('#edit-restaurant-modal').on('click', '.close', function(){
+        hideEditModal();
+    });
 }
 
 
