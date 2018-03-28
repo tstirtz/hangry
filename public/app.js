@@ -42,6 +42,7 @@ function login(){
 function renderSignUpModal(){
     $('.signup-button-js').on('click', function(){
         $('#sign-up-modal').css('display', 'block');
+        closeSignUpModal();
     });
 }
 
@@ -98,9 +99,7 @@ function createNewAccount(username, pass){
 }
 
 function closeModal(){
-    $('#sign-up-modal').on('click', '.exit-modal-button', function(){
-        $('#sign-up-modal').css('display', 'none');
-    });
+    $('#sign-up-modal').css('display', 'none');
 }
 
 // function logInNewUser(username, pass){
@@ -130,6 +129,21 @@ function closeModal(){
 //         });
 //     });
 // }
+
+function closeSignUpModal(){
+    $('#sign-up-modal').on('click', '.close', function(){
+        closeModal();
+    });
+
+
+    //Close modal if user clicks outside of modal
+    $('#sign-up-modal').on('click', function(event){
+        console.log(event.target.id);
+        if(event.target.id === 'sign-up-modal'){
+            closeModal();
+        }
+    });
+}
 
 $(function(){
     login();
