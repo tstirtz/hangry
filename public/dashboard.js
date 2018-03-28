@@ -350,6 +350,14 @@ function closeModal(){
     $('#edit-restaurant-modal').on('click', '.close', function(){
         hideEditModal();
     });
+
+
+    //Close modal if user clicks outside of modal 
+    $('#edit-restaurant-modal').on('click', function(event){
+        if(event.target.id === 'edit-restaurant-modal'){
+            hideEditModal();
+        }
+    });
 }
 
 
