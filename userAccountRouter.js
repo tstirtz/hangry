@@ -98,6 +98,7 @@ router.post('/', jsonParser, function(req, res){
                 });
         })
         .then(function(user){
+            //make request to /login route 
             return res.status(201).json(user.userData());
         })
         .catch(function(err){
