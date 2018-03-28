@@ -243,6 +243,11 @@ main {
       font-size: 20px;
       grid-row-start: 1;
       grid-column-start: 3; }
+    .modal-content header .close:hover,
+    .modal-content header .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer; }
   .modal-content label {
     display: block;
     width: 250px;

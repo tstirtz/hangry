@@ -239,6 +239,12 @@ main{
                 grid-column-start: 3;
             // font-weight: bold;
         }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
     }
     label{
         display: block;
