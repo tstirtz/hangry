@@ -177,9 +177,6 @@ main {
     align-self: end;
     justify-self: center; }
 
-.edit-restaurant-input {
-  display: block; }
-
 #edit-restaurant-modal {
   display: none;
   position: fixed;
@@ -200,13 +197,92 @@ main {
   /* Black w/ opacity */ }
 
 .modal-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  border-radius: 5px;
   background-color: #fefefe;
   margin: 15% auto;
   /* 15% from the top and centered */
-  padding: 20px;
   border: 1px solid #888;
-  width: 80%;
-  /* Could be more or less, depending on screen size */ }
+  width: 35%;
+  /* Could be more or less, depending on screen size */
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 300; }
+  .modal-content header {
+    display: grid;
+    width: 100%;
+    grid-template-rows: auto;
+    grid-template-columns: 5% 90% 5%;
+    height: 50px;
+    margin-bottom: 50px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background: #2046F2; }
+    .modal-content header h2 {
+      font-family: 'Ubuntu', sans-serif;
+      font-weight: 300;
+      margin: 0px;
+      background: #2046F2;
+      color: #FFFFFF;
+      grid-row-start: 1;
+      grid-column-start: 2;
+      justify-self: center;
+      -ms-flex-item-align: center;
+      align-self: center; }
+    .modal-content header .close {
+      width: 25px;
+      color: #FFFFFF;
+      font-size: 20px;
+      grid-row-start: 1;
+      grid-column-start: 3; }
+  .modal-content label {
+    display: block;
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 12px; }
+  .modal-content input {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+    height: 35px;
+    -ms-flex-item-align: center;
+    align-self: center;
+    justify-self: center;
+    padding: 2.5px;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 300;
+    font-size: 14px; }
+  .modal-content input:first-of-type {
+    margin-bottom: 20px; }
+  .modal-content button {
+    font-family: 'Ubuntu', sans-serif;
+    /* btn: */
+    border-radius: 20px;
+    border-color: #2046F2;
+    /* Button: */
+    font-size: 16px;
+    letter-spacing: 0;
+    display: block;
+    width: 250px;
+    height: 30px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #2046F2;
+    color: #FFFFFF;
+    font-weight: 300; }
 
 #delete-restaurant-modal {
   display: none;

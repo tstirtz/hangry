@@ -169,7 +169,6 @@ p{
 }
 
 
-
 main{
     height: 550px;
     width: 100%;
@@ -183,9 +182,7 @@ main{
         justify-self: center;
     }
 }
-.edit-restaurant-input{
-    display: block;
-}
+
 
 #edit-restaurant-modal{
     display: none;
@@ -201,11 +198,85 @@ main{
 }
 
 .modal-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 5px;
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
+    // padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 35%; /* Could be more or less, depending on screen size */
+    // height: 200px;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 300;
+    header{
+        display: grid;
+        width: 100%;
+        grid-template-rows: auto;
+        grid-template-columns: 5% 90% 5%;
+        height: 50px;
+        margin-bottom: 50px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        background: #2046F2;
+        h2{
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: 300;
+            margin: 0px;
+            background: #2046F2;
+            color: #FFFFFF;
+            grid-row-start: 1;
+            grid-column-start: 2;
+            justify-self: center;
+            align-self: center;
+        }
+        .close{
+            width: 25px;
+            color: #FFFFFF;
+            font-size: 20px;
+            grid-row-start: 1;
+                grid-column-start: 3;
+            // font-weight: bold;
+        }
+    }
+    label{
+        display: block;
+        width: 250px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 12px;
+    }
+    input{
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 250px;
+        height: 35px;
+        align-self: center;
+        justify-self: center;
+        padding: 2.5px;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: 300;
+        font-size: 14px;
+    }
+    input:first-of-type{
+        margin-bottom: 20px;
+    }
+    button{
+        @include button;
+        display: block;
+        width: 250px;
+        height: 30px;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        background: #2046F2;
+        color: #FFFFFF;
+        font-weight: 300;
+    }
 }
 
 #delete-restaurant-modal{
