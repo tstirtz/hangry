@@ -33,6 +33,7 @@
     /* Button: */
     font-size: 16px;
     letter-spacing: 0;
+    outline-style: none;
 }
 
 html, body{
@@ -53,6 +54,11 @@ main{
         grid-column: 3;
         align-self: end;
         justify-self: center;
+        p{
+            text-align: center;
+            font-weight: 500;
+            font-size: 20px;
+        }
     }
 }
 
@@ -98,6 +104,10 @@ main{
         color: #FFFFFF;
         margin: 10px;
     }
+    .generate-restaurant-button:hover{
+        background-color: black;
+        border-color: black;
+    }
 }
 
 
@@ -116,6 +126,7 @@ main{
         align-self: center;
         justify-self: center;
         padding: 2.5px;
+        outline-style: none;
     }
     button{
         @include button;
@@ -180,6 +191,7 @@ main{
  .button{
     width: 50%;
     height: 25px;
+    outline-style: none;
 }
 
 .hide{
@@ -304,6 +316,7 @@ p{
         font-family: 'Ubuntu', sans-serif;
         font-weight: 300;
         font-size: 14px;
+        outline-style: none;
     }
     input:first-of-type{
         margin-bottom: 20px;

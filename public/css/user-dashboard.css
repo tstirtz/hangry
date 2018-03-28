@@ -18,6 +18,10 @@ main {
     -ms-flex-item-align: end;
     align-self: end;
     justify-self: center; }
+    main .random-restaurant p {
+      text-align: center;
+      font-weight: 500;
+      font-size: 20px; }
 
 .top-nav {
   display: grid;
@@ -83,6 +87,7 @@ main {
     /* Button: */
     font-size: 16px;
     letter-spacing: 0;
+    outline-style: none;
     background: #2046F2;
     height: 30px;
     width: 175px;
@@ -90,6 +95,9 @@ main {
     font-weight: 300;
     color: #FFFFFF;
     margin: 10px; }
+  .generate-restaurant .generate-restaurant-button:hover {
+    background-color: black;
+    border-color: black; }
 
 .add-restaurant {
   display: grid;
@@ -106,7 +114,8 @@ main {
     -ms-flex-item-align: center;
     align-self: center;
     justify-self: center;
-    padding: 2.5px; }
+    padding: 2.5px;
+    outline-style: none; }
   .add-restaurant button {
     font-family: 'Ubuntu', sans-serif;
     /* btn: */
@@ -115,6 +124,7 @@ main {
     /* Button: */
     font-size: 16px;
     letter-spacing: 0;
+    outline-style: none;
     height: 25px;
     width: 150px;
     -ms-flex-item-align: center;
@@ -169,7 +179,8 @@ main {
 
 .button {
   width: 50%;
-  height: 25px; }
+  height: 25px;
+  outline-style: none; }
 
 .hide {
   display: none; }
@@ -258,6 +269,7 @@ p {
       /* Button: */
       font-size: 16px;
       letter-spacing: 0;
+      outline-style: none;
       display: block;
       width: 250px;
       height: 30px;
@@ -350,6 +362,7 @@ p {
       /* Button: */
       font-size: 16px;
       letter-spacing: 0;
+      outline-style: none;
       display: block;
       width: 250px;
       height: 30px;
@@ -382,7 +395,8 @@ p {
     padding: 2.5px;
     font-family: 'Ubuntu', sans-serif;
     font-weight: 300;
-    font-size: 14px; }
+    font-size: 14px;
+    outline-style: none; }
   #edit-restaurant-modal input:first-of-type {
     margin-bottom: 20px; }
   #edit-restaurant-modal button {
@@ -393,6 +407,7 @@ p {
     /* Button: */
     font-size: 16px;
     letter-spacing: 0;
+    outline-style: none;
     display: block;
     width: 250px;
     height: 30px;
