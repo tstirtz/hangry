@@ -6,6 +6,19 @@ html, body {
   height: 100%;
   margin: 0px; }
 
+main {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  grid-template-rows: 33.33% 33.33% 33.33%; }
+  main .random-restaurant {
+    grid-row-start: 1;
+    grid-column: 3;
+    -ms-flex-item-align: end;
+    align-self: end;
+    justify-self: center; }
+
 .top-nav {
   display: grid;
   grid-template-columns: 33.33% 33.33% 33.33%;
@@ -115,11 +128,17 @@ html, body {
 
 .restaurant-list {
   display: grid;
-  background-color: #d9d9d9;
-  height: 400px;
-  margin-left: 15px;
+  height: 100%;
+  width: 300px;
   grid-template-columns: auto;
+  grid-row: 1 / -1;
   overflow-y: auto; }
+  .restaurant-list .restaurant-name {
+    font-weight: 500;
+    margin: 0px; }
+  .restaurant-list .restaurant-address {
+    font-size: 12px;
+    margin: 5px 0px 0px 15px; }
   .restaurant-list .restaurant-and-buttons {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -131,18 +150,22 @@ html, body {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    margin: 7px;
+    padding: 10px;
     border-bottom: 1px solid black; }
+  .restaurant-list .restaurant-and-buttons:hover {
+    background-color: #d9d9d9; }
   .restaurant-list .edit-delete-buttons {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: distribute;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 50px 50px;
     width: 100px;
-    -ms-flex-item-align: center;
+    height: 30px;
     align-self: center;
     justify-self: end; }
+    .restaurant-list .edit-delete-buttons svg {
+      justify-self: center; }
+    .restaurant-list .edit-delete-buttons svg:hover {
+      color: #2046F2;
+      font-size: 20px; }
 
 .button {
   width: 50%;
@@ -154,28 +177,9 @@ html, body {
 .restaurant-info {
   margin: 5px; }
 
-.restaurant-address {
-  margin: 5px 0px 0px 10px; }
-
-.restaurant-name {
-  margin: 0px; }
-
 p {
   font-family: 'Ubuntu', sans-serif;
   font-weight: 300; }
-
-main {
-  height: 550px;
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(5, auto);
-  grid-template-rows: 33.33% 33.33% 33.33%; }
-  main .random-restaurant {
-    grid-row-start: 1;
-    grid-column: 3;
-    -ms-flex-item-align: end;
-    align-self: end;
-    justify-self: center; }
 
 #edit-restaurant-modal {
   display: none;
