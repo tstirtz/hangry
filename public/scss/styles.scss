@@ -20,6 +20,37 @@
     }
 }
 
+// @mixin modal{
+//     display: none;
+//     position: fixed; /* Stay in place */
+//     z-index: 1; /* Sit on top */
+//     left: 0;
+//     top: 0;
+//     width: 100%; /* Full width */
+//     height: 100%; /* Full height */
+//     overflow: auto; /* Enable scroll if needed */
+//     background-color: rgb(0,0,0); /* Fallback color */
+//     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+//     .modal-content{
+//         background-color: #fefefe;
+//         margin: 15% auto; /* 15% from the top and centered */
+//         padding: 20px;
+//         border: 1px solid #888;
+//         width: 80%; /* Could be more or less, depending on screen size */
+//     }
+// }
+
+@mixin button{
+    font-family: 'Ubuntu', sans-serif;
+    /* btn: */
+    border-radius: 20px;
+    border-color: #2046F2;
+    /* Button: */
+    font-size: 16px;
+    letter-spacing: 0;
+    outline-style: none;
+}
+
 @mixin modal{
     display: none;
     position: fixed; /* Stay in place */
@@ -30,24 +61,73 @@
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    .modal-content{
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+    .modal-content {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        border-radius: 5px;
         background-color: #fefefe;
         margin: 15% auto; /* 15% from the top and centered */
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%; /* Could be more or less, depending on screen size */
+        // padding: 20px;
+        // border: 1px solid #888;
+        width: 35%; /* Could be more or less, depending on screen size */
+        // height: 200px;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: 300;
+        header{
+            display: grid;
+            width: 100%;
+            grid-template-rows: auto;
+            grid-template-columns: 7.5% 85% 7.5%;
+            height: 50px;
+            margin-bottom: 50px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            background: #2046F2;
+            h2{
+                font-family: 'Ubuntu', sans-serif;
+                font-weight: 300;
+                margin: 0px;
+                background: #2046F2;
+                color: #FFFFFF;
+                grid-row-start: 1;
+                grid-column-start: 2;
+                justify-self: center;
+                align-self: center;
+            }
+            .close{
+                width: 25px;
+                color: #FFFFFF;
+                font-size: 20px;
+                grid-row-start: 1;
+                    grid-column-start: 3;
+                // font-weight: bold;
+            }
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+        }
+        button{
+            @include button;
+            display: block;
+            width: 250px;
+            height: 30px;
+            margin-bottom: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            background: #2046F2;
+            color: #FFFFFF;
+            font-weight: 300;
+        }
+        button:hover{
+            background-color: black;
+            border-color: black;
+        }
     }
-}
-
-@mixin button{
-    font-family: 'Ubuntu', sans-serif;
-    /* btn: */
-    border-radius: 20px;
-    border-color: #2046F2;
-    /* Button: */
-    font-size: 16px;
-    letter-spacing: 0;
 }
 
 
@@ -63,10 +143,41 @@
         grid-column-start: 3;
         color: #2046F2;
     }
+    button:hover{
+        color: black;
+        border-color: black;
+    }
 }
 
 #sign-up-modal{
     @include modal;
+    label{
+        display: block;
+        width: 259px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 12px;
+    }
+    input{
+        display: block;
+        margin-top: 7px;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 250px;
+        height: 35px;
+        // border-radius: 5px;
+        align-self: center;
+        justify-self: center;
+        padding: 2.5px;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: 300;
+        font-size: 14px;
+        outline-style: none;
+    }
+    label:first-of-type{
+        margin-top: 20px;
+    }
 }
 
 html, body{
@@ -110,6 +221,10 @@ main{
             font-family: 'Ubuntu', sans-serif;
             color: #FFFFFF;
             margin: 10px;
+        }
+        button:hover{
+            border-color: black;
+            background-color: black;
         }
     }
 }
