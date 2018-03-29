@@ -231,35 +231,26 @@ function renderAddRestaurantInputs(){
     $('.add-restaurant-button-js').on('click', function(event){
         event.stopPropagation();
         event.preventDefault();
-        console.log(".add-restaurant-button-js was clicked");
 
-        // $(this).attr('placeholder', 'Restaurant Name');
-        // const addressInput = $(this).next();
-        if($('.add-restaurant-name').attr('type') === 'hidden'){
-            $('.add-restaurant-name').attr('type', 'text');
-        }else{
-            $('.add-restaurant-name').attr('type', 'hidden');
-        }
-
-        if($('.add-address-input').attr('type') === 'hidden'){
-            $('.add-address-input').attr('type', 'text');
-        }else{
-            $('.add-address-input').attr('type', 'hidden');
-        }
-
-        $('.submit-add-restaurant-js').toggleClass('hide');
+        toggleAddRestaurantInputs();
     });
 }
 
+function toggleAddRestaurantInputs(){
+    $('.add-restaurant :input').val('');
+    $('.add-restaurant').toggleClass('hide');
+}
+
 function sendNewRestaurantData(){
-    $('.submit-add-restaurant-js').on('click', function(event){
+    $('.add-restaurant').on('click', '.submit-add-restaurant-js', function(event){
         event.stopImmediatePropagation();
         console.log(".submit-add-restaurant-js was clicked");
 
         event.preventDefault();
-        console.log(event);
-        let restaurantName = event.target.form[0].value;
-        let address = event.target.form[1].value;
+        console.log($('.add-address-input').val());
+        console.log($('.add-restaurant-name').val());
+        let restaurantName = $('.add-restaurant-name').val();
+        let address = $('.add-address-input').val();
 
 
         let restObj = {
@@ -279,9 +270,7 @@ function sendNewRestaurantData(){
             success: function(response){
                 console.log(response);
                 // document.getElementsByClassName('add-restaurant').reset();
-                $('.add-restaurant :input').val('');
-                $('.add-address-input').attr('type', 'hidden');
-                $('.add-restaurant-input-js').attr('placeholder', '');
+                toggleAddRestaurantInputs();
                 alert(response.message);
             }
         });
