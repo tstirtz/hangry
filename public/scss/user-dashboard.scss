@@ -44,6 +44,7 @@ html, body{
 }
 
 main{
+    position: relative;
     height: 100%;
     width: 100%;
     display: grid;
@@ -120,6 +121,8 @@ main{
 
 
 .add-restaurant{
+    position: absolute;
+    float: right;
     display: grid;
     grid-template-rows: 30px 30px 30px;
     grid-template-columns: auto;
@@ -373,7 +376,7 @@ p{
     .restaurant-list{
         background-color: white;
         width: 100%;
-        grid-column-start: 1;
+        grid-column: 1 / -1;
         z-index: 2;
     }
     h2{
@@ -395,4 +398,23 @@ p{
         font-size: 12px;
     }
 
+}
+
+@media only screen and (min-width: 611px){
+    main{
+        position: relative;
+        height: 100%;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        grid-template-rows: 33.33% 33.33% 33.33%;
+    }
+    .restaurant-list{
+        grid-column: 1 / 1;
+        width: 250px;
+        z-index: 1;
+    }
+    .generate-restaurant{
+        z-index: 1;
+    }
 }
