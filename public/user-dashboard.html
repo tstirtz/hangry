@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang = "en">
 <head>
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
     <title>Hangry</title>
     <script src= "https://yarnpkg.com/en/package/normalize.css"></script>
     <!-- <link rel="stylesheet" type="text/css" href="/normalize.css"> -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
     <link rel="stylesheet" type="text/css" href="css/user-dashboard.css">
 </head>
 <body>
@@ -18,9 +19,10 @@
         <h1>Hangry</h1>
         <form action="" class= "add-restaurant">
 
-            <input type="text" aria-label= "Add Restaurant" class= "add-restaurant-input-js add-restaurant-name"/>
-            <input type="hidden" aria-label= "Add Restaurant Address" class = "add-address-input" placeholder = "Address"/>
-            <button type= "submit" class = "add-restaurant-button add-restaurant-button-js">Add Restaurant</button>
+            <input type="hidden" aria-label= "Add Restaurant" placeholder= "Restaurant Name" class= "add-restaurant-input-js add-restaurant-name"/>
+            <input type="hidden" aria-label= "Add Restaurant Address" placeholder= "Address" class = "add-address-input" placeholder = "Address"/>
+            <button type="submit" class= "submit-add-restaurant-js hide">Submit</button>
+            <button type= "button" class = "add-restaurant-button add-restaurant-button-js">Add Restaurant</button>
         </form>
     </div>
     <main>

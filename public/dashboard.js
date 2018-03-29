@@ -227,23 +227,34 @@ function getAndDisplayRandomRestaurant(){
     getRandomRestaurant(renderRandomRestaurant);
 }
 
-function renderRestaurantAddressInput(){
-    $('.add-restaurant-input-js').on('click', function(){
-        event.stopImmediatePropagation();
-        console.log(".add-restaurant-input-js was clicked");
+function renderAddRestaurantInputs(){
+    $('.add-restaurant-button-js').on('click', function(event){
+        event.stopPropagation();
+        event.preventDefault();
+        console.log(".add-restaurant-button-js was clicked");
 
-        $(this).attr('placeholder', 'Restaurant Name');
-        const addressInput = $(this).next();
-        if(addressInput.attr('type') === 'hidden'){
-            addressInput.attr('type', 'text');
+        // $(this).attr('placeholder', 'Restaurant Name');
+        // const addressInput = $(this).next();
+        if($('.add-restaurant-name').attr('type') === 'hidden'){
+            $('.add-restaurant-name').attr('type', 'text');
+        }else{
+            $('.add-restaurant-name').attr('type', 'hidden');
         }
+
+        if($('.add-address-input').attr('type') === 'hidden'){
+            $('.add-address-input').attr('type', 'text');
+        }else{
+            $('.add-address-input').attr('type', 'hidden');
+        }
+
+        $('.submit-add-restaurant-js').toggleClass('hide');
     });
 }
 
 function sendNewRestaurantData(){
-    $('.add-restaurant-button-js').on('click', function(event){
+    $('.submit-add-restaurant-js').on('click', function(event){
         event.stopImmediatePropagation();
-        console.log(".add-restaurant-button-js was clicked");
+        console.log(".submit-add-restaurant-js was clicked");
 
         event.preventDefault();
         console.log(event);
@@ -385,7 +396,7 @@ $(function(){
     }).then(function(){
         getAndDisplayRestaurants();
         getAndDisplayRandomRestaurant();
-        renderRestaurantAddressInput();
+        renderAddRestaurantInputs();
         sendNewRestaurantData();
         // renderEditModal();
         // renderDeleteModal();
