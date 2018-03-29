@@ -6,7 +6,7 @@
     display: grid;
     grid-template-columns: 33.33% 33.33% 33.33%;
     grid-template-rows: auto;
-    height: 75px;
+    height: 50px;
     h1{
         text-align: center;
         display: inline-block;
@@ -47,7 +47,7 @@ main{
     height: 100%;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(5, auto);
+    grid-template-columns: repeat(3, 33.33%);
     grid-template-rows: 33.33% 33.33% 33.33%;
     .random-restaurant{
         grid-row-start: 1;
@@ -64,18 +64,26 @@ main{
 
 .top-nav{
     @include navbar;
-}
-
-.hamburger{
-    width: 35px;
-    height: 5px;
-    background-color: black;
-    margin: 6px 0;
-}
-
-.container{
-    margin-left: 15px;
-    align-self: center;
+    .container{
+        margin-left: 15px;
+        align-self: center;
+    }
+    .hamburger{
+        width: 35px;
+        height: 5px;
+        background-color: black;
+        margin: 6px 0;
+    }
+    .add-restaurant-button{
+        @include button;
+        height: 25px;
+        width: 150px;
+        margin-right: 15px;
+        align-self: center;
+        justify-self: end;
+        grid-column-start: 3;
+        color: #2046F2;
+    }
 }
 
 .generate-restaurant{
@@ -85,7 +93,7 @@ main{
     justify-content: center;
     justify-self: center;
     align-self: end;
-    grid-column: 3 / 4;
+    grid-column: 2 / 3;
     grid-row: 2 / 3;
     height: 150px;
     width: 300px;
@@ -113,35 +121,46 @@ main{
 
 .add-restaurant{
     display: grid;
+    grid-template-rows: 30px 30px 30px;
+    grid-template-columns: auto;
+    height: 90px;
+    /* Placement of self on main grid*/
+    grid-column-start: 3 ;
+    grid-row-start: 1;
     justify-self: end;
-    align-self: center;
-    grid-template-rows: auto auto;
-    grid-template-columns: auto auto;
     margin-right: 15px;
-    width: 330px;
+    background-color: #e6e6e6;
     input{
-        margin: 2.5px;
+        margin: 2.5px 5px 5px 2.5px;
         width: 150px;
         height: 25px;
-        align-self: center;
+        align-self: start;
         justify-self: center;
+        grid-column: 1 / 2;
         padding: 2.5px;
         outline-style: none;
     }
+    .add-restaurant-name{
+        grid-row-start: 1;
+    }
+    .add-address-input{
+        grid-row-start: 2;
+    }
+
     button{
         @include button;
         height: 25px;
         width: 150px;
+        margin: 2.5px 5px 5px 2.5px;
         align-self: center;
         justify-self: center;
-        grid-column-start: 3;
-        color: #2046F2;
+        grid-row-start: 3;
+        background: #2046F2;
+        color: #FFFFFF;
+        font-weight: 300;
     }
 }
 
-.add-address-input{
-    grid-row: 2 / 2;
-}
 
 .restaurant-list{
     display: grid;
