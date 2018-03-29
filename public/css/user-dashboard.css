@@ -224,7 +224,7 @@ p {
   display: none;
   position: fixed;
   /* Stay in place */
-  z-index: 1;
+  z-index: 4;
   /* Sit on top */
   left: 0;
   top: 0;
@@ -253,7 +253,7 @@ p {
     background-color: #fefefe;
     margin: 15% auto;
     /* 15% from the top and centered */
-    width: 35%;
+    width: 40%;
     /* Could be more or less, depending on screen size */
     font-family: 'Ubuntu', sans-serif;
     font-weight: 300; }
@@ -299,7 +299,7 @@ p {
       letter-spacing: 0;
       outline-style: none;
       display: block;
-      width: 250px;
+      width: 85%;
       height: 30px;
       margin-bottom: 20px;
       margin-left: auto;
@@ -317,7 +317,7 @@ p {
   display: none;
   position: fixed;
   /* Stay in place */
-  z-index: 1;
+  z-index: 4;
   /* Sit on top */
   left: 0;
   top: 0;
@@ -346,7 +346,7 @@ p {
     background-color: #fefefe;
     margin: 15% auto;
     /* 15% from the top and centered */
-    width: 35%;
+    width: 40%;
     /* Could be more or less, depending on screen size */
     font-family: 'Ubuntu', sans-serif;
     font-weight: 300; }
@@ -392,7 +392,7 @@ p {
       letter-spacing: 0;
       outline-style: none;
       display: block;
-      width: 250px;
+      width: 85%;
       height: 30px;
       margin-bottom: 20px;
       margin-left: auto;
@@ -405,7 +405,7 @@ p {
       border-color: black; }
   #edit-restaurant-modal label {
     display: block;
-    width: 250px;
+    width: 85%;
     margin-left: auto;
     margin-right: auto;
     font-size: 12px; }
@@ -415,7 +415,7 @@ p {
     margin-bottom: 15px;
     margin-left: auto;
     margin-right: auto;
-    width: 250px;
+    width: 85%;
     height: 35px;
     -ms-flex-item-align: center;
     align-self: center;
@@ -437,7 +437,7 @@ p {
     letter-spacing: 0;
     outline-style: none;
     display: block;
-    width: 250px;
+    width: 85%;
     height: 30px;
     margin-bottom: 30px;
     margin-left: auto;
@@ -466,7 +466,15 @@ p {
   .top-nav .add-restaurant-button {
     height: 25px;
     width: 100px;
-    font-size: 12px; } }
+    font-size: 12px; }
+  #edit-restaurant-modal .modal-content {
+    margin: 35% auto;
+    /* 35% from the top and centered */
+    width: 90%; }
+  #delete-restaurant-modal .modal-content {
+    margin: 35% auto;
+    /* 35% from the top and centered */
+    width: 90%; } }
 
 @media only screen and (min-width: 611px) {
   main {

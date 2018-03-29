@@ -391,7 +391,7 @@ function smallDeviceMediaQuery(){
     console.log(screenSize);
     if(screenSize.matches){
         console.log("smallDeviceMediaQuery function working");
-        //screen size is less than, or equal to 600px
+        //screen size is less than, or equal to 610px
         $('.generate-restaurant').toggleClass('hide');
     }
 }
