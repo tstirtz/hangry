@@ -37,6 +37,7 @@ function getRestaurantData(callback){
         console.log(sessionStorage.getItem('authToken'));
 
         if($('.restaurant-list-js').hasClass('hide')){
+            smallDeviceMediaQuery();
         //if restaurant list isn't hidden then make request to get list of restaurants
             $.ajax({
                 url:'/dashboard/restaurants/' + sessionStorage.getItem('userId'),
@@ -49,6 +50,7 @@ function getRestaurantData(callback){
                 success: callback
             });
         }else if(!($('.restaurant-list-js').hasClass('hide'))){
+            smallDeviceMediaQuery();
             $('.restaurant-list-js').toggleClass('hide');
         }
     })
@@ -375,6 +377,16 @@ function closeDeleteModal(){
     });
 }
 
+function smallDeviceMediaQuery(){
+    const screenSize = window.matchMedia('(max-width: 600px)');
+    console.log(screenSize);
+    if(screenSize.matches){
+        console.log("smallDeviceMediaQuery function working");
+        //screen size is less than, or equal to 600px
+        $('.generate-restaurant').toggleClass('hide');
+    }
+}
+
 
 
 
@@ -387,7 +399,5 @@ $(function(){
         getAndDisplayRandomRestaurant();
         renderAddRestaurantInputs();
         sendNewRestaurantData();
-        // renderEditModal();
-        // renderDeleteModal();
     });
 })
