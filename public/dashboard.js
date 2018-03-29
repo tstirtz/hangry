@@ -27,11 +27,10 @@ function storeAuthToken(){
 
 function getRestaurantData(callback){
     $('.container').on('click', function(event){
-        console.log("Container clicked");
-
         event.stopPropagation();
         event.stopImmediatePropagation();
         $('.restaurant-list-js').empty();
+        hideRandomRestaurant();
 
         console.log("getRestaurantData working");
         console.log(sessionStorage.getItem('authToken'));
@@ -218,6 +217,9 @@ function getRandomRestaurant(callback){
 
 function renderRandomRestaurant(restaurant){
     console.log(restaurant);
+    if($('.random-restaurant').hasClass('hide')){
+        $('.random-restaurant').toggleClass('hide');
+    }
     $('.random-restaurant').empty();
     $('.random-restaurant').append(
         `<p>${restaurant.name}</p>
@@ -229,11 +231,18 @@ function getAndDisplayRandomRestaurant(){
     getRandomRestaurant(renderRandomRestaurant);
 }
 
+function hideRandomRestaurant(){
+    $('.random-restaurant').empty();
+    if(!($('.random-restaurant').hasClass('hide'))){
+        $('.random-restaurant').toggleClass('hide');
+    }
+}
+
 function renderAddRestaurantInputs(){
     $('.add-restaurant-button-js').on('click', function(event){
         event.stopPropagation();
         event.preventDefault();
-
+        hideRandomRestaurant();
         toggleAddRestaurantInputs();
     });
 }
