@@ -120,9 +120,9 @@ main {
   position: absolute;
   float: right;
   display: grid;
-  grid-template-rows: 30px 30px 30px;
+  grid-template-rows: auto auto auto;
   grid-template-columns: auto;
-  height: 90px;
+  height: auto;
   /* Placement of self on main grid*/
   grid-column-start: 3;
   grid-row-start: 1;
@@ -131,7 +131,7 @@ main {
   background-color: #e6e6e6;
   z-index: 3; }
   .add-restaurant input {
-    margin: 2.5px 5px 5px 2.5px;
+    margin: 2.5px;
     width: 150px;
     height: 25px;
     -ms-flex-item-align: start;
@@ -141,9 +141,11 @@ main {
     padding: 2.5px;
     outline-style: none; }
   .add-restaurant .add-restaurant-name {
-    grid-row-start: 1; }
+    grid-row-start: 1;
+    margin-top: 10px; }
   .add-restaurant .add-address-input {
-    grid-row-start: 2; }
+    grid-row-start: 2;
+    margin-bottom: 5px; }
   .add-restaurant button {
     font-family: 'Ubuntu', sans-serif;
     /* btn: */
