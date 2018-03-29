@@ -378,7 +378,7 @@ function closeDeleteModal(){
 }
 
 function smallDeviceMediaQuery(){
-    const screenSize = window.matchMedia('(max-width: 600px)');
+    const screenSize = window.matchMedia('(max-width: 610px)');
     console.log(screenSize);
     if(screenSize.matches){
         console.log("smallDeviceMediaQuery function working");
