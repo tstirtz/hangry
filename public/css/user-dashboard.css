@@ -493,10 +493,10 @@ p {
     margin-bottom: 10px; }
   .generate-restaurant {
     z-index: 1; }
-  .generate-restaurant-button {
+  .generate-restaurant .generate-restaurant-button {
     font-size: 14px;
     height: 30px;
-    width: 160px; }
+    width: 190px; }
   .top-nav .add-restaurant-button {
     height: 25px;
     width: 110px;
