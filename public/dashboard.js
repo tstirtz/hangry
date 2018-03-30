@@ -27,16 +27,16 @@ function storeAuthToken(){
 
 function getRestaurantData(callback){
     $('.container').on('click', function(event){
-        console.log("Container clicked");
-
         event.stopPropagation();
         event.stopImmediatePropagation();
         $('.restaurant-list-js').empty();
+        hideRandomRestaurant();
 
         console.log("getRestaurantData working");
         console.log(sessionStorage.getItem('authToken'));
 
         if($('.restaurant-list-js').hasClass('hide')){
+            smallDeviceMediaQuery();
         //if restaurant list isn't hidden then make request to get list of restaurants
             $.ajax({
                 url:'/dashboard/restaurants/' + sessionStorage.getItem('userId'),
@@ -49,6 +49,7 @@ function getRestaurantData(callback){
                 success: callback
             });
         }else if(!($('.restaurant-list-js').hasClass('hide'))){
+            smallDeviceMediaQuery();
             $('.restaurant-list-js').toggleClass('hide');
         }
     })
@@ -216,6 +217,9 @@ function getRandomRestaurant(callback){
 
 function renderRandomRestaurant(restaurant){
     console.log(restaurant);
+    if($('.random-restaurant').hasClass('hide')){
+        $('.random-restaurant').toggleClass('hide');
+    }
     $('.random-restaurant').empty();
     $('.random-restaurant').append(
         `<p>${restaurant.name}</p>
@@ -227,28 +231,37 @@ function getAndDisplayRandomRestaurant(){
     getRandomRestaurant(renderRandomRestaurant);
 }
 
-function renderRestaurantAddressInput(){
-    $('.add-restaurant-input-js').on('click', function(){
-        event.stopImmediatePropagation();
-        console.log(".add-restaurant-input-js was clicked");
+function hideRandomRestaurant(){
+    $('.random-restaurant').empty();
+    if(!($('.random-restaurant').hasClass('hide'))){
+        $('.random-restaurant').toggleClass('hide');
+    }
+}
 
-        $(this).attr('placeholder', 'Restaurant Name');
-        const addressInput = $(this).next();
-        if(addressInput.attr('type') === 'hidden'){
-            addressInput.attr('type', 'text');
-        }
+function renderAddRestaurantInputs(){
+    $('.add-restaurant-button-js').on('click', function(event){
+        event.stopPropagation();
+        event.preventDefault();
+        hideRandomRestaurant();
+        toggleAddRestaurantInputs();
     });
 }
 
+function toggleAddRestaurantInputs(){
+    $('.add-restaurant :input').val('');
+    $('.add-restaurant').toggleClass('hide');
+}
+
 function sendNewRestaurantData(){
-    $('.add-restaurant-button-js').on('click', function(event){
+    $('.add-restaurant').on('click', '.submit-add-restaurant-js', function(event){
         event.stopImmediatePropagation();
-        console.log(".add-restaurant-button-js was clicked");
+        console.log(".submit-add-restaurant-js was clicked");
 
         event.preventDefault();
-        console.log(event);
-        let restaurantName = event.target.form[0].value;
-        let address = event.target.form[1].value;
+        console.log($('.add-address-input').val());
+        console.log($('.add-restaurant-name').val());
+        let restaurantName = $('.add-restaurant-name').val();
+        let address = $('.add-address-input').val();
 
 
         let restObj = {
@@ -268,9 +281,7 @@ function sendNewRestaurantData(){
             success: function(response){
                 console.log(response);
                 // document.getElementsByClassName('add-restaurant').reset();
-                $('.add-restaurant :input').val('');
-                $('.add-address-input').attr('type', 'hidden');
-                $('.add-restaurant-input-js').attr('placeholder', '');
+                toggleAddRestaurantInputs();
                 alert(response.message);
             }
         });
@@ -375,6 +386,16 @@ function closeDeleteModal(){
     });
 }
 
+function smallDeviceMediaQuery(){
+    const screenSize = window.matchMedia('(max-width: 610px)');
+    console.log(screenSize);
+    if(screenSize.matches){
+        console.log("smallDeviceMediaQuery function working");
+        //screen size is less than, or equal to 610px
+        $('.generate-restaurant').toggleClass('hide');
+    }
+}
+
 
 
 
@@ -385,9 +406,7 @@ $(function(){
     }).then(function(){
         getAndDisplayRestaurants();
         getAndDisplayRandomRestaurant();
-        renderRestaurantAddressInput();
+        renderAddRestaurantInputs();
         sendNewRestaurantData();
-        // renderEditModal();
-        // renderDeleteModal();
     });
 })

@@ -1,3 +1,7 @@
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
 .top-nav {
   display: grid;
   grid-template-columns: 33.33% 33.33% 33.33%;
@@ -115,7 +119,7 @@
       letter-spacing: 0;
       outline-style: none;
       display: block;
-      width: 250px;
+      width: 85%;
       height: 30px;
       margin-bottom: 20px;
       margin-left: auto;
@@ -128,7 +132,7 @@
       border-color: black; }
   #sign-up-modal label {
     display: block;
-    width: 259px;
+    width: 85%;
     margin-left: auto;
     margin-right: auto;
     font-size: 12px; }
@@ -138,7 +142,7 @@
     margin-bottom: 30px;
     margin-left: auto;
     margin-right: auto;
-    width: 250px;
+    width: 85%;
     height: 35px;
     -ms-flex-item-align: center;
     align-self: center;
@@ -153,7 +157,8 @@
 
 html, body {
   height: 100%;
-  margin: 0px; }
+  margin: 0px;
+  overflow: hidden; }
 
 main {
   display: grid;
@@ -174,9 +179,13 @@ main {
       font-family: 'Ubuntu', sans-serif;
       text-align: center; }
   main form {
+    display: grid;
+    grid-template-rows: 75%;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     grid-column-start: 2;
     justify-self: center;
-    -ms-flex-item-align: start;
     align-self: start; }
     main form button {
       font-family: 'Ubuntu', sans-serif;
@@ -187,6 +196,7 @@ main {
       font-size: 16px;
       letter-spacing: 0;
       outline-style: none;
+      grid-row-start: 1;
       background: #2046F2;
       height: 30px;
       width: 110px;
@@ -199,6 +209,7 @@ main {
 
 input.username, input.password {
   /* input: */
+  grid-row-start: 1;
   border: 1px solid #9E9E9E;
   border-radius: 3px;
   width: 250px;
@@ -209,3 +220,27 @@ input.username, input.password {
   font-size: 16px;
   color: #9E9E9E;
   letter-spacing: 0; }
+
+@media only screen and (max-width: 610px) {
+  form {
+    grid-template-rows: 3; }
+  input.username {
+    display: block;
+    grid-row-start: 1;
+    margin-left: auto;
+    margin-right: auto; }
+  input.password {
+    display: block;
+    grid-row-start: 2;
+    margin-left: auto;
+    margin-right: auto; }
+  main form button {
+    display: block;
+    grid-row-start: 3;
+    width: 264px;
+    margin-left: auto;
+    margin-right: auto; }
+  #sign-up-modal .modal-content {
+    margin: 25% auto;
+    /* 15% from the top and centered */
+    width: 80%; } }

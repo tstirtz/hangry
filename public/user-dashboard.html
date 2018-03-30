@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html lang = "en">
 <head>
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
     <title>Hangry</title>
     <script src= "https://yarnpkg.com/en/package/normalize.css"></script>
     <!-- <link rel="stylesheet" type="text/css" href="/normalize.css"> -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
     <link rel="stylesheet" type="text/css" href="css/user-dashboard.css">
 </head>
 <body>
-    <div class= "top-nav">
+    <header class= "top-nav">
         <div class= "container">
             <div class= "bar1 hamburger"></div>
             <div class= "bar2 hamburger"></div>
             <div class= "bar3 hamburger"></div>
         </div>
         <h1>Hangry</h1>
-        <form action="" class= "add-restaurant">
-
-            <input type="text" aria-label= "Add Restaurant" class= "add-restaurant-input-js add-restaurant-name"/>
-            <input type="hidden" aria-label= "Add Restaurant Address" class = "add-address-input" placeholder = "Address"/>
-            <button type= "submit" class = "add-restaurant-button add-restaurant-button-js">Add Restaurant</button>
-        </form>
-    </div>
+        <button type= "button" class = "add-restaurant-button add-restaurant-button-js">Add Restaurant</button>
+    </header>
     <main>
-        <div class = "generate-restaurant">
+        <section class= "add-restaurant hide">
+            <input type="text" aria-label= "Add Restaurant" placeholder= "Restaurant Name" class= "add-restaurant-input-js add-restaurant-name"/>
+            <input type="text" aria-label= "Add Restaurant Address" placeholder= "Address" class = "add-address-input" placeholder = "Address"/>
+            <button type="submit" class= "submit-add-restaurant-js">Submit</button>
+        </section>
+        <section class = "generate-restaurant">
             <h2>Need help deciding?</h2>
             <button type= "button" class="generate-restaurant-js generate-restaurant-button">Random Restaurant</button>
-        </div>
+        </section>
         <aside class="restaurant-list-js restaurant-list hide">
 
         </aside>
-        <div class= "random-restaurant">
+        <div class= "random-restaurant hide">
 
         </div>
     </main>
