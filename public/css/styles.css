@@ -16,17 +16,18 @@
     margin: 5px;
     width: 150px;
     font-family: 'Lato', sans-serif;
-    font-weight: 300; }
+    font-weight: 300;
+    color: white; }
   .top-nav h1::first-letter {
     font-family: 'Lato', sans-serif;
     font-weight: 700; }
   .top-nav button {
     font-family: 'Ubuntu', sans-serif;
-    /* btn: */
     border-radius: 20px;
-    border-color: #2046F2;
-    /* Button: */
+    border-color: #b6e9e5;
+    background-color: #29b4a0;
     font-size: 16px;
+    color: #b6e9e5;
     letter-spacing: 0;
     outline-style: none;
     height: 30px;
@@ -34,11 +35,10 @@
     -ms-flex-item-align: center;
     align-self: center;
     justify-self: center;
-    grid-column-start: 3;
-    color: #2046F2; }
+    grid-column-start: 3; }
   .top-nav button:hover {
-    color: black;
-    border-color: black; }
+    color: #0f594d;
+    border-color: #0f594d; }
 
 #sign-up-modal {
   display: none;
@@ -70,7 +70,7 @@
     -ms-flex-direction: column;
     flex-direction: column;
     border-radius: 5px;
-    background-color: #fefefe;
+    background-color: #ccefeb;
     margin: 15% auto;
     /* 15% from the top and centered */
     width: 35%;
@@ -86,13 +86,13 @@
       margin-bottom: 50px;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
-      background: #2046F2; }
+      background: #2ab6a4; }
       #sign-up-modal .modal-content header h2 {
         font-family: 'Ubuntu', sans-serif;
         font-weight: 300;
         margin: 0px;
-        background: #2046F2;
-        color: #FFFFFF;
+        background: #2ab6a4;
+        color: #b6e9e5;
         grid-row-start: 1;
         grid-column-start: 2;
         justify-self: center;
@@ -106,16 +106,16 @@
         grid-column-start: 3; }
       #sign-up-modal .modal-content header .close:hover,
       #sign-up-modal .modal-content header .close:focus {
-        color: #000;
+        color: #0f594d;
         text-decoration: none;
         cursor: pointer; }
     #sign-up-modal .modal-content button {
       font-family: 'Ubuntu', sans-serif;
-      /* btn: */
       border-radius: 20px;
-      border-color: #2046F2;
-      /* Button: */
+      border-color: #b6e9e5;
+      background-color: #29b4a0;
       font-size: 16px;
+      color: #b6e9e5;
       letter-spacing: 0;
       outline-style: none;
       display: block;
@@ -124,18 +124,19 @@
       margin-bottom: 20px;
       margin-left: auto;
       margin-right: auto;
-      background: #2046F2;
-      color: #FFFFFF;
+      background: #2ab6a4;
+      color: #b6e9e5;
       font-weight: 300; }
     #sign-up-modal .modal-content button:hover {
-      background-color: black;
-      border-color: black; }
+      background-color: #0f594d;
+      border-color: #0f594d; }
   #sign-up-modal label {
     display: block;
     width: 85%;
     margin-left: auto;
     margin-right: auto;
-    font-size: 12px; }
+    font-size: 12px;
+    color: #0f594d; }
   #sign-up-modal input {
     display: block;
     margin-top: 7px;
@@ -144,6 +145,7 @@
     margin-right: auto;
     width: 85%;
     height: 35px;
+    border: 1px solid #70d4ca;
     -ms-flex-item-align: center;
     align-self: center;
     justify-self: center;
@@ -158,7 +160,8 @@
 html, body {
   height: 100%;
   margin: 0px;
-  overflow: hidden; }
+  overflow: hidden;
+  background-color: #2ab6a3; }
 
 main {
   display: grid;
@@ -171,7 +174,8 @@ main {
     -ms-flex-item-align: end;
     align-self: end;
     margin-top: 10px;
-    margin-bottom: 50px; }
+    margin-bottom: 50px;
+    color: #b6e9e5; }
     main section p:first-child {
       font-size: 33px;
       font-weight: 500; }
@@ -189,28 +193,28 @@ main {
     align-self: start; }
     main form button {
       font-family: 'Ubuntu', sans-serif;
-      /* btn: */
       border-radius: 20px;
-      border-color: #2046F2;
-      /* Button: */
+      border-color: #b6e9e5;
+      background-color: #29b4a0;
       font-size: 16px;
+      color: #b6e9e5;
       letter-spacing: 0;
       outline-style: none;
       grid-row-start: 1;
-      background: #2046F2;
+      background: #29b4a1;
       height: 30px;
       width: 110px;
       font-family: 'Ubuntu', sans-serif;
-      color: #FFFFFF;
+      color: #b6e9e5;
       margin: 10px; }
     main form button:hover {
-      border-color: black;
-      background-color: black; }
+      border-color: #0f594d;
+      color: #0f594d; }
 
 input.username, input.password {
   /* input: */
   grid-row-start: 1;
-  border: 1px solid #9E9E9E;
+  border: 1px solid #b6e9e5;
   border-radius: 3px;
   width: 250px;
   padding: 5px 5px 5px 7px;
@@ -218,7 +222,6 @@ input.username, input.password {
   /* Your Name: */
   font-family: 'Ubuntu', sans-serif;
   font-size: 16px;
-  color: #9E9E9E;
   letter-spacing: 0; }
 
 @media only screen and (max-width: 610px) {
