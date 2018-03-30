@@ -1,3 +1,6 @@
+*{
+    box-sizing: border-box;
+}
 @mixin navbar{
     display: grid;
     grid-template-columns: 33.33% 33.33% 33.33%;
@@ -114,7 +117,7 @@
         button{
             @include button;
             display: block;
-            width: 250px;
+            width: 85%;
             height: 30px;
             margin-bottom: 20px;
             margin-left: auto;
@@ -153,7 +156,7 @@
     @include modal;
     label{
         display: block;
-        width: 259px;
+        width: 85%;
         margin-left: auto;
         margin-right: auto;
         font-size: 12px;
@@ -164,7 +167,7 @@
         margin-bottom: 30px;
         margin-left: auto;
         margin-right: auto;
-        width: 250px;
+        width: 85%;
         height: 35px;
         // border-radius: 5px;
         align-self: center;
@@ -272,5 +275,10 @@ input.username , input.password{
         width: 264px;
         margin-left: auto;
         margin-right: auto;
+    }
+    #sign-up-modal .modal-content{
+        margin: 25% auto; /* 15% from the top and centered */
+        width: 80%;
+        // height: 200px;
     }
 }
