@@ -135,7 +135,6 @@ main {
   grid-row-start: 1;
   justify-self: end;
   margin-right: 15px;
-  margin-right: 1em 0;
   background-color: #ccefeb;
   z-index: 3; }
   .add-restaurant input {
@@ -502,7 +501,6 @@ p {
     width: 110px;
     font-size: 12px; }
   .add-restaurant {
-    margin-right: 20px;
     width: 70%;
     grid-column-start: 2;
     grid-column-end: span 2; }
