@@ -17,7 +17,7 @@
         width: 150px;
         font-family: 'Lato', sans-serif;
         font-weight: 300;
-
+        color: white;
     }
     h1::first-letter{
         font-family: 'Lato', sans-serif;
@@ -29,7 +29,7 @@
     font-family: 'Ubuntu', sans-serif;
     /* btn: */
     border-radius: 20px;
-    border-color: #2046F2;
+    border-color: #b6e9e5;
     /* Button: */
     font-size: 16px;
     letter-spacing: 0;
@@ -40,6 +40,7 @@ html, body{
     height: 100%;
     margin: 0 auto;
     overflow: hidden;
+    background-color: #2ab6a4;
     // background-image: url("https://pixabay.com/get/ec30b90728f11c22d9584518a33219c8b66ae3d01bb3104095f4c87c/fork-558805_1920.jpg");
     // background-size: cover;
 }
@@ -60,6 +61,7 @@ main{
             text-align: center;
             font-weight: 500;
             font-size: 20px;
+            color: #0f594d;
         }
     }
 }
@@ -73,7 +75,7 @@ main{
     .hamburger{
         width: 35px;
         height: 5px;
-        background-color: black;
+        background-color: white;
         margin: 6px 0;
     }
     .add-restaurant-button{
@@ -84,7 +86,12 @@ main{
         align-self: center;
         justify-self: end;
         grid-column-start: 3;
-        color: #2046F2;
+        background-color: #2ab6a6;
+        color: #b6e9e5;
+    }
+    .add-restaurant-button:hover{
+        background-color: #0f594d;
+        border-color: #0f594d;
     }
 }
 
@@ -103,20 +110,21 @@ main{
         text-align: center;
         font-family: 'Lato', sans-serif;
         font-weight: 300;
+        color: #b6e9e5;
     }
     .generate-restaurant-button{
         @include button;
-        background: #2046F2;
+        background: #2ab5a3;
         height: 30px;
         width: 175px;
         font-family: 'Ubuntu', sans-serif;
         font-weight: 300;
-        color: #FFFFFF;
+        color: #b6e9e5;
         margin: 10px;
     }
     .generate-restaurant-button:hover{
-        background-color: black;
-        border-color: black;
+        background-color: #0f594d;
+        border-color: #0f594d;
     }
 }
 
@@ -133,7 +141,7 @@ main{
     grid-row-start: 1;
     justify-self: end;
     margin-right: 15px;
-    background-color: #e6e6e6;
+    background-color: #ccefeb;
     z-index: 3;
     input{
         margin:2.5px;
@@ -144,6 +152,10 @@ main{
         grid-column: 1 / 2;
         padding: 2.5px;
         outline-style: none;
+        border:1px solid #8cdcd4;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: 300;
+        font-size: 12px;
     }
     .add-restaurant-name{
         grid-row-start: 1;
@@ -161,9 +173,13 @@ main{
         align-self: center;
         justify-self: center;
         grid-row-start: 3;
-        background: #2046F2;
-        color: #FFFFFF;
+        background-color: #2ab6a6;
+        color: #b6e9e5;
         font-weight: 300;
+    }
+    button:hover{
+        background-color: #0f594d;
+        border-color: #0f594d;
     }
 }
 
@@ -172,12 +188,22 @@ main{
     display: grid;
     // background-color: #d9d9d9;
     height: 100%;
-    width: 300px;
+    padding-bottom: 100px;
+    background-color: #4ad0b6;
+    width: 350px;
     // margin-left: 15px;
     grid-template-columns: auto;
+    grid-template-rows: 5(75px);
+    grid-auto-rows: 75px;
     // grid-column: 1 / 3;
     grid-row: 1 / -1;
     overflow-y: auto;
+    .restaurant-info{
+        margin: 5px;
+        height: 50px;
+        overflow: auto;
+        color: #0f594d;
+    }
     .restaurant-name{
         font-weight: 500;
         margin: 0px;
@@ -190,11 +216,12 @@ main{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        height: 75px;
         padding: 10px;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid #0f594d;
     }
     .restaurant-and-buttons:hover{
-        background-color: #d9d9d9;
+        background-color: #25a48d;
     }
     .edit-delete-buttons{
         display: grid;
@@ -204,10 +231,11 @@ main{
         align-self: center;
         justify-self: end;
         svg{
+            color: #0f594d;
             justify-self: center;
         }
         svg:hover{
-            color: #2046F2;
+            color: #ccefeb;
             font-size: 20px;
         }
     }
@@ -221,9 +249,6 @@ main{
 
 .hide{
     display: none;
-}
-.restaurant-info{
-    margin: 5px;
 }
 
 p{
@@ -247,7 +272,7 @@ p{
         justify-content: center;
         flex-direction: column;
         border-radius: 5px;
-        background-color: #fefefe;
+        background-color: #ccefeb;
         margin: 15% auto; /* 15% from the top and centered */
         // padding: 20px;
         // border: 1px solid #888;
@@ -264,13 +289,13 @@ p{
             margin-bottom: 50px;
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
-            background: #2046F2;
+            background:#2ab5a2;
             h2{
                 font-family: 'Ubuntu', sans-serif;
                 font-weight: 300;
                 margin: 0px;
-                background: #2046F2;
-                color: #FFFFFF;
+                background: #2ab5a2;
+                color: #ccefeb;
                 grid-row-start: 1;
                 grid-column-start: 2;
                 justify-self: center;
@@ -278,7 +303,7 @@ p{
             }
             .close{
                 width: 25px;
-                color: #FFFFFF;
+                color: #ccefeb;
                 font-size: 20px;
                 grid-row-start: 1;
                     grid-column-start: 3;
@@ -286,7 +311,7 @@ p{
             }
             .close:hover,
             .close:focus {
-                color: #000;
+                color: #0f594d;
                 text-decoration: none;
                 cursor: pointer;
             }
@@ -299,13 +324,20 @@ p{
             margin-bottom: 20px;
             margin-left: auto;
             margin-right: auto;
-            background: #2046F2;
-            color: #FFFFFF;
+            background: #2ab5a2;
+            color: #ccefeb;
             font-weight: 300;
         }
         button:hover{
-            background-color: black;
-            border-color: black;
+            background-color: #0f594d;
+            border-color: #0f594d;
+        }
+        label{
+            color: #0f594d;
+        }
+        input{
+            border: 1px solid #8cdcd4;
+            color: #0f594d;
         }
     }
 }
@@ -376,7 +408,6 @@ p{
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 610px){
     .restaurant-list{
-        background-color: white;
         width: 100%;
         grid-column: 1 / -1;
         z-index: 2;
@@ -420,11 +451,11 @@ p{
         grid-template-columns: repeat(3, auto);
         grid-template-rows: 33.33% 33.33% 33.33%;
     }
-    .restaurant-list{
-        grid-column: 1 / 1;
-        width: 250px;
-        z-index: 1;
-    }
+    // .restaurant-list{
+    //     grid-column: 1 / 1;
+    //     width: 250px;
+    //     z-index: 1;
+    // }
     .generate-restaurant{
         z-index: 1;
     }
