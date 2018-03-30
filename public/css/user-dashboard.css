@@ -148,7 +148,10 @@ main {
     grid-column: 1 / 2;
     padding: 2.5px;
     outline-style: none;
-    border: 1px solid #8cdcd4; }
+    border: 1px solid #8cdcd4;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 300;
+    font-size: 12px; }
   .add-restaurant .add-restaurant-name {
     grid-row-start: 1;
     margin-top: 10px; }
