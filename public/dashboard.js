@@ -143,9 +143,9 @@ function editRestaurant(){
         console.log(".submit-edit was clicked");
 
         let idToEdit = $(this)[0].attributes[2].nodeValue;
-
+        console.log($(this).prevAll());
         $('.modal-message').empty();
-            let updatedName = $(this).prevAll()[1].value;
+            let updatedName = $(this).prevAll()[2].value;
             let updatedAddress = $(this).prevAll()[0].value;
 
             if(updatedName.length === 0){
