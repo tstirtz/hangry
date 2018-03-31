@@ -203,7 +203,7 @@ function clearEditModal(){
 
 
 function getRandomRestaurant(callback){
-    $('.generate-restaurant-js').on('click', function(){
+    $('.generate-restaurant-js').on('click', function(event){
         event.stopImmediatePropagation();
         console.log(".generate-restaurant-js was clicked");
 
