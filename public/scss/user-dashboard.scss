@@ -61,18 +61,35 @@ main{
         margin-right: auto;
     }
     .random-restaurant{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
         grid-row-start: 1;
-        grid-column: 2;
-        align-self: end;
-        justify-self: center;
-        margin-bottom: 47.5px;
+        // grid-column: 2;
+        // align-self: center;
+        // justify-self: center;
+        // max-height: 65px;
+        // margin-top: 75px;
+        grid-column: 1 / -1;
+        height: 100%;
+        width: 361.23px;
+        padding: 40px 20px 0px 20px;
+        margin-left: auto;
+        margin-right: auto;
         p{
             text-align: center;
             font-weight: 300;
             font-size: 14px;
-            margin-top: 5px;
+            margin-top: 0px;
             margin-bottom: 5px;
+            max-width: 175px;
+            margin-left: auto;
+            margin-right: auto;
             color: #0f594d;
+        }
+        p:first-of-type{
+            margin-top: 45px;
         }
     }
 }
