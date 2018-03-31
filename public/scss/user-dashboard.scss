@@ -436,6 +436,12 @@ p{
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 610px){
+    main{
+        .random-restaurant p{
+            max-width: 155px;
+            font-size: 12px;
+        }
+    }
     .restaurant-list{
         width: 100%;
         grid-column: 1 / -1;
