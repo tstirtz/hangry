@@ -29,6 +29,11 @@ function getRestaurantData(callback){
     $('.container').on('click', function(event){
         event.stopPropagation();
         event.stopImmediatePropagation();
+
+        if(!($('.add-restaurant').hasClass('hide'))){
+            $('.add-restaurant').toggleClass('hide', true);
+        }
+
         $('.restaurant-list-js').empty();
         hideRandomRestaurant();
 

@@ -501,9 +501,10 @@ p {
     width: 110px;
     font-size: 12px; }
   .add-restaurant {
-    width: 70%;
-    grid-column-start: 2;
-    grid-column-end: span 2; }
+    width: 92.5%;
+    margin-right: 15px;
+    grid-column-start: 3;
+    justify-self: start; }
     .add-restaurant input {
       width: 90%; }
     .add-restaurant button {

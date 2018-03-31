@@ -431,10 +431,11 @@ p{
         font-size: 12px;
     }
     .add-restaurant{
-        // margin-right: 20px;
-        width: 70%;
-        grid-column-start: 2;
-        grid-column-end: span 2;
+        width: 92.5%;
+        margin-right: 15px;
+        grid-column-start: 3;
+        // grid-column-end: span 2;
+        justify-self: start;
         input{
             width: 90%;
         }
