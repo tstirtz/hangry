@@ -51,11 +51,10 @@ main{
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 33.33%);
-    grid-template-rows: 33.33% 33.33% 33.33%;
+    grid-template-rows: 42.5% 42.5% 15%;
     img{
         grid-row: 1;
-        grid-column-start: 1;
-        grid-column-end: span 3;
+        grid-column: 1 / -1;
         height: 100%;
         padding: 40px 20px 0px 20px;
         margin-left: auto;
@@ -66,10 +65,13 @@ main{
         grid-column: 2;
         align-self: end;
         justify-self: center;
+        margin-bottom: 47.5px;
         p{
             text-align: center;
-            font-weight: 500;
-            font-size: 20px;
+            font-weight: 300;
+            font-size: 14px;
+            margin-top: 5px;
+            margin-bottom: 5px;
             color: #0f594d;
         }
     }
@@ -115,6 +117,7 @@ main{
     grid-row: 2 / 3;
     height: 100%;
     width: 100%;
+    z-index: 2;
     h2{
         text-align: center;
         font-family: 'Lato', sans-serif;
@@ -466,12 +469,6 @@ p{
 
 @media only screen and (min-width: 611px){
     main{
-        position: relative;
-        height: 100%;
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(3, auto);
-        grid-template-rows: 33.33% 33.33% 33.33%;
         img{
 
         }
