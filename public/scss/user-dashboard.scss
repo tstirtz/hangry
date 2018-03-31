@@ -52,6 +52,15 @@ main{
     display: grid;
     grid-template-columns: repeat(3, 33.33%);
     grid-template-rows: 33.33% 33.33% 33.33%;
+    img{
+        grid-row: 1;
+        grid-column-start: 1;
+        grid-column-end: span 3;
+        height: 100%;
+        padding: 40px 20px 0px 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
     .random-restaurant{
         grid-row-start: 1;
         grid-column: 2;
