@@ -3,11 +3,11 @@
 function login(){
     $('.signin-button-js').on('click', function(event){
         event.preventDefault();
+        $('.login-feedback').empty();
         let username = $(this).prevAll('.username')[0].value;
         let pass = $(this).prevAll('.password')[0].value;
 
-        console.log(username);
-        console.log(pass);
+        // if(username.length === 0)
 
         let newUser = {
                   userName: username,
@@ -21,9 +21,11 @@ function login(){
                   data: JSON.stringify(newUser),
                   dataType: 'json',
                   contentType: 'application/json; charset= utf-8',
-                  error: function(object, message){
+                  error: function(object, message, string){
                       console.log(message);
                       console.log(object);
+                      console.log(string);
+                      $('.login-feedback').append(`<p>${object.responseText}</p>`);
                   },
                   success: function(data){
                       console.log(data);
@@ -34,6 +36,9 @@ function login(){
                       sessionStorage.setItem('userId', id);
 
                       window.location.href = '/dashboard';
+                  },
+                  complete: function(object){
+                      console.log(object);
                   }
               });
           });
@@ -144,6 +149,11 @@ function closeSignUpModal(){
         }
     });
 }
+
+
+// function refreshPage(){
+//     location.reload();
+// }
 
 $(function(){
     login();
