@@ -443,6 +443,6 @@ $(function(){
         getAndDisplayRandomRestaurant();
         renderAddRestaurantInputs();
         sendNewRestaurantData();
-        smallDeviceMediaQuery()
+        smallDeviceMediaQuery();
     });
 })
