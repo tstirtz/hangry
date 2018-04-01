@@ -42,6 +42,7 @@ function getRestaurantData(callback){
 
         if($('.restaurant-list-js').hasClass('hide')){
             smallDeviceMediaQuery();
+            tableMediaQuery(); //slide image and generate restaurant button to the right
         //if restaurant list isn't hidden then make request to get list of restaurants
             $.ajax({
                 url:'/dashboard/restaurants/' + sessionStorage.getItem('userId'),
@@ -55,6 +56,7 @@ function getRestaurantData(callback){
             });
         }else if(!($('.restaurant-list-js').hasClass('hide'))){
             smallDeviceMediaQuery();
+            tableMediaQuery(); //slide image and generate restaurant button to the right
             $('.restaurant-list-js').toggleClass('hide');
         }
     })
@@ -398,6 +400,16 @@ function smallDeviceMediaQuery(){
         console.log("smallDeviceMediaQuery function working");
         //screen size is less than, or equal to 610px
         $('.generate-restaurant').toggleClass('hide');
+    }
+}
+
+function tableMediaQuery(){
+    console.log("tableMedia Query started");
+    const screenSize = window.matchMedia('(min-width: 611px)');
+    if(screenSize.matches){
+        $('.generate-restaurant').toggleClass('tablet');
+        $('img').toggleClass('tablet');
+
     }
 }
 

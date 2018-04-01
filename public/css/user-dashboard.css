@@ -88,7 +88,7 @@ main {
     font-family: 'Ubuntu', sans-serif;
     /* btn: */
     border-radius: 20px;
-    border-color: #b6e9e5;
+    border: 2px solid #b6e9e5;
     /* Button: */
     font-size: 16px;
     letter-spacing: 0;
@@ -137,7 +137,7 @@ main {
     font-family: 'Ubuntu', sans-serif;
     /* btn: */
     border-radius: 20px;
-    border-color: #b6e9e5;
+    border: 2px solid #b6e9e5;
     /* Button: */
     font-size: 16px;
     letter-spacing: 0;
@@ -190,7 +190,7 @@ main {
     font-family: 'Ubuntu', sans-serif;
     /* btn: */
     border-radius: 20px;
-    border-color: #b6e9e5;
+    border: 2px solid #b6e9e5;
     /* Button: */
     font-size: 16px;
     letter-spacing: 0;
@@ -347,7 +347,7 @@ p {
       font-family: 'Ubuntu', sans-serif;
       /* btn: */
       border-radius: 20px;
-      border-color: #b6e9e5;
+      border: 2px solid #b6e9e5;
       /* Button: */
       font-size: 16px;
       letter-spacing: 0;
@@ -445,7 +445,7 @@ p {
       font-family: 'Ubuntu', sans-serif;
       /* btn: */
       border-radius: 20px;
-      border-color: #b6e9e5;
+      border: 2px solid #b6e9e5;
       /* Button: */
       font-size: 16px;
       letter-spacing: 0;
@@ -495,7 +495,7 @@ p {
     font-family: 'Ubuntu', sans-serif;
     /* btn: */
     border-radius: 20px;
-    border-color: #b6e9e5;
+    border: 2px solid #b6e9e5;
     /* Button: */
     font-size: 16px;
     letter-spacing: 0;
@@ -550,10 +550,18 @@ p {
     /* 35% from the top and centered */
     width: 90%; } }
 
-@media only screen and (min-width: 611px) {
+@media only screen and (min-width: 611px) and (max-width: 800px) {
+  main .random-restaurant p {
+    max-width: 260px;
+    font-size: 22px; }
+  main .random-restaurant p:first-of-type {
+    margin-top: 70px; }
+  main .tablet {
+    grid-column: 2 / -1; }
   .restaurant-list {
     grid-column: 1 / 1;
     width: 250px;
     z-index: 1; }
-  .generate-restaurant {
-    z-index: 1; } }
+  .generate-restaurant .tablet {
+    z-index: 1;
+    grid-column: 2 / -1; } }
