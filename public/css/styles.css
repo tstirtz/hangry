@@ -176,10 +176,11 @@ main {
     margin-top: 10px;
     margin-bottom: 50px;
     color: #b6e9e5; }
-    main section p:first-child {
+    main section h3:first-child {
       font-size: 33px;
       font-weight: 500; }
-    main section p {
+    main section h3 {
+      font-size: 16px;
       font-family: 'Ubuntu', sans-serif;
       text-align: center; }
   main form {
