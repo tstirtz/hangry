@@ -188,6 +188,8 @@ function editRestaurant(){
 
 function hideEditModal(){
     $('#edit-restaurant-modal').css("display", "none");
+    smallDeviceMediaQuery();
+    tableMediaQuery();
 }
 
 function hideRestaurantList(){
@@ -363,6 +365,8 @@ function deleteRestaurant(restIdToDelete){
 
 function hideDeleteModal(){
     $('#delete-restaurant-modal').css("display", "none");
+    smallDeviceMediaQuery();
+    tableMediaQuery();
 }
 
 function closeEditModal(){
