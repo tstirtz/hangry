@@ -221,6 +221,7 @@ main{
         grid-column-start: 2;
         justify-self: center;
         align-self: start;
+        margin-bottom: 70px;
         button{
             @include button;
             grid-row-start: 1;
@@ -235,6 +236,14 @@ main{
             border-color: #0f594d;
             color: #0f594d;
             // background-color: #0f594d;
+        }
+        .login-feedback{
+            margin: 7px;
+            p{
+                font-family: 'Ubuntu', sans-serif;
+                color: red;
+                margin: 0px;
+            }
         }
     }
 }
@@ -266,30 +275,29 @@ input.username , input.password{
             margin-right: 15px;
         }
     }
-    form{
-        margin-bottom: 45px;
-    }
 }
 
 @media only screen and (max-width: 610px){
-    form{
-        grid-template-rows: 3;
+    main{
+        form{
+            grid-template-rows: 30px 50px 50px 50px;
+        }
     }
     input.username{
-        display: block;
-        grid-row-start: 1;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    input.password{
         display: block;
         grid-row-start: 2;
         margin-left: auto;
         margin-right: auto;
     }
-    main form button{
+    input.password{
         display: block;
         grid-row-start: 3;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    main form button{
+        display: block;
+        grid-row-start: 4;
         width: 264px;
         margin-left: auto;
         margin-right: auto;
@@ -302,24 +310,26 @@ input.username , input.password{
 }
 
 @media only screen and (min-width: 611px) and (max-width: 750px){
-    form{
-        grid-template-rows: 3;
+    main{
+        form{
+            grid-template-rows: 30px 50px 50px 50px;
+        }
     }
     input.username{
-        display: block;
-        grid-row-start: 1;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    input.password{
         display: block;
         grid-row-start: 2;
         margin-left: auto;
         margin-right: auto;
     }
-    main form button{
+    input.password{
         display: block;
         grid-row-start: 3;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    main form button{
+        display: block;
+        grid-row-start: 4;
         width: 264px;
         margin-left: auto;
         margin-right: auto;
