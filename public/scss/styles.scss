@@ -46,7 +46,7 @@
 @mixin button{
     font-family: 'Ubuntu', sans-serif;
     border-radius: 20px;
-    border-color: #b6e9e5;
+    border: 2px solid #b6e9e5;
     background-color: #29b4a0;
     font-size: 16px;
     color: #b6e9e5;
@@ -203,11 +203,12 @@ main{
         margin-top: 10px;
         margin-bottom: 50px;
         color: #b6e9e5;
-        p:first-child{
+        h3:first-child{
             font-size: 33px;
             font-weight: 500;
         }
-        p{
+        h3{
+            font-size: 16px;
             font-family: 'Ubuntu', sans-serif;
             text-align: center;
         }
@@ -220,6 +221,7 @@ main{
         grid-column-start: 2;
         justify-self: center;
         align-self: start;
+        margin-bottom: 70px;
         button{
             @include button;
             grid-row-start: 1;
@@ -234,6 +236,14 @@ main{
             border-color: #0f594d;
             color: #0f594d;
             // background-color: #0f594d;
+        }
+        .login-feedback{
+            margin: 7px;
+            p{
+                font-family: 'Ubuntu', sans-serif;
+                color: red;
+                margin: 0px;
+            }
         }
     }
 }
@@ -250,28 +260,44 @@ input.username , input.password{
     font-family: 'Ubuntu', sans-serif;
     font-size: 16px;
     letter-spacing: 0;
+}
 
+@media only screen and (max-width: 370px){
+    .top-nav{
+        grid-template-columns: 50% 50%;
+        h1{
+            grid-column: 1;
+            margin-left: 25px;
+        }
+        button{
+            grid-column: 2;
+            justify-self: end;
+            margin-right: 15px;
+        }
+    }
 }
 
 @media only screen and (max-width: 610px){
-    form{
-        grid-template-rows: 3;
+    main{
+        form{
+            grid-template-rows: 30px 50px 50px 50px;
+        }
     }
     input.username{
-        display: block;
-        grid-row-start: 1;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    input.password{
         display: block;
         grid-row-start: 2;
         margin-left: auto;
         margin-right: auto;
     }
-    main form button{
+    input.password{
         display: block;
         grid-row-start: 3;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    main form button{
+        display: block;
+        grid-row-start: 4;
         width: 264px;
         margin-left: auto;
         margin-right: auto;
@@ -280,5 +306,32 @@ input.username , input.password{
         margin: 25% auto; /* 15% from the top and centered */
         width: 80%;
         // height: 200px;
+    }
+}
+
+@media only screen and (min-width: 611px) and (max-width: 750px){
+    main{
+        form{
+            grid-template-rows: 30px 50px 50px 50px;
+        }
+    }
+    input.username{
+        display: block;
+        grid-row-start: 2;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    input.password{
+        display: block;
+        grid-row-start: 3;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    main form button{
+        display: block;
+        grid-row-start: 4;
+        width: 264px;
+        margin-left: auto;
+        margin-right: auto;
     }
 }

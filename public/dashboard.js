@@ -42,6 +42,7 @@ function getRestaurantData(callback){
 
         if($('.restaurant-list-js').hasClass('hide')){
             smallDeviceMediaQuery();
+            tabletMediaQuery(); //slide image and generate restaurant button to the right
         //if restaurant list isn't hidden then make request to get list of restaurants
             $.ajax({
                 url:'/dashboard/restaurants/' + sessionStorage.getItem('userId'),
@@ -55,6 +56,7 @@ function getRestaurantData(callback){
             });
         }else if(!($('.restaurant-list-js').hasClass('hide'))){
             smallDeviceMediaQuery();
+            tabletMediaQuery(); //slide image and generate restaurant button to the right
             $('.restaurant-list-js').toggleClass('hide');
         }
     })
@@ -186,6 +188,8 @@ function editRestaurant(){
 
 function hideEditModal(){
     $('#edit-restaurant-modal').css("display", "none");
+    smallDeviceMediaQuery();
+    tabletMediaQuery();
 }
 
 function hideRestaurantList(){
@@ -361,6 +365,8 @@ function deleteRestaurant(restIdToDelete){
 
 function hideDeleteModal(){
     $('#delete-restaurant-modal').css("display", "none");
+    smallDeviceMediaQuery();
+    tabletMediaQuery();
 }
 
 function closeEditModal(){
@@ -401,7 +407,31 @@ function smallDeviceMediaQuery(){
     }
 }
 
+function tabletMediaQuery(){
+    console.log("tableMedia Query started");
+    const screenSize = window.matchMedia('(min-width: 611px)');
+    if(screenSize.matches){
+        $('.generate-restaurant').toggleClass('tablet');
+        $('img').toggleClass('tablet');
+    }
+}
 
+function smallDeviceMediaQuery(){
+    console.log("smallDeviceMediaQuery working");
+    const smallScreenSize = window.matchMedia('(max-width: 400px)');
+    const mediumScreenSize = window.matchMedia('(min-width: 400px)');
+    $(window).on('resize', function(){
+        if(mediumScreenSize.matches){
+            $('.add-restaurant-button-js').text('Add Restaurant');
+        }else if(smallScreenSize.matches){
+            $('.add-restaurant-button-js').text('+');
+        }
+    });
+
+    if(smallScreenSize.matches){
+        $('.add-restaurant-button-js').text('+');
+    }
+}
 
 
 
@@ -413,5 +443,6 @@ $(function(){
         getAndDisplayRandomRestaurant();
         renderAddRestaurantInputs();
         sendNewRestaurantData();
+        smallDeviceMediaQuery();
     });
 })
