@@ -489,7 +489,7 @@ p{
 
 }
 
-@media only screen and (min-width: 611px) and (max-width: 800px){
+@media only screen and (min-width: 611px) and (max-width: 910px){
     main{
         .random-restaurant p{
             max-width: 260px;
@@ -498,6 +498,10 @@ p{
         .random-restaurant p:first-of-type{
             margin-top: 70px;
         }
+        // .random-restaurant{
+        //     grid-column: 2 / -1;
+        //     padding-left: 65px;
+        // }
         .tablet{
             grid-column: 2 / -1;
         }

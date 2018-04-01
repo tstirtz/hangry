@@ -550,7 +550,7 @@ p {
     /* 35% from the top and centered */
     width: 90%; } }
 
-@media only screen and (min-width: 611px) and (max-width: 800px) {
+@media only screen and (min-width: 611px) and (max-width: 910px) {
   main .random-restaurant p {
     max-width: 260px;
     font-size: 22px; }
