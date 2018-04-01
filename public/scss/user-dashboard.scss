@@ -537,4 +537,17 @@ p{
             line-height: 2px;
         }
     }
+    main{
+        .random-restaurant{
+            grid-column: 2;
+            width: 100%;
+            p{
+                width: 60%;
+                font-size: 13px;
+            }
+            p:first-of-type{
+                margin-top: 10px;
+            }
+        }
+    }
 }
