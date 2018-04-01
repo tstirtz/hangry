@@ -443,7 +443,8 @@ p{
 //     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 // }
 
-/* Extra small devices (phones, 600px and down) */
+
+/* Medium to large devices (phones, 610px and down) */
 @media only screen and (max-width: 610px){
     main{
         .random-restaurant p{
@@ -522,5 +523,18 @@ p{
     .generate-restaurant .tablet{
         z-index: 1;
         grid-column: 2 / -1;
+    }
+}
+
+@media only screen and (max-width: 400px){
+    .top-nav{
+        .add-restaurant-button{
+            border-radius: 10px;
+            width: 30px;
+            height: 25px;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 2px;
+        }
     }
 }

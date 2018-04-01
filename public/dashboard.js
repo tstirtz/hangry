@@ -416,7 +416,22 @@ function tabletMediaQuery(){
     }
 }
 
+function smallDeviceMediaQuery(){
+    console.log("smallDeviceMediaQuery working");
+    const smallScreenSize = window.matchMedia('(max-width: 400px)');
+    const mediumScreenSize = window.matchMedia('(min-width: 400px)');
+    $(window).on('resize', function(){
+        if(mediumScreenSize.matches){
+            $('.add-restaurant-button-js').text('Add Restaurant');
+        }else if(smallScreenSize.matches){
+            $('.add-restaurant-button-js').text('+');
+        }
+    });
 
+    if(smallScreenSize.matches){
+        $('.add-restaurant-button-js').text('+');
+    }
+}
 
 
 
@@ -428,5 +443,6 @@ $(function(){
         getAndDisplayRandomRestaurant();
         renderAddRestaurantInputs();
         sendNewRestaurantData();
+        smallDeviceMediaQuery()
     });
 })
