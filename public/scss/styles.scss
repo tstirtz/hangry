@@ -82,7 +82,7 @@
             display: grid;
             width: 100%;
             grid-template-rows: auto;
-            grid-template-columns: 7.5% 85% 7.5%;
+            grid-template-columns: 10% 80% 10%;
             height: 50px;
             margin-bottom: 50px;
             border-top-left-radius: 5px;
@@ -102,10 +102,11 @@
             .close{
                 width: 25px;
                 color: #FFFFFF;
-                font-size: 20px;
+                font-size: 28px;
                 grid-row-start: 1;
-                    grid-column-start: 3;
-                // font-weight: bold;
+                grid-column-start: 3;
+                justify-self: end;
+                align-self: start;
             }
             .close:hover,
             .close:focus {

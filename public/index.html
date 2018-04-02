@@ -14,8 +14,8 @@
         <button type="button" class= "signup-button-js">Sign Up</button>
     </header>
 
-    <main>
-        <section>
+    <main role= "main">
+        <section role= "region">
             <!-- change to h tags -->
             <h3>Feeling hangry?</h3>
             <h3>Can't remember the name of that new restaurant?</h3>
@@ -23,7 +23,7 @@
             <h3>Let us decide for you!</h3>
         </section>
         <form action="">
-            <div aria-label="Error feedback" class= "login-feedback">
+            <div aria-live= "assertive" aria-label="Error feedback" class= "login-feedback">
 
             </div>
             <input type="text" name="userName" placeholder="User Name" aria-label="User Name" class="username"/>
@@ -33,9 +33,9 @@
         </form>
     </main>
 
-    <section id = "sign-up-modal">
+    <section aria-live= "assertive" role= "region" id = "sign-up-modal">
         <div class= "modal-content">
-            <header>
+            <header role= "banner">
                 <h2>Sign Up</h2>
                 <div class= "close">&times;</div>
             </header>

@@ -239,6 +239,7 @@ main {
     margin: 0px; }
   .restaurant-list .restaurant-address {
     font-size: 12px;
+    font-weight: 500;
     margin: 5px 0px 0px 15px; }
   .restaurant-list .restaurant-and-buttons {
     display: -webkit-box;

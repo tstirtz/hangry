@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/user-dashboard.css">
 </head>
 <body>
-    <header class= "top-nav">
+    <header role= "banner" class= "top-nav">
         <div class= "container">
             <div class= "bar1 hamburger"></div>
             <div class= "bar2 hamburger"></div>
@@ -18,34 +18,34 @@
         <h1>Hangry</h1>
         <button type= "button" class = "add-restaurant-button add-restaurant-button-js">Add Restaurant</button>
     </header>
-    <main>
+    <main role= "main">
         <!-- /hangry-fullstack-capstone/public/ -->
         <div class="image">
             <img src="images/hangry-bowl.png" alt="Outline of a steaming bowl with chopsticks.">
         </div>
-        <section class= "add-restaurant hide">
+        <section aria-live= "assertive" role= "region" class= "add-restaurant hide">
             <input type="text" aria-label= "Add Restaurant" placeholder= "Restaurant Name" class= "add-restaurant-input-js add-restaurant-name"/>
             <input type="text" aria-label= "Add Restaurant Address" placeholder= "Address" class = "add-address-input" placeholder = "Address"/>
             <button type="submit" class= "submit-add-restaurant-js">Submit</button>
         </section>
-        <section class = "generate-restaurant">
+        <section role= "region" class = "generate-restaurant">
             <h2>Need help deciding?</h2>
             <button type= "button" class="generate-restaurant-js generate-restaurant-button">Random Restaurant</button>
         </section>
-        <aside class="restaurant-list-js restaurant-list hide">
+        <aside role= "complementary" class="restaurant-list-js restaurant-list hide">
 
         </aside>
-        <div class= "random-restaurant hide">
+        <div aria-live= "assertive" class= "random-restaurant hide">
 
         </div>
     </main>
-    <section id ="edit-restaurant-modal">
+    <section aria-live= "assertive" role= "region" id ="edit-restaurant-modal">
         <div class="modal-content">
             <header>
                 <h2>Edit Restaurant</h2>
                 <div class= "close">&times;</div>
             </header>
-            <form class="modal-form" action="">
+            <form role= "form" class="modal-form" action="">
                 <label for="name">Restaurant Name</label>
                 <input type="text" id= "name" aria-label= "Edit Restaurant Name" class="edit-restaurant-input name">
                 <label for="address">Address</label>
@@ -56,7 +56,7 @@
             </section>
         </div>
     </section>
-    <section id = "delete-restaurant-modal">
+    <section aria-live= "assertive" role= "region" id = "delete-restaurant-modal">
         <div class="modal-content">
             <header>
                 <h2>Delete Restaurant</h2>
