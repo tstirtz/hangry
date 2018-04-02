@@ -81,7 +81,7 @@
       display: grid;
       width: 100%;
       grid-template-rows: auto;
-      grid-template-columns: 7.5% 85% 7.5%;
+      grid-template-columns: 10% 80% 10%;
       height: 50px;
       margin-bottom: 50px;
       border-top-left-radius: 5px;
@@ -101,9 +101,12 @@
       #sign-up-modal .modal-content header .close {
         width: 25px;
         color: #FFFFFF;
-        font-size: 20px;
+        font-size: 28px;
         grid-row-start: 1;
-        grid-column-start: 3; }
+        grid-column-start: 3;
+        justify-self: end;
+        -ms-flex-item-align: start;
+        align-self: start; }
       #sign-up-modal .modal-content header .close:hover,
       #sign-up-modal .modal-content header .close:focus {
         color: #0f594d;
@@ -118,6 +121,7 @@
       color: #b6e9e5;
       letter-spacing: 0;
       outline-style: none;
+      border: 2px solid #2ab6a4;
       display: block;
       width: 85%;
       height: 30px;
@@ -135,7 +139,8 @@
     width: 85%;
     margin-left: auto;
     margin-right: auto;
-    font-size: 12px;
+    font-size: 14px;
+    font-family: 'Ubuntu', sans-serif;
     color: #0f594d; }
   #sign-up-modal input {
     display: block;
