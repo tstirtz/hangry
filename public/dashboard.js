@@ -74,7 +74,7 @@ function renderRestaurantList(data){
                 if(key === 'name'){
                     $('.restaurant-list-js').append(
                         `<div class = "restaurant-and-buttons-${i} restaurant-and-buttons">
-                            <div id = "${restaurantId}" class= "restaurant-${i} restaurant-info">
+                            <div class= "restaurant-${i} restaurant-info ${restaurantId}">
                                 <p class= "restaurant-name">${restaurantObject[key]}</p>
                              </div>
                          </div>`
@@ -124,10 +124,11 @@ function renderEditModal(buttonNumber){
 
         $('#edit-restaurant-modal').css("display", "block");
 
+        console.log($(this).parent().prev()[0].classList[2]);
 
         let restaurantName = $(this).parent().prev().children('.restaurant-name')[0].innerText;
         let restaurantAddress = $(this).parent().prev().children('.restaurant-address')[0].innerText;
-        let restaurantId = $(this).parent().prev()[0].id;
+        let restaurantId = $(this).parent().prev()[0].classList[2];
 
         $('.modal-form').children('.edit-restaurant-input.name').attr('placeholder', `${restaurantName}`);
         $('.modal-form').children('.edit-restaurant-input.address').attr('placeholder', `${restaurantAddress}`);
