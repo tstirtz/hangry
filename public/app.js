@@ -34,7 +34,9 @@ function login(){
                       console.log(message);
                       console.log(object);
                       console.log(string);
-                      $('.login-feedback').append(`<p>${object.responseText}</p>`);
+                      if(object.status === 401){
+                           $('.login-feedback').append(`<p>Incorrect username or password</p>`);
+                      }
                   },
                   success: function(data){
                       console.log(data);
