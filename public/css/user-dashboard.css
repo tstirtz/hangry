@@ -81,6 +81,8 @@ main {
     position: absolute;
     bottom: 70px;
     right: 20px; }
+  main .get-started:hover {
+    opacity: 1; }
 
 .top-nav {
   display: grid;
