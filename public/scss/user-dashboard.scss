@@ -228,7 +228,7 @@ main{
     height: 100%;
     padding-bottom: 100px;
     background-color: #4ad0b6;
-    width: 350px;
+    width: 250px;
     // margin-left: 15px;
     grid-template-columns: auto;
     grid-template-rows: 5(75px);
@@ -236,6 +236,7 @@ main{
     grid-column: 1 / 3;
     grid-row: 1 / -1;
     overflow-y: auto;
+    z-index: 1;
     .restaurant-info{
         margin: 5px;
         height: 50px;
@@ -499,7 +500,7 @@ p{
 
 }
 
-@media only screen and (min-width: 611px) and (max-width: 910px){
+@media only screen and (min-width: 611px) and (max-width: 720px){
     main{
         .random-restaurant p{
             max-width: 155px;
@@ -512,18 +513,12 @@ p{
         //     grid-column: 2 / -1;
         //     padding-left: 65px;
         // }
-        .tablet{
-            grid-column: 2 / -1;
+        // .tablet{
+        //     grid-column: 2 / -1;
+        // }
+        .generate-restaurant{
+            z-index: 0;
         }
-    }
-    .restaurant-list{
-        grid-column: 1 / 1;
-        width: 250px;
-        z-index: 1;
-    }
-    .generate-restaurant .tablet{
-        z-index: 1;
-        grid-column: 2 / -1;
     }
 }
 
