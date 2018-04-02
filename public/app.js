@@ -7,7 +7,16 @@ function login(){
         let username = $(this).prevAll('.username')[0].value;
         let pass = $(this).prevAll('.password')[0].value;
 
-        // if(username.length === 0)
+        if(username.length === 0 && pass.length === 0){
+            $('.login-feedback').append(`<p>Please provide a username and password</p>`);
+            return;
+        }else if(username.length === 0){
+            $('.login-feedback').append(`<p>Please provide a username</p>`);
+            return;
+        }else if(pass.length === 0){
+            $('.login-feedback').append(`<p>Please provide a password</p>`);
+            return;
+        }
 
         let newUser = {
                   userName: username,

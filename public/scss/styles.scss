@@ -242,10 +242,12 @@ main{
         }
         .login-feedback{
             margin: 7px;
+            grid-column: 1 / 3;
             p{
                 font-family: 'Ubuntu', sans-serif;
-                color: red;
+                color: #0f594d;
                 margin: 0px;
+                font-size: 18px;
             }
         }
     }
