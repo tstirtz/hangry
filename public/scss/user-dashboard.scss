@@ -346,8 +346,9 @@ p{
                 color: #ccefeb;
                 font-size: 20px;
                 grid-row-start: 1;
-                    grid-column-start: 3;
-                // font-weight: bold;
+                grid-column-start: 3;
+                justify-self: end;
+                align-self: start;
             }
             .close:hover,
             .close:focus {
@@ -365,6 +366,7 @@ p{
             margin-left: auto;
             margin-right: auto;
             background: #2ab5a2;
+            border: 2px solid #2ab6a4;
             color: #ccefeb;
             font-weight: 300;
         }
@@ -373,7 +375,9 @@ p{
             border-color: #0f594d;
         }
         label{
+            font-family: 'Ubuntu', sans-serif;
             color: #0f594d;
+            font-size: 16px;
         }
         input{
             border: 1px solid #8cdcd4;
@@ -385,6 +389,7 @@ p{
 #delete-restaurant-modal{
     @include modal;
     p{
+        font-size: 18px;
         text-align: center;
     }
 }

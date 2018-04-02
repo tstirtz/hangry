@@ -347,7 +347,10 @@ p {
         color: #ccefeb;
         font-size: 20px;
         grid-row-start: 1;
-        grid-column-start: 3; }
+        grid-column-start: 3;
+        justify-self: end;
+        -ms-flex-item-align: start;
+        align-self: start; }
       #delete-restaurant-modal .modal-content header .close:hover,
       #delete-restaurant-modal .modal-content header .close:focus {
         color: #0f594d;
@@ -369,17 +372,21 @@ p {
       margin-left: auto;
       margin-right: auto;
       background: #2ab5a2;
+      border: 2px solid #2ab6a4;
       color: #ccefeb;
       font-weight: 300; }
     #delete-restaurant-modal .modal-content button:hover {
       background-color: #0f594d;
       border-color: #0f594d; }
     #delete-restaurant-modal .modal-content label {
-      color: #0f594d; }
+      font-family: 'Ubuntu', sans-serif;
+      color: #0f594d;
+      font-size: 16px; }
     #delete-restaurant-modal .modal-content input {
       border: 1px solid #8cdcd4;
       color: #0f594d; }
   #delete-restaurant-modal p {
+    font-size: 18px;
     text-align: center; }
 
 #edit-restaurant-modal {
@@ -445,7 +452,10 @@ p {
         color: #ccefeb;
         font-size: 20px;
         grid-row-start: 1;
-        grid-column-start: 3; }
+        grid-column-start: 3;
+        justify-self: end;
+        -ms-flex-item-align: start;
+        align-self: start; }
       #edit-restaurant-modal .modal-content header .close:hover,
       #edit-restaurant-modal .modal-content header .close:focus {
         color: #0f594d;
@@ -467,13 +477,16 @@ p {
       margin-left: auto;
       margin-right: auto;
       background: #2ab5a2;
+      border: 2px solid #2ab6a4;
       color: #ccefeb;
       font-weight: 300; }
     #edit-restaurant-modal .modal-content button:hover {
       background-color: #0f594d;
       border-color: #0f594d; }
     #edit-restaurant-modal .modal-content label {
-      color: #0f594d; }
+      font-family: 'Ubuntu', sans-serif;
+      color: #0f594d;
+      font-size: 16px; }
     #edit-restaurant-modal .modal-content input {
       border: 1px solid #8cdcd4;
       color: #0f594d; }
