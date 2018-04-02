@@ -113,6 +113,9 @@ function createNewAccount(username, pass){
 }
 
 function closeModal(){
+    $(`.username-input`).val(``);
+    $(`.password-input`).val(``);
+    $(`.confirm-password-input`).val(``);
     $('#sign-up-modal').css('display', 'none');
 }
 
