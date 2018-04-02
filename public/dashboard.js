@@ -176,6 +176,9 @@ function editRestaurant(){
                     beforeSend: function(xhr){
                         xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('authToken')}`);
                     },
+                    success: function(){
+                        alert("Restaurant updated");
+                    },
                     error: function(jqXHR, errorValue){
                         alert(errorValue);
                         console.log(errorValue);
@@ -273,6 +276,11 @@ function sendNewRestaurantData(){
         let restaurantName = $('.add-restaurant-name').val();
         let address = $('.add-address-input').val();
 
+        if(restaurantName.length === 0){
+            $('.add-restaurant').append(`<p aria-live= "assertive">Restaurant name required</p>`);
+            return;
+        }
+
 
         let restObj = {
             name: restaurantName,
@@ -293,6 +301,9 @@ function sendNewRestaurantData(){
                 // document.getElementsByClassName('add-restaurant').reset();
                 toggleAddRestaurantInputs();
                 alert(response.message);
+            },
+            error: function(){
+                alert(response.error);
             }
         });
     });

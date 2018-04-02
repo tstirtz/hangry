@@ -83,7 +83,7 @@
       grid-template-rows: auto;
       grid-template-columns: 10% 80% 10%;
       height: 50px;
-      margin-bottom: 50px;
+      margin-bottom: 30px;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
       background: #2ab6a4; }
@@ -161,6 +161,16 @@
     outline-style: none; }
   #sign-up-modal label:first-of-type {
     margin-top: 20px; }
+  #sign-up-modal .modal-message {
+    display: block;
+    width: 85%;
+    margin: 0 auto 20px auto;
+    color: #0f594d; }
+  #sign-up-modal .account-created-message {
+    display: block;
+    width: 85%;
+    margin: 0 auto 20px auto;
+    color: #0f594d; }
 
 html, body {
   height: 100%;

@@ -9,6 +9,7 @@ const jsonParser = bodyParser.json();
 
 //endpoint for creating a new account
 router.post('/', jsonParser, function(req, res){
+    console.log(req.body);
     const requiredFields = ['userName', 'password'];
     for(let i = 0; i < requiredFields.length; i++){
         if(!(requiredFields[i] in req.body)){
@@ -90,7 +91,6 @@ router.post('/', jsonParser, function(req, res){
             return Users.hashPassword(req.body.password);
         })
         .then(function(hash){
-            console.log(`This is the hash: ${hash}`);
             return Users
                 .create({
                     userName: req.body.userName,
@@ -98,7 +98,7 @@ router.post('/', jsonParser, function(req, res){
                 });
         })
         .then(function(user){
-            //make request to /login route 
+            //make request to /login route
             return res.status(201).json(user.userData());
         })
         .catch(function(err){
