@@ -60,24 +60,34 @@ function renderSignUpModal(){
     });
 }
 
-function confirmPassword(){
+function checkRequiredFields(){
     $('#sign-up-modal').on('click', '.create-account-button-js', function(){
         console.log('create-account-button handler working');
+        $(`.feedback`).empty(``);
 
         let password = $(this).prevAll('.password-input')[0].value;
         let passwordConfirm = $(this).prevAll('.confirm-password-input')[0].value;
         let username = $(this).prevAll('.username-input')[0].value;
 
         console.log(username);
-
-        if(password !== passwordConfirm){
-            $('.modal-content').append(
+        if(username.length === 0){
+            $('.feedback').append(
+                `<p class= "modal-message">Please provide a username.</p>`
+            );
+        }else if(password.length === 0){
+            $('.feedback').append(
+                `<p class= "modal-message">Please provide a password.</p>`
+            );
+        }else if(password.length < 10){
+            $('.feedback').append(
+                `<p class= "modal-message">Password must be at least 10 characters.</p>`
+            );
+        }else if(password !== passwordConfirm){
+            $('.feedback').append(
                 `<p class= "modal-message">Passwords do not match. Please try again.</p>`
             );
         }else if(password === passwordConfirm){
             createNewAccount(username, password);
-            closeModal();
-            // logInNewUser(username, password);
         }
     });
 }
@@ -89,6 +99,7 @@ function createNewAccount(username, pass){
         userName: username,
         password: pass
     }
+    console.log(newUser);
 
     $.ajax({
         url:'/user-account',
@@ -97,15 +108,15 @@ function createNewAccount(username, pass){
         data: JSON.stringify(newUser),
         contentType: 'application/json; charset= utf-8',
         success: function(data){
-            $('.modal-content').append(
+            $('.feedback').append(
                 `<p class= "account-created-message">Account created for <em>${data.userName}</em></p>
-                <button type="button" class = "exit-modal-button">Exit</button>`
+                `
             );
         },
         error: function(object, message){
             console.log(message);
             console.log(object);
-            $('.modal-content').append(
+            $('.feedback').append(
                 `<p class= "modal-message">${object.responseJSON.message}: Uh oh! Please try again.</p>`
             );
         }
@@ -113,6 +124,7 @@ function createNewAccount(username, pass){
 }
 
 function closeModal(){
+    $(`.feedback`).empty(``);
     $(`.username-input`).val(``);
     $(`.password-input`).val(``);
     $(`.confirm-password-input`).val(``);
@@ -170,5 +182,5 @@ function closeSignUpModal(){
 $(function(){
     login();
     renderSignUpModal();
-    confirmPassword();
+    checkRequiredFields();
 });
