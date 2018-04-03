@@ -258,6 +258,8 @@ input.username, input.password {
   letter-spacing: 0; }
 
 @media only screen and (max-width: 370px) {
+  main section {
+    width: 95%; }
   .top-nav {
     grid-template-columns: 50% 50%; }
     .top-nav h1 {
@@ -270,11 +272,15 @@ input.username, input.password {
 
 @media only screen and (max-width: 610px) {
   main form {
-    grid-template-rows: 30px 50px 50px 50px; }
-  main section h3:first-of-type {
-    font-size: 36px; }
-  main section h3 {
-    font-size: 14px; }
+    grid-template-rows: 30px 50px 50px 50px;
+    width: 100%; }
+  main section {
+    width: 85%;
+    margin-bottom: 0px; }
+    main section h3:first-of-type {
+      font-size: 30px; }
+    main section h3 {
+      font-size: 14px; }
   input.username {
     display: block;
     grid-row-start: 2;
