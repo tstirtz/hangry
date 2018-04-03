@@ -80,10 +80,6 @@ function checkRequiredFields(){
             $('.feedback').append(
                 `<p class= "modal-message">Please provide a password.</p>`
             );
-        }else if(password.length < 10){
-            $('.feedback').append(
-                `<p class= "modal-message">Password must be at least 10 characters.</p>`
-            );
         }else if(password !== passwordConfirm){
             $('.feedback').append(
                 `<p class= "modal-message">Passwords do not match. Please try again.</p>`
@@ -110,6 +106,7 @@ function createNewAccount(username, pass){
         data: JSON.stringify(newUser),
         contentType: 'application/json; charset= utf-8',
         success: function(data){
+            console.log(data);
             $('.feedback').append(
                 `<p class= "account-created-message">Account created for <em>${data.userName}</em></p>
                 `
@@ -121,6 +118,9 @@ function createNewAccount(username, pass){
             $('.feedback').append(
                 `<p class= "modal-message">${object.responseJSON.message}: Uh oh! Please try again.</p>`
             );
+        },
+        complete: function(data){
+            console.log(data);
         }
     });
 }
