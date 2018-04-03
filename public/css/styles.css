@@ -189,6 +189,7 @@ main {
   main section {
     grid-column-start: 2;
     justify-self: center;
+    width: 670px;
     -ms-flex-item-align: end;
     align-self: end;
     margin-top: 10px;
@@ -200,6 +201,7 @@ main {
       font-weight: 700;
       margin: 25px 0px 25px 0px; }
     main section h3 {
+      text-align: right;
       font-size: 16px;
       font-family: 'Ubuntu', sans-serif;
       font-weight: 300;
@@ -269,6 +271,10 @@ input.username, input.password {
 @media only screen and (max-width: 610px) {
   main form {
     grid-template-rows: 30px 50px 50px 50px; }
+  main section h3:first-of-type {
+    font-size: 36px; }
+  main section h3 {
+    font-size: 14px; }
   input.username {
     display: block;
     grid-row-start: 2;
@@ -291,21 +297,20 @@ input.username, input.password {
     width: 80%; } }
 
 @media only screen and (min-width: 611px) and (max-width: 750px) {
-  main form {
-    grid-template-rows: 30px 50px 50px 50px; }
+  main section {
+    width: 490px;
+    margin-bottom: 25px; }
   input.username {
     display: block;
-    grid-row-start: 2;
-    margin-left: auto;
-    margin-right: auto; }
+    width: 175px;
+    margin-left: 5px;
+    margin-right: 5px; }
   input.password {
     display: block;
-    grid-row-start: 3;
-    margin-left: auto;
-    margin-right: auto; }
+    width: 175px;
+    margin-left: 5px;
+    margin-right: 5px; }
   main form button {
     display: block;
-    grid-row-start: 4;
-    width: 264px;
-    margin-left: auto;
-    margin-right: auto; } }
+    margin-left: 5px;
+    margin-right: 5px; } }
