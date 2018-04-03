@@ -9,7 +9,6 @@ const jsonParser = bodyParser.json();
 
 //endpoint for creating a new account
 router.post('/', jsonParser, function(req, res){
-    console.log(req.body);
     const requiredFields = ['userName', 'password'];
     for(let i = 0; i < requiredFields.length; i++){
         if(!(requiredFields[i] in req.body)){
@@ -23,16 +22,15 @@ router.post('/', jsonParser, function(req, res){
     }
 
     const fieldsToTrim = ['userName', 'password'];
-    const nonTrimmedFields = fieldsToTrim.find(function(field){
-        req.body[field].trim() !== req.body[field]
-    });
+    const nonTrimmedFields = fieldsToTrim.find(field => req.body[field].trim() !== req.body[field]);
+    console.log(nonTrimmedFields);
 
     if(nonTrimmedFields){
         return res.status(422).json({
             code: 422,
             reason: 'ValidationError',
             message: 'Cannot start or end with whitespace',
-            location: nonTrimmedField
+            location: nonTrimmedFields
         });
     }
 
@@ -48,32 +46,31 @@ router.post('/', jsonParser, function(req, res){
         }
     };
 
-    const tooSmallField = Object.keys(sizedFields).find(function(field){
-        req.body[field].trim().length < sizedFields[field].min
-    });
+    // const tooSmallField = Object.keys(sizedFields).find(function(field){
+    //     req.body[field].trim().length < sizedFields[field].min
+    // });
+    // console.log(tooSmallField);
 
     const tooLargeField = Object.keys(sizedFields).find(function(field){
-        'max' in sizedFields[field] && req.body[field].trim().length > sizedFields[field].max
+        return 'max' in sizedFields[field] && req.body[field].trim().length > sizedFields[field].max
     });
 
-    if(tooSmallField){
+    if(req.body.password.length < 10){
+        console.log("tooSmallField executed");
         return res.status(422).json({
             code: 422,
             reason: 'ValidationError',
-            message: `Password must be at least ${sizedFields[tooSmallField].min} characters
-            long`,
-            location: tooSmallField
+            message: `Password must be at least 10 characters long`
         });
     }else if(tooLargeField){
         return res.status(422).json({
             code: 422,
             reason: 'ValidationError',
-            message: `Password must not be more than ${sizedFields[tooLargeField].max} characters
-            long`,
-            location: tooLargeField
-        })
+            message: `Password must not be more than 72 characters
+            long`
+        });
     }
-
+    console.log("Did not return response");
     return Users
         .find({userName: req.body.userName})
         .count()
