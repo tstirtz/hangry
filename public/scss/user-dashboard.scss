@@ -146,7 +146,7 @@ main{
         border-color: transparent transparent #0f594d transparent;
     }
     .instructions-generate-restaurant{
-        @include instructions-container
+        @include instructions-container;
         position: absolute;
         width: 30%;
         height: 10%;
@@ -161,7 +161,21 @@ main{
         border-width: 7px;
         border-style: solid;
         border-color: transparent transparent #0f594d transparent;
-        // opacity: .7;
+    }
+    .instructions-restaurant-list{
+        @include instructions-container;
+        position: absolute;
+        top: 10px;
+        left: 15px;
+    }
+    .instructions-restaurant-list::after{
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 10px;
+        border-width: 7px;
+        border-style: solid;
+        border-color: transparent transparent #0f594d transparent;
     }
 }
 
