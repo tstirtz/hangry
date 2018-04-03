@@ -172,11 +172,14 @@
     margin: 0 auto 20px auto;
     color: #0f594d; }
 
+html {
+  background-image: url("../images/fast_food_pattern_background-2.png");
+  background-size: cover; }
+
 html, body {
   height: 100%;
   margin: 0px;
-  overflow: hidden;
-  background-color: #2ab6a3; }
+  overflow: hidden; }
 
 main {
   display: grid;
@@ -190,14 +193,17 @@ main {
     align-self: end;
     margin-top: 10px;
     margin-bottom: 50px;
-    color: #b6e9e5; }
+    color: #0f594d; }
     main section h3:first-child {
-      font-size: 33px;
-      font-weight: 500; }
+      font-family: 'Merriweather', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      margin: 25px 0px 25px 0px; }
     main section h3 {
-      font-size: 20px;
+      font-size: 16px;
       font-family: 'Ubuntu', sans-serif;
-      text-align: center; }
+      font-weight: 300;
+      text-align: right; }
   main form {
     display: grid;
     grid-template-rows: 75%;
