@@ -291,6 +291,11 @@ input.username , input.password{
 }
 
 @media only screen and (max-width: 370px){
+    main{
+        section{
+            width: 95%;
+        }
+    }
     .top-nav{
         grid-template-columns: 50% 50%;
         h1{
@@ -309,10 +314,14 @@ input.username , input.password{
     main{
         form{
             grid-template-rows: 30px 50px 50px 50px;
+            width: 100%;
         }
         section{
+            width: 85%;
+            // align-self: center;
+            margin-bottom: 0px;
             h3:first-of-type{
-                font-size: 36px;
+                font-size: 30px;
             }
             h3{
                 font-size: 14px;
@@ -352,6 +361,7 @@ input.username , input.password{
         }
         section{
             width: 490px;
+            // align-self: center;
             margin-bottom: 25px;
         }
     }
