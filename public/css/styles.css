@@ -6,7 +6,8 @@
   display: grid;
   grid-template-columns: 33.33% 33.33% 33.33%;
   grid-template-rows: auto;
-  height: 75px; }
+  height: 65px;
+  border-bottom: 2px solid #59ccc2; }
   .top-nav h1 {
     display: inline-block;
     justify-self: center;
