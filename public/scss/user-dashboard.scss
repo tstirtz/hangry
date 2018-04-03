@@ -36,6 +36,19 @@
     outline-style: none;
 }
 
+@mixin instructions-container{
+    z-index: 3;
+    background-color: #0f594d;
+    opacity: 0.7;
+    border-radius: 7px;
+    p{
+        margin-left: 5px;
+        margin-right: 5px;
+        color: black;
+        text-align: center;
+    }
+}
+
 html, body{
     height: 100%;
     margin: 0 auto;
@@ -117,30 +130,38 @@ main{
     .get-started:hover{
         opacity: 1;
     }
-    .user-instructions{
-        z-index: 3;
-        .instructions-add-restaurant{
-            position: absolute;
-            right: 20px;
-            width: 215px;
-            background-color: #0f594d;
-            opacity: 0.7;
-            border-radius: 7px;
-            p{
-                margin-left: 10px;
-                margin-right: 10px;
-                color: black;
-            }
-        }
-        .instructions-add-restaurant::after{
-            content: "";
-            position: absolute;
-            bottom: 100%;
-            left: 92%;
-            border-width: 5px;
-            border-style: solid;
-            border-color: transparent transparent #555 transparent;
-        }
+    .instructions-add-restaurant{
+        @include instructions-container
+        position: absolute;
+        right: 20px;
+        width: 215px;
+    }
+    .instructions-add-restaurant::after{
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 90%;
+        border-width: 7px;
+        border-style: solid;
+        border-color: transparent transparent #0f594d transparent;
+    }
+    .instructions-generate-restaurant{
+        @include instructions-container
+        position: absolute;
+        width: 30%;
+        height: 10%;
+        left: 34%;
+        bottom: 15%;
+    }
+    .instructions-generate-restaurant::after{
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        border-width: 7px;
+        border-style: solid;
+        border-color: transparent transparent #0f594d transparent;
+        // opacity: .7;
     }
 }
 
