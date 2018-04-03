@@ -445,6 +445,31 @@ function smallDeviceMediaQuery(){
     }
 }
 
+// function toggleUserInstructions(){
+//     console.log('toggleUserInstructions working');
+//     const addRestInstructions = () => $('.instructions-add-restaurant').toggleClass('show');   //this toggles visibility of element
+//     const generateRestInstructions = () => $('.instructions-generate-restaurant').toggleClass('show');
+//     const restListInstructions = () => $('.instructions-restaurant-list').toggleClass('show');
+// }
+
+function getStartedUserInstructions(){
+    $('.get-started').on('click', function(){
+        console.log('getStartedUserInstructions function working');
+        const addRestInstructions = () => $('.instructions-add-restaurant').toggleClass('show');   //this toggles visibility of element
+        const generateRestInstructions = () => $('.instructions-generate-restaurant').toggleClass('show');
+        const restListInstructions = () => $('.instructions-restaurant-list').toggleClass('show');
+
+        //fade in instruction pop-ups one by one
+        addRestInstructions();
+        setTimeout(generateRestInstructions, 5000);
+        setTimeout(restListInstructions, 10000);
+
+        setTimeout(addRestInstructions, 5000);
+        setTimeout(generateRestInstructions, 10000);
+        setTimeout(restListInstructions, 15000);
+    });
+}
+
 
 
 $(function(){
@@ -456,5 +481,6 @@ $(function(){
         renderAddRestaurantInputs();
         sendNewRestaurantData();
         smallDeviceMediaQuery();
+        getStartedUserInstructions();
     });
 })

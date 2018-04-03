@@ -19,9 +19,17 @@
         <button type= "button" class = "add-restaurant-button add-restaurant-button-js">Add Restaurant</button>
     </header>
     <main role= "main">
-        <!-- /hangry-fullstack-capstone/public/ -->
+            <div class="instructions-add-restaurant" aria-live="assertive">
+                <p>First add some restaurants</p>
+            </div>
+            <div class="instructions-generate-restaurant" aria-live="assertive">
+                <p>Generate a random restaurant from your list</p>
+            </div>
+            <div class="instructions-restaurant-list" aria-live="assertive">
+                <p>View, edit, and delete restaurants from your list</p>
+            </div>
         <div class="image">
-            <img src="images/hangry-bowl.png" alt="Outline of a steaming bowl with chopsticks.">
+            <img src="images/hangry-bowl-dark.png" alt="Outline of a steaming bowl with chopsticks.">
         </div>
         <section aria-live= "assertive" role= "region" class= "add-restaurant hide">
             <input type="text" aria-label= "Add Restaurant" placeholder= "Restaurant Name" class= "add-restaurant-input-js add-restaurant-name"/>
@@ -38,6 +46,7 @@
         <div aria-live= "assertive" class= "random-restaurant hide">
 
         </div>
+        <button type="button" class= "get-started">Get Started</button>
     </main>
     <section aria-live= "assertive" role= "region" id ="edit-restaurant-modal">
         <div class="modal-content">
