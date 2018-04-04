@@ -133,6 +133,7 @@ function closeModal(){
     $('#sign-up-modal').css('display', 'none');
 }
 
+//TODO
 // function logInNewUser(username, pass){
 //     $('#sign-up-modal').on('click', '.user-dashboard-button', function(){
 //
@@ -176,10 +177,6 @@ function closeSignUpModal(){
     });
 }
 
-
-// function refreshPage(){
-//     location.reload();
-// }
 
 $(function(){
     login();
