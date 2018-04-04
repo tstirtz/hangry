@@ -44,15 +44,11 @@
 #sign-up-modal {
   display: none;
   position: fixed;
-  /* Stay in place */
   z-index: 1;
-  /* Sit on top */
   left: 0;
   top: 0;
   width: 100%;
-  /* Full width */
   height: 100%;
-  /* Full height */
   overflow: auto;
   /* Enable scroll if needed */
   background-color: black;
@@ -75,7 +71,6 @@
     margin: 15% auto;
     /* 15% from the top and centered */
     width: 35%;
-    /* Could be more or less, depending on screen size */
     font-family: 'Ubuntu', sans-serif;
     font-weight: 300; }
     #sign-up-modal .modal-content header {
@@ -246,14 +241,12 @@ main {
         font-size: 18px; }
 
 input.username, input.password {
-  /* input: */
   grid-row-start: 1;
   border: 1px solid #b6e9e5;
   border-radius: 3px;
   width: 250px;
   padding: 5px 5px 5px 7px;
   margin: 10px;
-  /* Your Name: */
   font-family: 'Ubuntu', sans-serif;
   font-size: 16px;
   letter-spacing: 0; }
@@ -300,7 +293,7 @@ input.username, input.password {
     margin-right: auto; }
   #sign-up-modal .modal-content {
     margin: 25% auto;
-    /* 15% from the top and centered */
+    /* 25% from the top and centered */
     width: 80%; } }
 
 @media only screen and (min-width: 611px) and (max-width: 750px) {
