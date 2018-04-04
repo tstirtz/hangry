@@ -24,7 +24,7 @@ main {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    margin-top: 10px; }
+    margin-top: 40px; }
     main .image img {
       justify-self: end;
       display: block;
@@ -50,7 +50,8 @@ main {
     width: 361.23px;
     padding: 40px 20px 0px 20px;
     margin-left: auto;
-    margin-right: auto; }
+    margin-right: auto;
+    z-index: 2; }
     main .random-restaurant p {
       text-align: center;
       font-weight: 500;
@@ -62,7 +63,7 @@ main {
       margin-right: auto;
       color: #b6e9e5; }
     main .random-restaurant p:first-of-type {
-      margin-top: 45px; }
+      margin-top: 85px; }
   main .get-started {
     font-family: 'Ubuntu', sans-serif;
     /* btn: */
@@ -199,7 +200,8 @@ main {
   display: grid;
   grid-template-columns: 33.33% 33.33% 33.33%;
   grid-template-rows: auto;
-  height: 50px; }
+  height: 65px;
+  border-bottom: 2px solid #59ccc2; }
   .top-nav h1 {
     text-align: center;
     display: inline-block;
@@ -719,13 +721,19 @@ p {
     max-width: 155px;
     font-size: 18px; }
   main .random-restaurant p:first-of-type {
-    margin-top: 30px; }
+    margin-top: 115px; }
   main .generate-restaurant {
     z-index: 0; }
   main .instructions-generate-restaurant {
     margin: 2.5px; }
     main .instructions-generate-restaurant p {
       font-size: 16px; } }
+
+@media only screen and (min-width: 721px) {
+  main .random-restaurant p {
+    font-size: 20px; }
+  main .random-restaurant p:first-of-type {
+    margin-top: 120px; } }
 
 @media only screen and (max-width: 400px) {
   .top-nav .add-restaurant-button {
@@ -741,8 +749,6 @@ p {
     main .random-restaurant p {
       width: 60%;
       font-size: 13px; }
-    main .random-restaurant p:first-of-type {
-      margin-top: 10px; }
   main .instructions-generate-restaurant {
     left: 15%;
     width: 70%; } }
