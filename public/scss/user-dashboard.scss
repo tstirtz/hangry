@@ -28,10 +28,8 @@
 
 @mixin button{
     font-family: 'Ubuntu', sans-serif;
-    /* btn: */
     border-radius: 20px;
     border: 3px solid #b6e9e5;
-    /* Button: */
     font-size: 16px;
     letter-spacing: 0;
     outline-style: none;
@@ -56,8 +54,6 @@ html, body{
     margin: 0 auto;
     overflow: hidden;
     background-color: #2ab6a4;
-    // background-image: url("https://pixabay.com/get/ec30b90728f11c22d9584518a33219c8b66ae3d01bb3104095f4c87c/fork-558805_1920.jpg");
-    // background-size: cover;
 }
 
 main{
@@ -75,8 +71,6 @@ main{
         width: 100%;
         display: flex;
         margin-top: 40px;
-        // align-self: end;
-        // padding: 40px 20px 0px 20px;
         img{
             justify-self: end;
             display: block;
@@ -91,11 +85,6 @@ main{
         justify-content: center;
         align-content: center;
         grid-row-start: 1;
-        // grid-column: 2;
-        // align-self: center;
-        // justify-self: center;
-        // max-height: 65px;
-        // margin-top: 75px;
         grid-column: 1 / -1;
         height: 100%;
         width: 361.23px;
@@ -192,7 +181,7 @@ main{
     }
     .show{
         /* Add animation: Take 0.5 seconds to fade in and out the instructions pop-up.
-        However, delay the fade out process for 2.5 seconds */
+        However, delay the fade out process for 5 seconds */
         visibility: visible;
         -webkit-animation: fadein 0.5s, fadeout 0.5s 5s;
         animation: fadein 0.5s, fadeout 0.5s 5s;
@@ -206,10 +195,6 @@ main{
         0% {opacity: 0;}
         100% {opacity: .7;}
     }
-    // .fadeout{
-    //     -webkit-animation: fadeout 0.5s 4.5s;
-    //     animation: fadeout 0.5s 4.5s;
-    // }
     @-webkit-keyframes fadeout {
       100% {opacity: .7;}
       0% {opacity: 0;}
@@ -290,12 +275,10 @@ main{
     grid-template-rows: auto auto auto;
     grid-template-columns: auto;
     height: auto;
-    /* Placement of self on main grid*/
     grid-column-start: 3 ;
     grid-row-start: 1;
     justify-self: end;
     margin-right: 15px;
-    // margin-right: 1em 0;
     background-color: #ccefeb;
     z-index: 3;
     input{
@@ -346,12 +329,10 @@ main{
 
 .restaurant-list{
     display: grid;
-    // background-color: #d9d9d9;
     height: 100%;
     padding-bottom: 100px;
     background-color: #4ad0b6;
     width: 250px;
-    // margin-left: 15px;
     grid-template-columns: auto;
     grid-template-rows: 5(75px);
     grid-auto-rows: 75px;
@@ -420,15 +401,15 @@ p{
 
 @mixin modal{
     display: none;
-    position: fixed; /* Stay in place */
-    z-index: 4; /* Sit on top */
+    position: fixed;
+    z-index: 4;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.7);
     .modal-content {
         display: flex;
         justify-content: center;
@@ -436,10 +417,7 @@ p{
         border-radius: 5px;
         background-color: #ccefeb;
         margin: 15% auto; /* 15% from the top and centered */
-        // padding: 20px;
-        // border: 1px solid #888;
-        width: 40%; /* Could be more or less, depending on screen size */
-        // height: 200px;
+        width: 40%;
         font-family: 'Ubuntu', sans-serif;
         font-weight: 300;
         header{
@@ -508,7 +486,7 @@ p{
     }
 }
 
-#delete-restaurant-modal{
+.delete-restaurant-modal{
     @include modal;
     p{
         font-size: 18px;
@@ -517,7 +495,7 @@ p{
 }
 
 
-#edit-restaurant-modal{
+.edit-restaurant-modal{
     @include modal;
     label{
         display: block;
@@ -558,20 +536,6 @@ p{
         font-weight: 300;
     }
 }
-
-// #delete-restaurant-modal{
-//     display: none;
-//     position: fixed; /* Stay in place */
-//     z-index: 1; /* Sit on top */
-//     left: 0;
-//     top: 0;
-//     width: 100%; /* Full width */
-//     height: 100%; /* Full height */
-//     overflow: auto; /* Enable scroll if needed */
-//     background-color: rgb(0,0,0); /* Fallback color */
-//     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-// }
-
 
 /* Medium to large devices (phones, 610px and down) */
 @media only screen and (max-width: 610px){
@@ -614,7 +578,6 @@ p{
     .add-restaurant{
         margin-right: 15px;
         grid-column-start: 2;
-        // grid-column-end: span 2;
         justify-self: end;
         input{
             width: 90%;
@@ -623,12 +586,12 @@ p{
             width: 90%;
         }
     }
-    #edit-restaurant-modal .modal-content{
+    .edit-restaurant-modal .modal-content{
         margin: 35% auto; /* 35% from the top and centered */
         width: 90%;
     }
 
-    #delete-restaurant-modal .modal-content{
+    .delete-restaurant-modal .modal-content{
         margin: 35% auto; /* 35% from the top and centered */
         width: 90%;
     }
@@ -644,13 +607,6 @@ p{
         .random-restaurant p:first-of-type{
             margin-top: 115px;
         }
-        // .random-restaurant{
-        //     grid-column: 2 / -1;
-        //     padding-left: 65px;
-        // }
-        // .tablet{
-        //     grid-column: 2 / -1;
-        // }
         .generate-restaurant{
             z-index: 0;
         }
@@ -673,9 +629,6 @@ p{
                 margin-top: 120px;
             }
         }
-        // .random-restaurant p:first-of-type{
-        //     margin-top: 115px;
-        // }
     }
 }
 
