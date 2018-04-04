@@ -11,7 +11,6 @@ const expect = chai.expect;
 chai.use(chaiHttp); //allows me to make http requests in my tests
 
 describe('Auth endpoints', function(){
-    // const username = 'exampleUser';
     const pass = 'examplePass';
     let userId;
 
@@ -113,6 +112,7 @@ describe('Auth endpoints', function(){
                     expect(res).to.have.status(401);
                 });
         });
+        //TODO
         // it('Should send protect data', function(){
         //     const token = jwt.sign(
         //         {

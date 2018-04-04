@@ -13,7 +13,6 @@ let restaurantSchema = mongoose.Schema(
     }
 );
 
-// let Restaurant = mongoose.model('Restaurant', restaurantSchema);
 
 let userSchema = mongoose.Schema (
     {

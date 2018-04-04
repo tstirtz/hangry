@@ -26,7 +26,6 @@ const localAuth = passport.authenticate('local', {session: false});
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 
-//Left off running npm test, need to figure out why it's returning not authorized
 
 app.use('/dashboard', restaurantListRouter);
 app.use('/user-account', userAccountRouter);
@@ -54,8 +53,6 @@ function runServer(databaseUrl, port=PORT){
         });
     });
 }
-//Start here: set up GET route and unit test for GET route. Before starting research
-//whether or not I should make a router file
 
 function closeServer(){
     return new Promise(function(resolve, reject){
@@ -86,9 +83,5 @@ function closeServer(){
 if (require.main === module) {
   runServer(DATABASE_URL).catch(err=> console.log(err));
 }
-
-//when requests come into /lists we will route them to to express router instance
-//we have imported
-
 
 module.exports = {app, runServer, closeServer};

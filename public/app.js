@@ -31,9 +31,7 @@ function login(){
                   dataType: 'json',
                   contentType: 'application/json; charset= utf-8',
                   error: function(object, message, string){
-                      console.log(message);
                       console.log(object);
-                      console.log(string);
                       if(object.status === 401){
                            $('.login-feedback').append(`<p>Incorrect username or password</p>`);
                       }
@@ -64,14 +62,12 @@ function renderSignUpModal(){
 
 function checkRequiredFields(){
     $('#sign-up-modal').on('click', '.create-account-button-js', function(){
-        console.log('create-account-button handler working');
         $(`.feedback`).empty(``);
 
         let password = $(this).prevAll('.password-input')[0].value;
         let passwordConfirm = $(this).prevAll('.confirm-password-input')[0].value;
         let username = $(this).prevAll('.username-input')[0].value;
 
-        console.log(username);
         if(username.length === 0){
             $('.feedback').append(
                 `<p class= "modal-message">Please provide a username.</p>`
@@ -97,7 +93,6 @@ function createNewAccount(username, pass){
         userName: username,
         password: pass
     }
-    console.log(newUser);
 
     $.ajax({
         url:'/user-account',
@@ -113,7 +108,6 @@ function createNewAccount(username, pass){
             );
         },
         error: function(object, message){
-            console.log(message);
             console.log(object);
             $('.feedback').append(
                 `<p class= "modal-message">${object.responseJSON.message}: Uh oh! Please try again.</p>`
@@ -133,6 +127,7 @@ function closeModal(){
     $('#sign-up-modal').css('display', 'none');
 }
 
+//TODO
 // function logInNewUser(username, pass){
 //     $('#sign-up-modal').on('click', '.user-dashboard-button', function(){
 //
@@ -169,17 +164,12 @@ function closeSignUpModal(){
 
     //Close modal if user clicks outside of modal
     $('#sign-up-modal').on('click', function(event){
-        console.log(event.target.id);
         if(event.target.id === 'sign-up-modal'){
             closeModal();
         }
     });
 }
 
-
-// function refreshPage(){
-//     location.reload();
-// }
 
 $(function(){
     login();

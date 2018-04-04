@@ -1,19 +1,11 @@
 'use strict'
 
-// let passport = require('passport')
-//     , LocalStrategy = require('passport-local').Strategy;
-// let JwtStrategy = require('passport-jwt').Strategy,
-//     ExtractJwt = require('passport-jwt').ExtractJwt;
-
 const { Strategy: LocalStrategy } = require('passport-local');
 const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
-
-//left off trying to get login to work on postman. Went attempted, endpoint won't
-//return JWT
-
 const {Users} = require('../models/user-model');
 const {JWT_SECRET} = require('../config');
 
+//strategy used for authorization of /login endpoint
 let localStrategy = new LocalStrategy(
     {usernameField: 'userName', passwordField: 'password'},
     function(username, password, done){

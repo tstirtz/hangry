@@ -66,10 +66,8 @@ main {
       margin-top: 85px; }
   main .get-started {
     font-family: 'Ubuntu', sans-serif;
-    /* btn: */
     border-radius: 20px;
     border: 3px solid #b6e9e5;
-    /* Button: */
     font-size: 16px;
     letter-spacing: 0;
     outline-style: none;
@@ -167,7 +165,7 @@ main {
     border-color: transparent transparent #0f594d transparent; }
   main .show {
     /* Add animation: Take 0.5 seconds to fade in and out the instructions pop-up.
-        However, delay the fade out process for 2.5 seconds */
+        However, delay the fade out process for 5 seconds */
     visibility: visible;
     -webkit-animation: fadein 0.5s, fadeout 0.5s 5s;
     animation: fadein 0.5s, fadeout 0.5s 5s; }
@@ -228,10 +226,8 @@ main {
     margin: 6px 0; }
   .top-nav .add-restaurant-button {
     font-family: 'Ubuntu', sans-serif;
-    /* btn: */
     border-radius: 20px;
     border: 3px solid #b6e9e5;
-    /* Button: */
     font-size: 16px;
     letter-spacing: 0;
     outline-style: none;
@@ -277,10 +273,8 @@ main {
     color: #b6e9e5; }
   .generate-restaurant .generate-restaurant-button {
     font-family: 'Ubuntu', sans-serif;
-    /* btn: */
     border-radius: 20px;
     border: 3px solid #b6e9e5;
-    /* Button: */
     font-size: 16px;
     letter-spacing: 0;
     outline-style: none;
@@ -301,7 +295,6 @@ main {
   grid-template-rows: auto auto auto;
   grid-template-columns: auto;
   height: auto;
-  /* Placement of self on main grid*/
   grid-column-start: 3;
   grid-row-start: 1;
   justify-self: end;
@@ -330,10 +323,8 @@ main {
     margin-bottom: 5px; }
   .add-restaurant button {
     font-family: 'Ubuntu', sans-serif;
-    /* btn: */
     border-radius: 20px;
     border: 3px solid #b6e9e5;
-    /* Button: */
     font-size: 16px;
     letter-spacing: 0;
     outline-style: none;
@@ -422,25 +413,18 @@ p {
   font-family: 'Ubuntu', sans-serif;
   font-weight: 300; }
 
-#delete-restaurant-modal {
+.delete-restaurant-modal {
   display: none;
   position: fixed;
-  /* Stay in place */
   z-index: 4;
-  /* Sit on top */
   left: 0;
   top: 0;
   width: 100%;
-  /* Full width */
   height: 100%;
-  /* Full height */
   overflow: auto;
-  /* Enable scroll if needed */
   background-color: black;
-  /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.7);
-  /* Black w/ opacity */ }
-  #delete-restaurant-modal .modal-content {
+  background-color: rgba(0, 0, 0, 0.7); }
+  .delete-restaurant-modal .modal-content {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -456,10 +440,9 @@ p {
     margin: 15% auto;
     /* 15% from the top and centered */
     width: 40%;
-    /* Could be more or less, depending on screen size */
     font-family: 'Ubuntu', sans-serif;
     font-weight: 300; }
-    #delete-restaurant-modal .modal-content header {
+    .delete-restaurant-modal .modal-content header {
       display: grid;
       width: 100%;
       grid-template-rows: auto;
@@ -469,7 +452,7 @@ p {
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
       background: #2ab5a2; }
-      #delete-restaurant-modal .modal-content header h2 {
+      .delete-restaurant-modal .modal-content header h2 {
         font-family: 'Ubuntu', sans-serif;
         font-weight: 300;
         margin: 0px;
@@ -480,7 +463,7 @@ p {
         justify-self: center;
         -ms-flex-item-align: center;
         align-self: center; }
-      #delete-restaurant-modal .modal-content header .close {
+      .delete-restaurant-modal .modal-content header .close {
         width: 25px;
         color: #ccefeb;
         font-size: 20px;
@@ -489,17 +472,15 @@ p {
         justify-self: end;
         -ms-flex-item-align: start;
         align-self: start; }
-      #delete-restaurant-modal .modal-content header .close:hover,
-      #delete-restaurant-modal .modal-content header .close:focus {
+      .delete-restaurant-modal .modal-content header .close:hover,
+      .delete-restaurant-modal .modal-content header .close:focus {
         color: #0f594d;
         text-decoration: none;
         cursor: pointer; }
-    #delete-restaurant-modal .modal-content button {
+    .delete-restaurant-modal .modal-content button {
       font-family: 'Ubuntu', sans-serif;
-      /* btn: */
       border-radius: 20px;
       border: 3px solid #b6e9e5;
-      /* Button: */
       font-size: 16px;
       letter-spacing: 0;
       outline-style: none;
@@ -513,39 +494,32 @@ p {
       border: 2px solid #2ab6a4;
       color: #ccefeb;
       font-weight: 300; }
-    #delete-restaurant-modal .modal-content button:hover {
+    .delete-restaurant-modal .modal-content button:hover {
       background-color: #0f594d;
       border-color: #0f594d; }
-    #delete-restaurant-modal .modal-content label {
+    .delete-restaurant-modal .modal-content label {
       font-family: 'Ubuntu', sans-serif;
       color: #0f594d;
       font-size: 16px; }
-    #delete-restaurant-modal .modal-content input {
+    .delete-restaurant-modal .modal-content input {
       border: 1px solid #8cdcd4;
       color: #0f594d; }
-  #delete-restaurant-modal p {
+  .delete-restaurant-modal p {
     font-size: 18px;
     text-align: center; }
 
-#edit-restaurant-modal {
+.edit-restaurant-modal {
   display: none;
   position: fixed;
-  /* Stay in place */
   z-index: 4;
-  /* Sit on top */
   left: 0;
   top: 0;
   width: 100%;
-  /* Full width */
   height: 100%;
-  /* Full height */
   overflow: auto;
-  /* Enable scroll if needed */
   background-color: black;
-  /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.7);
-  /* Black w/ opacity */ }
-  #edit-restaurant-modal .modal-content {
+  background-color: rgba(0, 0, 0, 0.7); }
+  .edit-restaurant-modal .modal-content {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -561,10 +535,9 @@ p {
     margin: 15% auto;
     /* 15% from the top and centered */
     width: 40%;
-    /* Could be more or less, depending on screen size */
     font-family: 'Ubuntu', sans-serif;
     font-weight: 300; }
-    #edit-restaurant-modal .modal-content header {
+    .edit-restaurant-modal .modal-content header {
       display: grid;
       width: 100%;
       grid-template-rows: auto;
@@ -574,7 +547,7 @@ p {
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
       background: #2ab5a2; }
-      #edit-restaurant-modal .modal-content header h2 {
+      .edit-restaurant-modal .modal-content header h2 {
         font-family: 'Ubuntu', sans-serif;
         font-weight: 300;
         margin: 0px;
@@ -585,7 +558,7 @@ p {
         justify-self: center;
         -ms-flex-item-align: center;
         align-self: center; }
-      #edit-restaurant-modal .modal-content header .close {
+      .edit-restaurant-modal .modal-content header .close {
         width: 25px;
         color: #ccefeb;
         font-size: 20px;
@@ -594,17 +567,15 @@ p {
         justify-self: end;
         -ms-flex-item-align: start;
         align-self: start; }
-      #edit-restaurant-modal .modal-content header .close:hover,
-      #edit-restaurant-modal .modal-content header .close:focus {
+      .edit-restaurant-modal .modal-content header .close:hover,
+      .edit-restaurant-modal .modal-content header .close:focus {
         color: #0f594d;
         text-decoration: none;
         cursor: pointer; }
-    #edit-restaurant-modal .modal-content button {
+    .edit-restaurant-modal .modal-content button {
       font-family: 'Ubuntu', sans-serif;
-      /* btn: */
       border-radius: 20px;
       border: 3px solid #b6e9e5;
-      /* Button: */
       font-size: 16px;
       letter-spacing: 0;
       outline-style: none;
@@ -618,23 +589,23 @@ p {
       border: 2px solid #2ab6a4;
       color: #ccefeb;
       font-weight: 300; }
-    #edit-restaurant-modal .modal-content button:hover {
+    .edit-restaurant-modal .modal-content button:hover {
       background-color: #0f594d;
       border-color: #0f594d; }
-    #edit-restaurant-modal .modal-content label {
+    .edit-restaurant-modal .modal-content label {
       font-family: 'Ubuntu', sans-serif;
       color: #0f594d;
       font-size: 16px; }
-    #edit-restaurant-modal .modal-content input {
+    .edit-restaurant-modal .modal-content input {
       border: 1px solid #8cdcd4;
       color: #0f594d; }
-  #edit-restaurant-modal label {
+  .edit-restaurant-modal label {
     display: block;
     width: 85%;
     margin-left: auto;
     margin-right: auto;
     font-size: 12px; }
-  #edit-restaurant-modal input {
+  .edit-restaurant-modal input {
     display: block;
     margin-top: 10px;
     margin-bottom: 15px;
@@ -650,14 +621,12 @@ p {
     font-weight: 300;
     font-size: 14px;
     outline-style: none; }
-  #edit-restaurant-modal input:first-of-type {
+  .edit-restaurant-modal input:first-of-type {
     margin-bottom: 20px; }
-  #edit-restaurant-modal button {
+  .edit-restaurant-modal button {
     font-family: 'Ubuntu', sans-serif;
-    /* btn: */
     border-radius: 20px;
     border: 3px solid #b6e9e5;
-    /* Button: */
     font-size: 16px;
     letter-spacing: 0;
     outline-style: none;
@@ -707,11 +676,11 @@ p {
       width: 90%; }
     .add-restaurant button {
       width: 90%; }
-  #edit-restaurant-modal .modal-content {
+  .edit-restaurant-modal .modal-content {
     margin: 35% auto;
     /* 35% from the top and centered */
     width: 90%; }
-  #delete-restaurant-modal .modal-content {
+  .delete-restaurant-modal .modal-content {
     margin: 35% auto;
     /* 35% from the top and centered */
     width: 90%; } }
@@ -734,6 +703,7 @@ p {
     font-size: 20px; }
   main .random-restaurant p:first-of-type {
     margin-top: 120px; } }
+
 @media only screen and (max-width: 400px) {
   .top-nav .add-restaurant-button {
     border-radius: 10px;
