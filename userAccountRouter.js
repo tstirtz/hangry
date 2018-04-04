@@ -23,7 +23,6 @@ router.post('/', jsonParser, function(req, res){
 
     const fieldsToTrim = ['userName', 'password'];
     const nonTrimmedFields = fieldsToTrim.find(field => req.body[field].trim() !== req.body[field]);
-    console.log(nonTrimmedFields);
 
     if(nonTrimmedFields){
         return res.status(422).json({
@@ -46,17 +45,11 @@ router.post('/', jsonParser, function(req, res){
         }
     };
 
-    // const tooSmallField = Object.keys(sizedFields).find(function(field){
-    //     req.body[field].trim().length < sizedFields[field].min
-    // });
-    // console.log(tooSmallField);
-
     const tooLargeField = Object.keys(sizedFields).find(function(field){
         return 'max' in sizedFields[field] && req.body[field].trim().length > sizedFields[field].max
     });
 
     if(req.body.password.length < 10){
-        console.log("tooSmallField executed");
         return res.status(422).json({
             code: 422,
             reason: 'ValidationError',
@@ -70,7 +63,6 @@ router.post('/', jsonParser, function(req, res){
             long`
         });
     }
-    console.log("Did not return response");
     return Users
         .find({userName: req.body.userName})
         .count()
@@ -95,7 +87,7 @@ router.post('/', jsonParser, function(req, res){
                 });
         })
         .then(function(user){
-            //make request to /login route
+            //make request to /login route to automatically login new user
             return res.status(201).json(user.userData());
         })
         .catch(function(err){
