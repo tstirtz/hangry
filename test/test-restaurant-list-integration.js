@@ -10,7 +10,7 @@ const {Users} = require('../models/user-model');
 const {createAuthToken} = require('../auth/router')
 
 const expect = chai.expect;
-chai.use(chaiHttp);
+chai.use(chaiHttp); //allows me to make http requests in tests
 
 function seedTestData(){
     let seededTestData = [];
@@ -18,7 +18,6 @@ function seedTestData(){
     for(let i = 0; i < 10; i++){
         seededTestData.push(testDataModel());
     }
-    console.log(seededTestData);
     return Users.insertMany(seededTestData);
 }
 
@@ -118,7 +117,41 @@ describe('Restaurant API', function(){
     //             });
     //     });
     // });
-
+    // describe('Post user login endpoint', function(){
+    //     it('should login existing user', function(){
+    //         //findOne user
+    //         let user;
+    //
+    //         return Users
+    //             .findOne()
+    //             .then(function(_user){
+    //                 user = _user;
+    //                 console.log(user);
+    //                 let userLoginObj = {
+    //                     userName: user.userName,
+    //                     password: user.password
+    //                 }
+    //                 console.log(userLoginObj);
+    //                 // console.log(type);
+    //
+    //                 //then send userName and password object to /login endpoint
+    //                 return chai.request(app)
+    //                     .post('/login')
+    //                     .send(userLoginObj)
+    //                     .then(function(res){
+    //                         console.log(res);
+    //                         //expect res to be json
+    //                         expect(res).to.be.json;
+    //                         //expect res.body to be an object
+    //                         // expect(res.body).to.be.an('object');
+    //                         // //expect res.body to include keys id, jwt
+    //                         // expect(res.body).to.include.keys('id', 'jwt');
+    //                         // //expect res.id to equal user._id
+    //                         // expect(res.body.id).to.equal(user._id);
+    //                     });
+    //             });
+    //     });
+    // });
     describe('POST user-account endpoint', function(){
         it('should create a new user object', function(){
             //make a post with new user
