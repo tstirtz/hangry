@@ -11,7 +11,6 @@ const expect = chai.expect;
 chai.use(chaiHttp); //allows me to make http requests in my tests
 
 describe('Auth endpoints', function(){
-    // const username = 'exampleUser';
     const pass = 'examplePass';
 
     before(function(){
@@ -81,6 +80,7 @@ describe('Auth endpoints', function(){
                     expect(res).to.have.status(401);
                 });
         });
+        //TODO
         // it('Should return valid auth token', function(){
         //     return chai.request(app)
         //         .post('/login')
