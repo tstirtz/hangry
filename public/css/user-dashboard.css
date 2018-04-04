@@ -733,8 +733,15 @@ p {
   main .random-restaurant p {
     font-size: 20px; }
   main .random-restaurant p:first-of-type {
+<<<<<<< HEAD
     margin-top: 120px; } }
 
+||||||| merged common ancestors
+    margin-top: 105px; } }
+
+=======
+    margin-top: 120px; } }
+>>>>>>> 3c86487f02042acc257e749a7a38c1a4c5adc236
 @media only screen and (max-width: 400px) {
   .top-nav .add-restaurant-button {
     border-radius: 10px;
