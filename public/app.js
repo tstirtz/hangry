@@ -171,11 +171,13 @@ function closeSignUpModal(){
 }
 
 function refreshOnFirstLoad(){
-    if(!window.location.hash){
-        console.log("Window refreshed");
-        window.location = window.location + '#loaded';
-        window.location.reload();
-    }
+    window.onload = function(){
+        if(!window.location.hash){
+            console.log("Window refreshed");
+            window.location = window.location + '#loaded';
+            window.location.reload();
+        }
+    }    
 }
 
 
