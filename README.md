@@ -1,6 +1,6 @@
 # Hangry
 
-![link to Hangry](https://shielded-taiga-53121.herokuapp.com/)
+<a href= "https://shielded-taiga-53121.herokuapp.com/">Hangry home page<a/>
 
 ![hangry-landing-page-screenshot](https://user-images.githubusercontent.com/13411490/38341706-cd3f72bc-382e-11e8-839c-46b180183a58.png)
 
