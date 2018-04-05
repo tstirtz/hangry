@@ -170,9 +170,18 @@ function closeSignUpModal(){
     });
 }
 
+function refreshOnFirstLoad(){
+    if(!window.location.hash){
+        console.log("Window refreshed");
+        window.location = window.location + '#loaded';
+        window.location.reload();
+    }
+}
+
 
 $(function(){
     login();
     renderSignUpModal();
     checkRequiredFields();
+    refreshOnFirstLoad()
 });
