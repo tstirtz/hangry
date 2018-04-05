@@ -171,13 +171,13 @@ function closeSignUpModal(){
 }
 
 function refreshOnFirstLoad(){
-    window.onload = function(){
-        if(!window.location.hash){
-            console.log("Window refreshed");
-            window.location = window.location + '#loaded';
-            window.location.reload();
-        }
-    }    
+            if(!localStorage.getItem('firstLoad')){
+                localStorage['firstLoad'] = true;
+                window.location.reload();
+                console.log("Page reloaded");
+            }else{
+                localStorage.removeItem('firstLoad');
+            }
 }
 
 
