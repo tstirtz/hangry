@@ -3,7 +3,7 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const {app, runServer, closeServer} = require('../server');
-const {TEST_DATABASE_URL} = require('../config');
+const {TEST_DATABASE_URL, JWT_SECRET} = require('../config');
 const {Users} = require('../models/user-model');
 const jwt = require('jsonwebtoken');
 
@@ -12,7 +12,7 @@ chai.use(chaiHttp); //allows me to make http requests in my tests
 
 describe('Auth endpoints', function(){
     const pass = 'examplePass';
-
+    let testUserId;
     before(function(){
         return runServer(TEST_DATABASE_URL);
     });
@@ -20,12 +20,25 @@ describe('Auth endpoints', function(){
         closeServer();
     });
     beforeEach(function(){
-        return Users.hashPassword(pass).then(password =>
-            Users.create({
-                userName: 'exampleUser',
-                password: 'examplePass'
-            })
-        );
+        // return Users.hashPassword(pass).then(password =>
+        //     Users.create({
+        //         userName: 'exampleUser',
+        //         password: 'examplePass'
+        //     })
+        // );
+
+        const testUser = {
+            userName: 'exampleUser',
+            password: 'examplePass'
+        }
+
+        return chai.request(app)
+            .post('/user-account')
+            .send(testUser)
+            .then((res) => {
+                console.log(res.body);
+                testUserId = res.body._id;
+            });
     });
     afterEach(function(){
         return Users.remove({});
@@ -80,24 +93,25 @@ describe('Auth endpoints', function(){
                     expect(res).to.have.status(401);
                 });
         });
-        //TODO
-        // it('Should return valid auth token', function(){
-        //     return chai.request(app)
-        //         .post('/login')
-        //         .send({userName: 'exampleUser', password: 'examplePass'})
-        //         .then(res => {
-        //             expect(res).to.have.status(200);
-        //             expect(res.body).to.be.json;
-        //             const token = res.body.authToken;
-        //             expect(token).to.be.a('string');
-        //             const payload = jwt.verify(token, JWT_SECRET, {
-        //                 algorithm: ['HS256']
-        //             });
-        //             expect(payload.user).to.deep.equal({
-        //                 username,
-        //                 _id
-        //             });
-        //         });
-        // });
+        it('Should return valid auth token', function(){
+            return chai.request(app)
+                .post('/login')
+                .send({userName: 'exampleUser', password: 'examplePass'})
+                .then(res => {
+                    console.log(res.body);
+                    expect(res).to.have.status(200);
+                    expect(res).to.be.json;
+                    const token = res.body.jwt;
+                    expect(token).to.be.a('string');
+                    const payload = jwt.verify(token, JWT_SECRET, {
+                        algorithm: ['HS256']
+                    });
+                    console.log(payload.user);
+                    expect(payload.user).to.deep.equal({
+                        userName: 'exampleUser',
+                        _id: testUserId
+                    });
+                });
+        });
     });
 });
