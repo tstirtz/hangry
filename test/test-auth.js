@@ -20,12 +20,6 @@ describe('Auth endpoints', function(){
         closeServer();
     });
     beforeEach(function(){
-        // return Users.hashPassword(pass).then(password =>
-        //     Users.create({
-        //         userName: 'exampleUser',
-        //         password: 'examplePass'
-        //     })
-        // );
 
         const testUser = {
             userName: 'exampleUser',
@@ -36,7 +30,6 @@ describe('Auth endpoints', function(){
             .post('/user-account')
             .send(testUser)
             .then((res) => {
-                console.log(res.body);
                 testUserId = res.body._id;
             });
     });
