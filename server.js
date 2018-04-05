@@ -9,6 +9,7 @@ const passport = require('passport');
 const {localStrategy, jwtStrategy} = require('./auth/strategies');
 const {router: authRouter} = require('./auth/router');
 //router: authRouter uses deconstructuring with renaming
+require('dotenv').config();
 const jsonParser = bodyParser.json();
 
 app.use(morgan('common'));
