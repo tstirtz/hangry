@@ -101,7 +101,7 @@ main{
             max-width: 175px;
             margin-left: auto;
             margin-right: auto;
-            color: #b6e9e5;
+            color: #0f594d;
         }
         p:first-of-type{
             margin-top: 85px;
@@ -540,9 +540,9 @@ p{
 /* Medium to large devices (phones, 610px and down) */
 @media only screen and (max-width: 610px){
     main{
-        .random-restaurant p{
-            max-width: 155px;
-        }
+        // .random-restaurant p{
+        //     max-width: 155px;
+        // }
         .instructions-generate-restaurant{
             margin: 2.5px;
             left: 25%;
@@ -602,7 +602,7 @@ p{
     main{
         .random-restaurant p{
             max-width: 155px;
-            font-size: 18px;
+            font-size: 16px;
         }
         .random-restaurant p:first-of-type{
             margin-top: 115px;
@@ -623,7 +623,8 @@ p{
     main{
         .random-restaurant{
             p{
-                font-size: 20px;
+                font-size: 16px;
+                max-width: 145px;
             }
             p:first-of-type{
                 margin-top: 120px;
@@ -650,6 +651,9 @@ p{
             p{
                 width: 60%;
                 font-size: 13px;
+            }
+            p:first-of-type{
+                margin-top: 100px;
             }
         }
         .instructions-generate-restaurant{
