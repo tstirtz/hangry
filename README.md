@@ -6,9 +6,9 @@ This app allows the users to create an account, and keep a list of restaurants s
 or some of their favorite restaurants. When the user can't decide on a restaurant
 to eat at they can randomly generate a restaurant from their list.
 
-##Stack
-###Front End
+## Stack
+### Front End
 HTML, CSS, Sass, jQuery
 
-###Back End
+### Back End
 Node.js, Express, MongoDB, Mongoose, Chai, Mocha
