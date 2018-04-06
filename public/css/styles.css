@@ -256,6 +256,8 @@ input.username, input.password {
 @media only screen and (max-width: 370px) {
   main section {
     width: 95%; }
+    main section h3 {
+      text-align: center; }
   .top-nav {
     grid-template-columns: 50% 50%; }
     .top-nav h1 {
@@ -276,7 +278,8 @@ input.username, input.password {
     main section h3:first-of-type {
       font-size: 30px; }
     main section h3 {
-      font-size: 14px; }
+      font-size: 14px;
+      text-align: center; }
   input.username {
     display: block;
     grid-row-start: 2;
@@ -316,6 +319,3 @@ input.username, input.password {
     display: block;
     margin-left: 5px;
     margin-right: 5px; } }
-
-@media screen and (-webkit-min-device-pixel-ratio: 2) {
-  /* css to target */ }
