@@ -173,7 +173,7 @@ function closeSignUpModal(){
 function refreshOnFirstLoad(){
             if(!localStorage.getItem('firstLoad')){
                 localStorage['firstLoad'] = true;
-                window.location.reload(true);
+                window.location.reload();
                 console.log("Page reloaded");
             }else{
                 localStorage.removeItem('firstLoad');
