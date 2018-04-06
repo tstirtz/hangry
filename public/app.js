@@ -170,20 +170,20 @@ function closeSignUpModal(){
     });
 }
 
-function refreshOnFirstLoad(){
-            if(!localStorage.getItem('firstLoad')){
-                localStorage['firstLoad'] = true;
-                window.location.href = window.location.href;
-                console.log("Page reloaded");
-            }else{
-                localStorage.removeItem('firstLoad');
-            }
-}
+// function refreshOnFirstLoad(){
+//             if(!localStorage.getItem('firstLoad')){
+//                 localStorage['firstLoad'] = true;
+//                 window.location.href = window.location.href;
+//                 console.log("Page reloaded");
+//             }else{
+//                 localStorage.removeItem('firstLoad');
+//             }
+// }
 
 
 $(function(){
     login();
     renderSignUpModal();
     checkRequiredFields();
-    refreshOnFirstLoad();
+    // refreshOnFirstLoad();
 });
