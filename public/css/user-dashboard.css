@@ -668,9 +668,9 @@ p {
     width: 110px;
     font-size: 12px; }
   .add-restaurant {
-    margin-right: 15px;
-    grid-column-start: 2;
-    justify-self: end; }
+    margin-left: 60%;
+    width: 40%;
+    grid-column-start: 2; }
     .add-restaurant input {
       width: 90%; }
     .add-restaurant button {

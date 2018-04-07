@@ -577,9 +577,9 @@ p{
         font-size: 12px;
     }
     .add-restaurant{
-        margin-right: 15px;
+        margin-left: 60%;
+        width: 40%;
         grid-column-start: 2;
-        justify-self: end;
         input{
             width: 90%;
         }
