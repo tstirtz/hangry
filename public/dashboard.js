@@ -168,20 +168,29 @@ function getRandomRestaurant(callback){
             beforeSend: function(xhr){
                 xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('authToken')}`);
             },
-            success: callback
+            success: callback,
         });
     });
 }
 
 function renderRandomRestaurant(restaurant){
+    console.log(restaurant);
     if($('.random-restaurant').hasClass('hide')){
         $('.random-restaurant').toggleClass('hide');
     }
-    $('.random-restaurant').empty();
-    $('.random-restaurant').append(
-        `<p>${restaurant.name}</p>
-         <p>${restaurant.address}</p>`
-    )
+    if(restaurant.message){
+        $('.random-restaurant').empty();
+        $('.random-restaurant').append(
+            `<p>${restaurant.message}</p>
+            <p>Click 'Get Started' for help.</p>`
+        );
+    }else{
+        $('.random-restaurant').empty();
+        $('.random-restaurant').append(
+            `<p>${restaurant.name}</p>
+             <p>${restaurant.address}</p>`
+        )
+    }
 }
 
 function getAndDisplayRandomRestaurant(){

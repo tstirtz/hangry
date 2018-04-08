@@ -115,12 +115,15 @@ router.get('/restaurants/random/:userId', jwtAuth, function(req, res){
     Users
         .findById(req.params.userId)
         .then(function(user){
+            if(user.restaurants.length <= 1){
+                res.json({message: "Please add at least 2 restaurants."})
+            }else{
+                let count = user.restaurants.length;
+                let index = Math.floor(Math.random() * count);
+                let randomRestaurant = user.restaurants[index];
 
-            let count = user.restaurants.length;
-            let index = Math.floor(Math.random() * count);
-            let randomRestaurant = user.restaurants[index];
-
-            res.json(randomRestaurant);
+                res.json(randomRestaurant);
+            }
         })
         .catch(function(err){
             console.log(err);
