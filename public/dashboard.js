@@ -249,13 +249,24 @@ function sendNewRestaurantData(){
             success: function(response){
                 console.log(response);
                 toggleAddRestaurantInputs();
-                alert(response.message);
+                addRestaurantAlert(response.message);
             },
             error: function(){
-                alert(response.error);
+                addRestaurantAlert(response.message)
             }
         });
     });
+}
+
+function addRestaurantAlert(message){
+    $('.feedback-popup').append(
+        `<p>${message}</p>`
+    );
+    $('.feedback-popup').css('visibility', 'visible');
+    setTimeout(function(){
+        $('.feedback-popup').css('visibility', 'hidden');
+        $('.feedback-popup').empty();
+    }, 3000);
 }
 
 function renderDeleteModal(idToDelete){
