@@ -127,7 +127,7 @@ function editRestaurant(){
                         const message = "Restaurant updated!";
                         addRestaurantAlert(message);
                     },
-                    error: function(jqXHR, errorValue){
+                    error: function(response){
                         console.log(errorValue);
                         addRestaurantAlert(response.error);
                     },
@@ -252,7 +252,7 @@ function sendNewRestaurantData(){
                 toggleAddRestaurantInputs();
                 addRestaurantAlert(response.message);
             },
-            error: function(){
+            error: function(response){
                 addRestaurantAlert(response.message);
             }
         });
@@ -296,20 +296,19 @@ function deleteRestaurant(restIdToDelete){
             contentType: 'application/json; charset= utf-8',
             statusCode: {
                 204: function(){
-                    //TODO
-                    // $('#delete-restaurant-modal .modal-content').append(
-                    //     `<p>Restaurant deleted.</p>`
-                    // );
+                    const message = "Restaurant deleted!"
+                    addRestaurantAlert(message);
                 }
             },
             beforeSend: function(xhr){
                 xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('authToken')}`);
             },
-            error: function(jqXHR, errorValue){
+            error: function(response){
                 console.log(jqXHR);
-                $('#delete-restaurant-modal .modal-content').append(
-                    `<p>${errorValue}</p>`
-                );
+                // $('#delete-restaurant-modal .modal-content').append(
+                //     `<p>${errorValue}</p>`
+                // );
+                addRestaurantAlert(response.message);
             },
             success: [hideDeleteModal(), hideRestaurantList()]
         });
