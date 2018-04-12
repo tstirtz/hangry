@@ -640,6 +640,8 @@ p {
     background: #2046F2;
     color: #FFFFFF;
     font-weight: 300; }
+  .edit-restaurant-modal .modal-message p {
+    text-align: center; }
 
 .feedback-popup {
   grid-column-start: 2;

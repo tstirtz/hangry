@@ -85,7 +85,7 @@ router.put('/restaurants/edit/:userId.:restaurantId', [jsonParser, jwtAuth], fun
         })
         .catch(function(err){
             console.log(err);
-            res.status(500).json({message: "Something went terribly wrong!"});
+            res.status(500).json({error: "Something went terribly wrong!"});
         });
 });
 

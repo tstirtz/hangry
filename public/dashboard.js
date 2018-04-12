@@ -124,11 +124,12 @@ function editRestaurant(){
                         xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('authToken')}`);
                     },
                     success: function(){
-                        alert("Restaurant updated");
+                        const message = "Restaurant updated!";
+                        addRestaurantAlert(message);
                     },
                     error: function(jqXHR, errorValue){
-                        alert(errorValue);
                         console.log(errorValue);
+                        addRestaurantAlert(response.error);
                     },
                     sussess: [hideEditModal(), hideRestaurantList(), clearEditModal()]
                 });
@@ -252,7 +253,7 @@ function sendNewRestaurantData(){
                 addRestaurantAlert(response.message);
             },
             error: function(){
-                addRestaurantAlert(response.message)
+                addRestaurantAlert(response.message);
             }
         });
     });
