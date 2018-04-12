@@ -536,7 +536,52 @@ p{
         color: #FFFFFF;
         font-weight: 300;
     }
+    .modal-message p{
+        text-align: center;
+    }
 }
+
+.feedback-popup {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    align-self: end;
+    visibility: hidden; 
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 5px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    opacity: .7;
+    -webkit-animation: fadein 0.5s, fadeout 0.8s 2.5s;
+    animation: fadein 0.5s, fadeout 0.8s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {opacity: 0;}
+    to {opacity: .7;}
+}
+
+@keyframes fadein {
+    from {opacity: 0;}
+    to {opacity: .7;}
+}
+
+@-webkit-keyframes fadeout {
+    from {opacity: .7;}
+    to {opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {opacity: .7;}
+    to {opacity: 0;}
+}
+
 
 /* Medium to large devices (phones, 610px and down) */
 @media only screen and (max-width: 610px){

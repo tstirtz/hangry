@@ -124,11 +124,12 @@ function editRestaurant(){
                         xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('authToken')}`);
                     },
                     success: function(){
-                        alert("Restaurant updated");
+                        const message = "Restaurant updated!";
+                        addRestaurantAlert(message);
                     },
-                    error: function(jqXHR, errorValue){
-                        alert(errorValue);
+                    error: function(response){
                         console.log(errorValue);
+                        addRestaurantAlert(response.error);
                     },
                     sussess: [hideEditModal(), hideRestaurantList(), clearEditModal()]
                 });
@@ -249,13 +250,24 @@ function sendNewRestaurantData(){
             success: function(response){
                 console.log(response);
                 toggleAddRestaurantInputs();
-                alert(response.message);
+                addRestaurantAlert(response.message);
             },
-            error: function(){
-                alert(response.error);
+            error: function(response){
+                addRestaurantAlert(response.message);
             }
         });
     });
+}
+
+function addRestaurantAlert(message){
+    $('.feedback-popup').append(
+        `<p>${message}</p>`
+    );
+    $('.feedback-popup').css('visibility', 'visible');
+    setTimeout(function(){
+        $('.feedback-popup').css('visibility', 'hidden');
+        $('.feedback-popup').empty();
+    }, 3000);
 }
 
 function renderDeleteModal(idToDelete){
@@ -284,20 +296,19 @@ function deleteRestaurant(restIdToDelete){
             contentType: 'application/json; charset= utf-8',
             statusCode: {
                 204: function(){
-                    //TODO
-                    // $('#delete-restaurant-modal .modal-content').append(
-                    //     `<p>Restaurant deleted.</p>`
-                    // );
+                    const message = "Restaurant deleted!"
+                    addRestaurantAlert(message);
                 }
             },
             beforeSend: function(xhr){
                 xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('authToken')}`);
             },
-            error: function(jqXHR, errorValue){
+            error: function(response){
                 console.log(jqXHR);
-                $('#delete-restaurant-modal .modal-content').append(
-                    `<p>${errorValue}</p>`
-                );
+                // $('#delete-restaurant-modal .modal-content').append(
+                //     `<p>${errorValue}</p>`
+                // );
+                addRestaurantAlert(response.message);
             },
             success: [hideDeleteModal(), hideRestaurantList()]
         });
