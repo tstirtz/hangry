@@ -211,6 +211,7 @@ main {
     -ms-flex-pack: center;
     justify-content: center;
     grid-column-start: 2;
+    grid-row-start: 2;
     justify-self: center;
     align-self: start;
     margin-bottom: 70px; }
@@ -241,6 +242,24 @@ main {
         color: #0f594d;
         margin: 0px;
         font-size: 13px; }
+  main .demo-account {
+    grid-row-start: 2;
+    grid-column-start: 2;
+    height: 30px;
+    width: 670px;
+    padding-left: 10px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    top: 50px; }
+    main .demo-account p {
+      display: inline-block;
+      font-family: 'Ubuntu', sans-serif;
+      color: #0f594d;
+      margin: 0px;
+      margin-right: 5px;
+      font-size: 14px; }
 
 input.username, input.password {
   grid-row-start: 1;
@@ -280,6 +299,12 @@ input.username, input.password {
     main section h3 {
       font-size: 14px;
       text-align: center; }
+  main .demo-account {
+    grid-column: 1 / 4;
+    margin-top: 190px;
+    width: 75%;
+    padding-left: 5px;
+    text-align: center; }
   input.username {
     display: block;
     grid-row-start: 2;
@@ -305,6 +330,9 @@ input.username, input.password {
   main section {
     width: 490px;
     margin-bottom: 25px; }
+  main .demo-account {
+    width: 490px;
+    padding-left: 5px; }
   input.username {
     display: block;
     width: 175px;

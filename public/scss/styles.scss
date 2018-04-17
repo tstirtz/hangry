@@ -221,6 +221,7 @@ main{
         grid-template-rows: 75%;
         justify-content: center;
         grid-column-start: 2;
+        grid-row-start: 2;
         justify-self: center;
         align-self: start;
         margin-bottom: 70px;
@@ -247,6 +248,26 @@ main{
                 margin: 0px;
                 font-size: 13px;
             }
+        }
+    }
+    .demo-account{
+        grid-row-start: 2;
+        grid-column-start: 2;
+        height: 30px;
+        width: 670px;
+        padding-left: 10px;
+        margin-top: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        z-index: 1;
+        top: 50px;
+        p{
+            display: inline-block;
+            font-family: 'Ubuntu', sans-serif;
+            color: #0f594d;
+            margin: 0px;
+            margin-right: 5px;
+            font-size: 14px;
         }
     }
 }
@@ -303,6 +324,13 @@ input.username , input.password{
                 text-align: center;
             }
         }
+        .demo-account{
+            grid-column: 1 / 4;
+            margin-top: 190px;
+            width: 75%;
+            padding-left: 5px;
+            text-align: center;
+        }
     }
     input.username{
         display: block;
@@ -334,6 +362,10 @@ input.username , input.password{
         section{
             width: 490px;
             margin-bottom: 25px;
+        }
+        .demo-account{
+            width: 490px;
+            padding-left: 5px;
         }
     }
     input.username{
