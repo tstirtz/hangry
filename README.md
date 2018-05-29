@@ -10,7 +10,7 @@ to eat at they can randomly generate a restaurant from their list.
 
 ## Stack
 ### Front End
-HTML, CSS, Sass, jQuery
+Javescript, HTML, CSS, Sass, jQuery
 
 ### Back End
 Node.js, Express, MongoDB, Mongoose, Chai, Mocha
