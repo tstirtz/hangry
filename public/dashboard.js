@@ -15,17 +15,10 @@ function getRestaurantData(callback){
         if($('.restaurant-list-js').hasClass('hide')){
             smallDeviceMediaQuery();
             tabletMediaQuery(); //slide image and generate restaurant button to the right
-        //if restaurant list isn't hidden then make request to get list of restaurants
-            $.ajax({
-                url:'/dashboard/restaurants/' + sessionStorage.getItem('userId'),
-                method: 'GET',
-                dataType: 'json',
-                contentType: 'application/json; charset= utf-8',
-                beforeSend: function(xhr){
-                    xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('authToken')}`);
-                },
-                success: callback
-            });
+            getAndDisplayRestaurants();
+            if(($('.restaurant-list-js').hasClass('hide'))){
+                $('.restaurant-list-js').toggleClass('hide');
+            }
         }else if(!($('.restaurant-list-js').hasClass('hide'))){
             smallDeviceMediaQuery();
             tabletMediaQuery(); //slide image and generate restaurant button to the right
@@ -38,7 +31,7 @@ function getRestaurantData(callback){
 function renderRestaurantList(data){
     console.log("This is the restaurant data");
     console.log(data);
-    $('.restaurant-list-js').toggleClass('hide');
+    $('.restaurant-list-js').empty();
       let i = 1;
         data.forEach(function(restaurantObject){
             let restaurantId = restaurantObject._id;
@@ -66,9 +59,20 @@ function renderRestaurantList(data){
     });
 }
 
-
+function requestUserRestaurants(callback){
+    $.ajax({
+        url:'/dashboard/restaurants/' + sessionStorage.getItem('userId'),
+        method: 'GET',
+        dataType: 'json',
+        contentType: 'application/json; charset= utf-8',
+        beforeSend: function(xhr){
+            xhr.setRequestHeader('Authorization', `Bearer ${sessionStorage.getItem('authToken')}`);
+        },
+        success: callback
+    });
+}
 function getAndDisplayRestaurants(){
-    getRestaurantData(renderRestaurantList);
+    requestUserRestaurants(renderRestaurantList);
 }
 
 function renderEditModal(buttonNumber){
@@ -221,6 +225,7 @@ function toggleAddRestaurantInputs(){
 
 function sendNewRestaurantData(){
     $('.add-restaurant').on('click', '.submit-add-restaurant-js', function(event){
+        
         event.stopImmediatePropagation();
         event.preventDefault();
 
@@ -251,6 +256,7 @@ function sendNewRestaurantData(){
                 console.log(response);
                 toggleAddRestaurantInputs();
                 addRestaurantAlert(response.message);
+                getAndDisplayRestaurants();
             },
             error: function(response){
                 addRestaurantAlert(response.message);
@@ -407,7 +413,7 @@ function getStartedUserInstructions(){
 
 
 $(function(){
-    getAndDisplayRestaurants();
+    getRestaurantData();
     getAndDisplayRandomRestaurant();
     renderAddRestaurantInputs();
     sendNewRestaurantData();

@@ -207,6 +207,7 @@ main{
 .top-nav{
     @include navbar;
     .container{
+        width: 45px;
         margin-left: 15px;
         align-self: center;
     }
