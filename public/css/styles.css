@@ -30,7 +30,6 @@
     font-size: 16px;
     color: #b6e9e5;
     letter-spacing: 0;
-    outline-style: none;
     height: 30px;
     width: 110px;
     -ms-flex-item-align: center;
@@ -116,7 +115,6 @@
       font-size: 16px;
       color: #b6e9e5;
       letter-spacing: 0;
-      outline-style: none;
       border: 2px solid #2ab6a4;
       display: block;
       width: 85%;
@@ -153,8 +151,7 @@
     padding: 2.5px;
     font-family: 'Ubuntu', sans-serif;
     font-weight: 300;
-    font-size: 14px;
-    outline-style: none; }
+    font-size: 14px; }
   #sign-up-modal label:first-of-type {
     margin-top: 20px; }
   #sign-up-modal .modal-message {
@@ -223,7 +220,6 @@ main {
       font-size: 16px;
       color: #b6e9e5;
       letter-spacing: 0;
-      outline-style: none;
       grid-row-start: 1;
       background: #29b4a1;
       height: 30px;

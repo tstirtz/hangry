@@ -32,7 +32,6 @@
     border: 3px solid #b6e9e5;
     font-size: 16px;
     letter-spacing: 0;
-    outline-style: none;
 }
 
 @mixin instructions-container{
@@ -208,6 +207,7 @@ main{
 .top-nav{
     @include navbar;
     .container{
+        width: 45px;
         margin-left: 15px;
         align-self: center;
     }
@@ -289,7 +289,6 @@ main{
         justify-self: center;
         grid-column: 1 / 2;
         padding: 2.5px;
-        outline-style: none;
         border:1px solid #8cdcd4;
         font-family: 'Ubuntu', sans-serif;
         font-weight: 300;
@@ -374,6 +373,13 @@ main{
         height: 30px;
         align-self: center;
         justify-self: end;
+        align-content: center;
+        justify-items: center;
+        button{
+            border: 0;
+            padding: 0;
+            background-color: rgba(255, 255, 255, 0);
+        }
         svg{
             color: #0f594d;
             justify-self: center;
@@ -382,13 +388,15 @@ main{
             color: #ccefeb;
             font-size: 20px;
         }
+        svg:focus{
+            color: black;
+        }
     }
 }
 
  .button{
     width: 50%;
     height: 25px;
-    outline-style: none;
 }
 
 .hide{
@@ -519,7 +527,6 @@ p{
         font-family: 'Ubuntu', sans-serif;
         font-weight: 300;
         font-size: 14px;
-        outline-style: none;
     }
     input:first-of-type{
         margin-bottom: 20px;
