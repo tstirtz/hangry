@@ -70,7 +70,6 @@ main {
     border: 3px solid #b6e9e5;
     font-size: 16px;
     letter-spacing: 0;
-    outline-style: none;
     font-size: 14px;
     color: #2ab6a4;
     background-color: #b6e9e5;
@@ -230,7 +229,6 @@ main {
     border: 3px solid #b6e9e5;
     font-size: 16px;
     letter-spacing: 0;
-    outline-style: none;
     height: 25px;
     width: 150px;
     margin-right: 15px;
@@ -277,7 +275,6 @@ main {
     border: 3px solid #b6e9e5;
     font-size: 16px;
     letter-spacing: 0;
-    outline-style: none;
     background: #2ab5a3;
     height: 30px;
     width: 175px;
@@ -310,7 +307,6 @@ main {
     justify-self: center;
     grid-column: 1 / 2;
     padding: 2.5px;
-    outline-style: none;
     border: 1px solid #8cdcd4;
     font-family: 'Ubuntu', sans-serif;
     font-weight: 300;
@@ -327,7 +323,6 @@ main {
     border: 3px solid #b6e9e5;
     font-size: 16px;
     letter-spacing: 0;
-    outline-style: none;
     height: 25px;
     width: 150px;
     margin: 2.5px 5px 5px 2.5px;
@@ -394,18 +389,26 @@ main {
     width: 60px;
     height: 30px;
     align-self: center;
-    justify-self: end; }
+    justify-self: end;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    justify-items: center; }
+    .restaurant-list .edit-delete-buttons button {
+      border: 0;
+      padding: 0;
+      background-color: rgba(255, 255, 255, 0); }
     .restaurant-list .edit-delete-buttons svg {
       color: #0f594d;
       justify-self: center; }
     .restaurant-list .edit-delete-buttons svg:hover {
       color: #ccefeb;
       font-size: 20px; }
+    .restaurant-list .edit-delete-buttons svg:focus {
+      color: black; }
 
 .button {
   width: 50%;
-  height: 25px;
-  outline-style: none; }
+  height: 25px; }
 
 .hide {
   display: none; }
@@ -484,7 +487,6 @@ p {
       border: 3px solid #b6e9e5;
       font-size: 16px;
       letter-spacing: 0;
-      outline-style: none;
       display: block;
       width: 85%;
       height: 30px;
@@ -579,7 +581,6 @@ p {
       border: 3px solid #b6e9e5;
       font-size: 16px;
       letter-spacing: 0;
-      outline-style: none;
       display: block;
       width: 85%;
       height: 30px;
@@ -620,8 +621,7 @@ p {
     padding: 2.5px;
     font-family: 'Ubuntu', sans-serif;
     font-weight: 300;
-    font-size: 14px;
-    outline-style: none; }
+    font-size: 14px; }
   .edit-restaurant-modal input:first-of-type {
     margin-bottom: 20px; }
   .edit-restaurant-modal button {
@@ -630,7 +630,6 @@ p {
     border: 3px solid #b6e9e5;
     font-size: 16px;
     letter-spacing: 0;
-    outline-style: none;
     display: block;
     width: 85%;
     height: 30px;

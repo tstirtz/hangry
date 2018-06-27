@@ -55,8 +55,8 @@ function renderRestaurantList(data){
                     $(`.restaurant-${i}`).append(`<p class="restaurant-address">${restaurantObject[key]}</p>`);
                     $(`.restaurant-and-buttons-${i}`).append(
                         `<div class= "edit-delete-buttons">
-                            <i class="far fa-edit button edit-button-js button-${i}"></i>
-                            <i class="fas fa-trash-alt button delete-button-js-${restaurantId}" id= "${restaurantId}"></i>
+                            <button type="button"><i class="far fa-edit button edit-button-js button-${i}"></i></button>
+                            <button type="button"><i class="fas fa-trash-alt button delete-button-js-${restaurantId}" id= "${restaurantId}"></i></button>
                          </div>`);
                     renderDeleteModal(restaurantId);
                     renderEditModal(i);
