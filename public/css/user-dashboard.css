@@ -218,7 +218,9 @@ main {
     width: 45px;
     margin-left: 15px;
     -ms-flex-item-align: center;
-    align-self: center; }
+    align-self: center;
+    border: 0;
+    background: rgba(255, 255, 255, 0); }
   .top-nav .hamburger {
     width: 35px;
     height: 5px;
