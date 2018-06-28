@@ -48,7 +48,7 @@ function renderRestaurantList(data){
                     $(`.restaurant-${i}`).append(`<p class="restaurant-address">${restaurantObject[key]}</p>`);
                     $(`.restaurant-and-buttons-${i}`).append(
                         `<div class= "edit-delete-buttons">
-                            <button type="button"><i class="far fa-edit button edit-button-js button-${i}"></i></button>
+                            <button type="button" class="button-${i}"><i class="far fa-edit button edit-button-js"></i></button>
                             <button type="button"><i class="fas fa-trash-alt button delete-button-js-${restaurantId}" id= "${restaurantId}"></i></button>
                          </div>`);
                     renderDeleteModal(restaurantId);
@@ -86,8 +86,8 @@ function renderEditModal(buttonNumber){
         let restaurantAddress = $(this).parent().prev().children('.restaurant-address')[0].innerText;
         let restaurantId = $(this).parent().prev()[0].classList[2];
 
-        $('.modal-form').children('.edit-restaurant-input.name').attr('placeholder', `${restaurantName}`);
-        $('.modal-form').children('.edit-restaurant-input.address').attr('placeholder', `${restaurantAddress}`);
+        $('.modal-form').children('.edit-restaurant-input.name').attr('value', `${restaurantName}`);
+        $('.modal-form').children('.edit-restaurant-input.address').attr('value', `${restaurantAddress}`);
         $('.modal-form').children('.submit-edit').attr('value', restaurantId);
 
         $('.restaurant-list-js').off(`.button-${buttonNumber}`);
