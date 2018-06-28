@@ -49,7 +49,7 @@ function renderRestaurantList(data){
                     $(`.restaurant-and-buttons-${i}`).append(
                         `<div class= "edit-delete-buttons">
                             <button type="button" class="button-${i}"><i class="far fa-edit button edit-button-js"></i></button>
-                            <button type="button"><i class="fas fa-trash-alt button delete-button-js-${restaurantId}" id= "${restaurantId}"></i></button>
+                            <button type="button" class="delete-button-js-${restaurantId}" id= "${restaurantId}"><i class="fas fa-trash-alt button"></i></button>
                          </div>`);
                     renderDeleteModal(restaurantId);
                     renderEditModal(i);

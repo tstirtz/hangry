@@ -435,7 +435,7 @@ p{
             display: grid;
             width: 100%;
             grid-template-rows: auto;
-            grid-template-columns: 7.5% 85% 7.5%;
+            grid-template-columns: 10% 80% 10%;
             height: 50px;
             margin-bottom: 50px;
             border-top-left-radius: 5px;
@@ -458,14 +458,19 @@ p{
                 font-size: 20px;
                 grid-row-start: 1;
                 grid-column-start: 3;
-                justify-self: end;
-                align-self: start;
+                // justify-self: center;
+                // align-self: start;
+                text-align: center;
+                background: rgba(255, 255, 255, 0);
             }
-            .close:hover,
-            .close:focus {
+            .icon:hover{
                 color: #0f594d;
                 text-decoration: none;
                 cursor: pointer;
+            }
+            .close:hover{
+                background-color: #2ab5a2;
+                border: 0;
             }
         }
         button{
