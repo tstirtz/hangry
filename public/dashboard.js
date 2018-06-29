@@ -292,7 +292,7 @@ function renderDeleteModal(idToDelete){
 
 function deleteRestaurant(restIdToDelete){
     $('body').off('click', '.yes-button-js');
-    $('body').on('click', '.yes-button-js', function(){
+    $('body').on('click', '.yes-button-js', function(event){
         event.stopImmediatePropagation();
 
         $.ajax({
