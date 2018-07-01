@@ -6,6 +6,6 @@ deploy:
   provider: heroku
   api_key:
     secure: 10736461-ba70-4c3f-9695-8bbf63988b60
-  app: shielded-taiga-53121
+  app: hangryy
   on:
     repo: tstirtz/hangry-fullstack-capstone
