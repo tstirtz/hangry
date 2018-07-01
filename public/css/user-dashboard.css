@@ -352,7 +352,7 @@ main {
   display: grid;
   height: 100%;
   padding-bottom: 100px;
-  background-color: #25a48d;
+  background-color: #32b89f;
   box-shadow: 2px 7px 10px rgba(0, 0, 0, 0.473);
   width: 250px;
   grid-template-columns: auto;
