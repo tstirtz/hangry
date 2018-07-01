@@ -7,7 +7,9 @@
   grid-template-columns: 33.33% 33.33% 33.33%;
   grid-template-rows: auto;
   height: 65px;
-  border-bottom: 2px solid #59ccc2; }
+  background-color: #25a48d;
+  box-shadow: 5px 2px 10px rgba(0, 0, 0, 0.527);
+}
   .top-nav h1 {
     display: inline-block;
     justify-self: center;
@@ -26,7 +28,7 @@
     font-family: 'Ubuntu', sans-serif;
     border-radius: 20px;
     border: 2px solid #b6e9e5;
-    background-color: #29b4a0;
+    background-color: #25a48d;
     font-size: 16px;
     color: #b6e9e5;
     letter-spacing: 0;

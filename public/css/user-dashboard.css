@@ -198,7 +198,9 @@ main {
   grid-template-columns: 33.33% 33.33% 33.33%;
   grid-template-rows: auto;
   height: 65px;
-  border-bottom: 2px solid #59ccc2; }
+  background-color: #25a48d;
+  box-shadow: 5px 2px 10px rgba(0, 0, 0, 0.527);
+}
   .top-nav h1 {
     text-align: center;
     display: inline-block;
@@ -229,7 +231,7 @@ main {
   .top-nav .add-restaurant-button {
     font-family: 'Ubuntu', sans-serif;
     border-radius: 20px;
-    border: 3px solid #b6e9e5;
+    border: 2px solid #b6e9e5;
     font-size: 16px;
     letter-spacing: 0;
     height: 25px;
@@ -239,7 +241,7 @@ main {
     align-self: center;
     justify-self: end;
     grid-column-start: 3;
-    background-color: #2ab6a6;
+    background-color: #25a48d;
     color: #b6e9e5; }
   .top-nav .add-restaurant-button:hover {
     background-color: #0f594d;
@@ -275,7 +277,7 @@ main {
   .generate-restaurant .generate-restaurant-button {
     font-family: 'Ubuntu', sans-serif;
     border-radius: 20px;
-    border: 3px solid #b6e9e5;
+    border: 2px solid #b6e9e5;
     font-size: 16px;
     letter-spacing: 0;
     background: #2ab5a3;
@@ -300,9 +302,11 @@ main {
   justify-self: end;
   margin-right: 15px;
   background-color: #ccefeb;
-  z-index: 3; }
+  z-index: 3; 
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.541);
+}
   .add-restaurant input {
-    margin: 2.5px;
+    margin: 5px 10px 2.5px 10px;
     width: 150px;
     height: 25px;
     -ms-flex-item-align: start;
@@ -323,12 +327,12 @@ main {
   .add-restaurant button {
     font-family: 'Ubuntu', sans-serif;
     border-radius: 20px;
-    border: 3px solid #b6e9e5;
+    border: 1px solid #b6e9e5;
     font-size: 16px;
     letter-spacing: 0;
     height: 25px;
     width: 150px;
-    margin: 2.5px 5px 5px 2.5px;
+    margin: 2.5px 10px 5px 10px;
     -ms-flex-item-align: center;
     align-self: center;
     justify-self: center;
@@ -348,7 +352,8 @@ main {
   display: grid;
   height: 100%;
   padding-bottom: 100px;
-  background-color: #4ad0b6;
+  background-color: #25a48d;
+  box-shadow: 2px 7px 10px rgba(0, 0, 0, 0.473);
   width: 250px;
   grid-template-columns: auto;
   grid-template-rows: 5 75px;
