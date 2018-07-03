@@ -8,4 +8,4 @@ deploy:
     secure: 10736461-ba70-4c3f-9695-8bbf63988b60
   app: hangryy
   on:
-    repo: tstirtz/hangry-fullstack-capstone
+    repo: tstirtz/hangry
