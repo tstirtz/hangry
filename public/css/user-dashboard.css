@@ -79,10 +79,10 @@ main {
     position: absolute;
     bottom: 70px;
     right: 20px;
-    animation: bounce 2s infinite;
-    -webkit-animation: bounce 2s infinite;
-    -moz-animation: bounce 2s infinite;
-    -o-animation: bounce 2s infinite; }
+    animation: bounce 2s 5;
+    -webkit-animation: bounce 2s 5;
+    -moz-animation: bounce 2s 5;
+    -o-animation: bounce 2s 5; }
 
 @-webkit-keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
